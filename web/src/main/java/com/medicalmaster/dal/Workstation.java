@@ -20,13 +20,14 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class Workstation implements DalPojo {
 	
 	@Id
-	@Column(name="workstation_id")
+	@Column(name="workstationId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer workstation_id;
+	private Integer workstationId;
 	
-	@Column(name="user_id")
+	@Column(name="userId")
 	@Type(value=Types.INTEGER)
-	private Integer user_id;
+	private Integer userId;
 	
 	@Column(name="name")
 	@Type(value=Types.VARCHAR)
@@ -44,32 +45,32 @@ public class Workstation implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String keywords;
 	
-	@Column(name="allow_download")
+	@Column(name="allowDownload")
 	@Type(value=Types.BIT)
-	private Boolean allow_download;
+	private Boolean allowDownload;
 	
-	@Column(name="create_time")
+	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp create_time;
+	private Timestamp createTime;
 	
-	@Column(name="last_update_time")
+	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp last_update_time;
+	private Timestamp lastUpdateTime;
 
-	public Integer getWorkstation_id() {
-		return workstation_id;
+	public Integer getWorkstationId() {
+		return workstationId;
 	}
 
-	public void setWorkstation_id(Integer workstation_id) {
-		this.workstation_id = workstation_id;
+	public void setWorkstationId(Integer workstationId) {
+		this.workstationId = workstationId;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -104,28 +105,28 @@ public class Workstation implements DalPojo {
 		this.keywords = keywords;
 	}
 
-	public Boolean getAllow_download() {
-		return allow_download;
+	public Boolean getAllowDownload() {
+		return allowDownload;
 	}
 
-	public void setAllow_download(Boolean allow_download) {
-		this.allow_download = allow_download;
+	public void setAllowDownload(Boolean allowDownload) {
+		this.allowDownload = allowDownload;
 	}
 
-	public Timestamp getCreate_time() {
-		return create_time;
+	public Timestamp getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Timestamp create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
 	}
 
-	public Timestamp getLast_update_time() {
-		return last_update_time;
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
 	}
 
-	public void setLast_update_time(Timestamp last_update_time) {
-		this.last_update_time = last_update_time;
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

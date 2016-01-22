@@ -20,9 +20,10 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class TrainingMaterial implements DalPojo {
 	
 	@Id
-	@Column(name="training_material_id")
+	@Column(name="materialId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer training_material_id;
+	private Integer materialId;
 	
 	@Column(name="title")
 	@Type(value=Types.VARCHAR)
@@ -32,28 +33,28 @@ public class TrainingMaterial implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String description;
 	
-	@Column(name="material_location")
+	@Column(name="location")
 	@Type(value=Types.VARCHAR)
-	private String material_location;
+	private String location;
 	
-	@Column(name="create_time")
+	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp create_time;
+	private Timestamp createTime;
 	
-	@Column(name="last_update_time")
+	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp last_update_time;
+	private Timestamp lastUpdateTime;
 	
-	@Column(name="user_id")
+	@Column(name="userId")
 	@Type(value=Types.INTEGER)
-	private Integer user_id;
+	private Integer userId;
 
-	public Integer getTraining_material_id() {
-		return training_material_id;
+	public Integer getMaterialId() {
+		return materialId;
 	}
 
-	public void setTraining_material_id(Integer training_material_id) {
-		this.training_material_id = training_material_id;
+	public void setMaterialId(Integer materialId) {
+		this.materialId = materialId;
 	}
 
 	public String getTitle() {
@@ -72,36 +73,36 @@ public class TrainingMaterial implements DalPojo {
 		this.description = description;
 	}
 
-	public String getMaterial_location() {
-		return material_location;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setMaterial_location(String material_location) {
-		this.material_location = material_location;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
-	public Timestamp getCreate_time() {
-		return create_time;
+	public Timestamp getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Timestamp create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
 	}
 
-	public Timestamp getLast_update_time() {
-		return last_update_time;
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
 	}
 
-	public void setLast_update_time(Timestamp last_update_time) {
-		this.last_update_time = last_update_time;
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 }

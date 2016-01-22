@@ -20,13 +20,14 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class SystemProperty implements DalPojo {
 	
 	@Id
-	@Column(name="system_property_id")
+	@Column(name="propertyId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer system_property_id;
+	private Integer propertyId;
 	
-	@Column(name="system_property_category_id")
+	@Column(name="categoryId")
 	@Type(value=Types.INTEGER)
-	private Integer system_property_category_id;
+	private Integer categoryId;
 	
 	@Column(name="value")
 	@Type(value=Types.VARCHAR)
@@ -36,28 +37,28 @@ public class SystemProperty implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String comment;
 	
-	@Column(name="create_time")
+	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp create_time;
+	private Timestamp createTime;
 	
-	@Column(name="last_update_time")
+	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp last_update_time;
+	private Timestamp lastUpdateTime;
 
-	public Integer getSystem_property_id() {
-		return system_property_id;
+	public Integer getPropertyId() {
+		return propertyId;
 	}
 
-	public void setSystem_property_id(Integer system_property_id) {
-		this.system_property_id = system_property_id;
+	public void setPropertyId(Integer propertyId) {
+		this.propertyId = propertyId;
 	}
 
-	public Integer getSystem_property_category_id() {
-		return system_property_category_id;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public void setSystem_property_category_id(Integer system_property_category_id) {
-		this.system_property_category_id = system_property_category_id;
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getValue() {
@@ -76,20 +77,20 @@ public class SystemProperty implements DalPojo {
 		this.comment = comment;
 	}
 
-	public Timestamp getCreate_time() {
-		return create_time;
+	public Timestamp getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Timestamp create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
 	}
 
-	public Timestamp getLast_update_time() {
-		return last_update_time;
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
 	}
 
-	public void setLast_update_time(Timestamp last_update_time) {
-		this.last_update_time = last_update_time;
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

@@ -20,9 +20,10 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class DiagnosticPlan implements DalPojo {
 	
 	@Id
-	@Column(name="diagnostic_plan_id")
+	@Column(name="diagnosticPlanId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer diagnostic_plan_id;
+	private Integer diagnosticPlanId;
 	
 	@Column(name="name")
 	@Type(value=Types.VARCHAR)
@@ -36,24 +37,24 @@ public class DiagnosticPlan implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String detail;
 	
-	@Column(name="create_time")
+	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp create_time;
+	private Timestamp createTime;
 	
-	@Column(name="last_update")
+	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp last_update;
+	private Timestamp lastUpdateTime;
 	
-	@Column(name="user_id")
+	@Column(name="userId")
 	@Type(value=Types.INTEGER)
-	private Integer user_id;
+	private Integer userId;
 
-	public Integer getDiagnostic_plan_id() {
-		return diagnostic_plan_id;
+	public Integer getDiagnosticPlanId() {
+		return diagnosticPlanId;
 	}
 
-	public void setDiagnostic_plan_id(Integer diagnostic_plan_id) {
-		this.diagnostic_plan_id = diagnostic_plan_id;
+	public void setDiagnosticPlanId(Integer diagnosticPlanId) {
+		this.diagnosticPlanId = diagnosticPlanId;
 	}
 
 	public String getName() {
@@ -80,28 +81,28 @@ public class DiagnosticPlan implements DalPojo {
 		this.detail = detail;
 	}
 
-	public Timestamp getCreate_time() {
-		return create_time;
+	public Timestamp getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Timestamp create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
 	}
 
-	public Timestamp getLast_update() {
-		return last_update;
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
 	}
 
-	public void setLast_update(Timestamp last_update) {
-		this.last_update = last_update;
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 }

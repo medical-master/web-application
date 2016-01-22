@@ -19,9 +19,10 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class SystemPropertyCategory implements DalPojo {
 	
 	@Id
-	@Column(name="system_property_category_id")
+	@Column(name="categoryId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer system_property_category_id;
+	private Integer categoryId;
 	
 	@Column(name="name")
 	@Type(value=Types.VARCHAR)
@@ -31,12 +32,12 @@ public class SystemPropertyCategory implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String description;
 
-	public Integer getSystem_property_category_id() {
-		return system_property_category_id;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public void setSystem_property_category_id(Integer system_property_category_id) {
-		this.system_property_category_id = system_property_category_id;
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getName() {

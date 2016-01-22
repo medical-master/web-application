@@ -2,7 +2,7 @@
 	<Datasource name="medical_master"
               userName="root"
               password="123456"
-              connectionUrl="jdbc:mysql://127.0.0.1:3306/medical_master?useUnicode=true&amp;characterEncoding=UTF-8"
+              connectionUrl="jdbc:mysql://127.0.0.1:3306/medical_master?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"
               driverClassName="com.mysql.jdbc.Driver"
               testWhileIdle="true"
               testOnBorrow="false"

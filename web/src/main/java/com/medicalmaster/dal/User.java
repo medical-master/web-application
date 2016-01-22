@@ -20,9 +20,10 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class User implements DalPojo {
 	
 	@Id
-	@Column(name="user_id")
+	@Column(name="userId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer user_id;
+	private Integer userId;
 	
 	@Column(name="name")
 	@Type(value=Types.VARCHAR)
@@ -36,21 +37,21 @@ public class User implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String authentication;
 	
-	@Column(name="create_time")
+	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp create_time;
+	private Timestamp createTime;
 	
-	@Column(name="user_type")
+	@Column(name="type")
 	@Type(value=Types.INTEGER)
-	private Integer user_type;
+	private Integer type;
 	
-	@Column(name="hosptial_id")
+	@Column(name="hosptialId")
 	@Type(value=Types.INTEGER)
-	private Integer hosptial_id;
+	private Integer hosptialId;
 	
-	@Column(name="nick_name")
+	@Column(name="nickName")
 	@Type(value=Types.VARCHAR)
-	private String nick_name;
+	private String nickName;
 	
 	@Column(name="sex")
 	@Type(value=Types.BIT)
@@ -60,40 +61,40 @@ public class User implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String department;
 	
-	@Column(name="education_level")
+	@Column(name="educationLevel")
 	@Type(value=Types.INTEGER)
-	private Integer education_level;
+	private Integer educationLevel;
 	
-	@Column(name="professional_rank")
+	@Column(name="professionalRank")
 	@Type(value=Types.INTEGER)
-	private Integer professional_rank;
+	private Integer professionalRank;
 	
 	@Column(name="title")
 	@Type(value=Types.VARCHAR)
 	private String title;
 	
-	@Column(name="identity_number")
+	@Column(name="identityNumber")
 	@Type(value=Types.VARCHAR)
-	private String identity_number;
+	private String identityNumber;
 	
-	@Column(name="doctor_number")
+	@Column(name="doctorNumber")
 	@Type(value=Types.VARCHAR)
-	private String doctor_number;
+	private String doctorNumber;
 	
-	@Column(name="mobile_phone_number")
+	@Column(name="mobilePhoneNumber")
 	@Type(value=Types.VARCHAR)
-	private String mobile_phone_number;
+	private String mobilePhoneNumber;
 	
-	@Column(name="last_update_time")
+	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp last_update_time;
+	private Timestamp lastUpdateTime;
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -120,36 +121,36 @@ public class User implements DalPojo {
 		this.authentication = authentication;
 	}
 
-	public Timestamp getCreate_time() {
-		return create_time;
+	public Timestamp getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Timestamp create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
 	}
 
-	public Integer getUser_type() {
-		return user_type;
+	public Integer getType() {
+		return type;
 	}
 
-	public void setUser_type(Integer user_type) {
-		this.user_type = user_type;
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
-	public Integer getHosptial_id() {
-		return hosptial_id;
+	public Integer getHosptialId() {
+		return hosptialId;
 	}
 
-	public void setHosptial_id(Integer hosptial_id) {
-		this.hosptial_id = hosptial_id;
+	public void setHosptialId(Integer hosptialId) {
+		this.hosptialId = hosptialId;
 	}
 
-	public String getNick_name() {
-		return nick_name;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public Boolean getSex() {
@@ -168,20 +169,20 @@ public class User implements DalPojo {
 		this.department = department;
 	}
 
-	public Integer getEducation_level() {
-		return education_level;
+	public Integer getEducationLevel() {
+		return educationLevel;
 	}
 
-	public void setEducation_level(Integer education_level) {
-		this.education_level = education_level;
+	public void setEducationLevel(Integer educationLevel) {
+		this.educationLevel = educationLevel;
 	}
 
-	public Integer getProfessional_rank() {
-		return professional_rank;
+	public Integer getProfessionalRank() {
+		return professionalRank;
 	}
 
-	public void setProfessional_rank(Integer professional_rank) {
-		this.professional_rank = professional_rank;
+	public void setProfessionalRank(Integer professionalRank) {
+		this.professionalRank = professionalRank;
 	}
 
 	public String getTitle() {
@@ -192,36 +193,36 @@ public class User implements DalPojo {
 		this.title = title;
 	}
 
-	public String getIdentity_number() {
-		return identity_number;
+	public String getIdentityNumber() {
+		return identityNumber;
 	}
 
-	public void setIdentity_number(String identity_number) {
-		this.identity_number = identity_number;
+	public void setIdentityNumber(String identityNumber) {
+		this.identityNumber = identityNumber;
 	}
 
-	public String getDoctor_number() {
-		return doctor_number;
+	public String getDoctorNumber() {
+		return doctorNumber;
 	}
 
-	public void setDoctor_number(String doctor_number) {
-		this.doctor_number = doctor_number;
+	public void setDoctorNumber(String doctorNumber) {
+		this.doctorNumber = doctorNumber;
 	}
 
-	public String getMobile_phone_number() {
-		return mobile_phone_number;
+	public String getMobilePhoneNumber() {
+		return mobilePhoneNumber;
 	}
 
-	public void setMobile_phone_number(String mobile_phone_number) {
-		this.mobile_phone_number = mobile_phone_number;
+	public void setMobilePhoneNumber(String mobilePhoneNumber) {
+		this.mobilePhoneNumber = mobilePhoneNumber;
 	}
 
-	public Timestamp getLast_update_time() {
-		return last_update_time;
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
 	}
 
-	public void setLast_update_time(Timestamp last_update_time) {
-		this.last_update_time = last_update_time;
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

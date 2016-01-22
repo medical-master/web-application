@@ -20,72 +20,77 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class Comment implements DalPojo {
 	
 	@Id
-	@Column(name="comment_id")
+	@Column(name="commentId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer comment_id;
+	private Integer commentId;
 	
-	@Column(name="user_id")
+	@Column(name="userId")
 	@Type(value=Types.INTEGER)
-	private Integer user_id;
+	private Integer userId;
 	
-	@Column(name="commenter_name")
+	@Column(name="commenterName")
 	@Type(value=Types.VARCHAR)
-	private String commenter_name;
+	private String commenterName;
 	
-	@Column(name="contact_info")
+	@Column(name="contactInfo")
 	@Type(value=Types.VARCHAR)
-	private String contact_info;
+	private String contactInfo;
 	
-	@Column(name="comment_time")
+	@Column(name="commentTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp comment_time;
+	private Timestamp commentTime;
 	
 	@Column(name="feedback")
 	@Type(value=Types.VARCHAR)
 	private String feedback;
 	
-	@Column(name="feedback_time")
+	@Column(name="feedbackTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp feedback_time;
+	private Timestamp feedbackTime;
+	
+	@Column(name="status")
+	@Type(value=Types.INTEGER)
+	private Integer status;
 
-	public Integer getComment_id() {
-		return comment_id;
+	public Integer getCommentId() {
+		return commentId;
 	}
 
-	public void setComment_id(Integer comment_id) {
-		this.comment_id = comment_id;
+	public void setCommentId(Integer commentId) {
+		this.commentId = commentId;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
-	public String getCommenter_name() {
-		return commenter_name;
+	public String getCommenterName() {
+		return commenterName;
 	}
 
-	public void setCommenter_name(String commenter_name) {
-		this.commenter_name = commenter_name;
+	public void setCommenterName(String commenterName) {
+		this.commenterName = commenterName;
 	}
 
-	public String getContact_info() {
-		return contact_info;
+	public String getContactInfo() {
+		return contactInfo;
 	}
 
-	public void setContact_info(String contact_info) {
-		this.contact_info = contact_info;
+	public void setContactInfo(String contactInfo) {
+		this.contactInfo = contactInfo;
 	}
 
-	public Timestamp getComment_time() {
-		return comment_time;
+	public Timestamp getCommentTime() {
+		return commentTime;
 	}
 
-	public void setComment_time(Timestamp comment_time) {
-		this.comment_time = comment_time;
+	public void setCommentTime(Timestamp commentTime) {
+		this.commentTime = commentTime;
 	}
 
 	public String getFeedback() {
@@ -96,12 +101,20 @@ public class Comment implements DalPojo {
 		this.feedback = feedback;
 	}
 
-	public Timestamp getFeedback_time() {
-		return feedback_time;
+	public Timestamp getFeedbackTime() {
+		return feedbackTime;
 	}
 
-	public void setFeedback_time(Timestamp feedback_time) {
-		this.feedback_time = feedback_time;
+	public void setFeedbackTime(Timestamp feedbackTime) {
+		this.feedbackTime = feedbackTime;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 }

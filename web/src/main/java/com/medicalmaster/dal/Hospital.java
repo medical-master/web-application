@@ -19,9 +19,10 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class Hospital implements DalPojo {
 	
 	@Id
-	@Column(name="hospital_id")
+	@Column(name="hospitalId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer hospital_id;
+	private Integer hospitalId;
 	
 	@Column(name="name")
 	@Type(value=Types.VARCHAR)
@@ -31,28 +32,28 @@ public class Hospital implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer level;
 	
-	@Column(name="provice_id")
+	@Column(name="proviceId")
 	@Type(value=Types.INTEGER)
-	private Integer provice_id;
+	private Integer proviceId;
 	
-	@Column(name="city_id")
+	@Column(name="cityId")
 	@Type(value=Types.INTEGER)
-	private Integer city_id;
+	private Integer cityId;
 	
-	@Column(name="distric")
-	@Type(value=Types.VARCHAR)
-	private String distric;
+	@Column(name="districtId")
+	@Type(value=Types.INTEGER)
+	private Integer districtId;
 	
 	@Column(name="address")
 	@Type(value=Types.VARCHAR)
 	private String address;
 
-	public Integer getHospital_id() {
-		return hospital_id;
+	public Integer getHospitalId() {
+		return hospitalId;
 	}
 
-	public void setHospital_id(Integer hospital_id) {
-		this.hospital_id = hospital_id;
+	public void setHospitalId(Integer hospitalId) {
+		this.hospitalId = hospitalId;
 	}
 
 	public String getName() {
@@ -71,28 +72,28 @@ public class Hospital implements DalPojo {
 		this.level = level;
 	}
 
-	public Integer getProvice_id() {
-		return provice_id;
+	public Integer getProviceId() {
+		return proviceId;
 	}
 
-	public void setProvice_id(Integer provice_id) {
-		this.provice_id = provice_id;
+	public void setProviceId(Integer proviceId) {
+		this.proviceId = proviceId;
 	}
 
-	public Integer getCity_id() {
-		return city_id;
+	public Integer getCityId() {
+		return cityId;
 	}
 
-	public void setCity_id(Integer city_id) {
-		this.city_id = city_id;
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
 	}
 
-	public String getDistric() {
-		return distric;
+	public Integer getDistrictId() {
+		return districtId;
 	}
 
-	public void setDistric(String distric) {
-		this.distric = distric;
+	public void setDistrictId(Integer districtId) {
+		this.districtId = districtId;
 	}
 
 	public String getAddress() {

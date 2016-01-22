@@ -20,9 +20,10 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class ClinicalResearch implements DalPojo {
 	
 	@Id
-	@Column(name="clinical_research_id")
+	@Column(name="clinicalResearchId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer clinical_research_id;
+	private Integer clinicalResearchId;
 	
 	@Column(name="title")
 	@Type(value=Types.VARCHAR)
@@ -32,32 +33,32 @@ public class ClinicalResearch implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String description;
 	
-	@Column(name="research_application_form_location")
+	@Column(name="applicationLocation")
 	@Type(value=Types.VARCHAR)
-	private String research_application_form_location;
+	private String applicationLocation;
 	
-	@Column(name="research_assignment_contract_location")
+	@Column(name="assignmentContractLocation")
 	@Type(value=Types.VARCHAR)
-	private String research_assignment_contract_location;
+	private String assignmentContractLocation;
 	
-	@Column(name="create_time")
+	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp create_time;
+	private Timestamp createTime;
 	
-	@Column(name="last_update_time")
+	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
-	private Timestamp last_update_time;
+	private Timestamp lastUpdateTime;
 	
-	@Column(name="user_id")
+	@Column(name="userId")
 	@Type(value=Types.INTEGER)
-	private Integer user_id;
+	private Integer userId;
 
-	public Integer getClinical_research_id() {
-		return clinical_research_id;
+	public Integer getClinicalResearchId() {
+		return clinicalResearchId;
 	}
 
-	public void setClinical_research_id(Integer clinical_research_id) {
-		this.clinical_research_id = clinical_research_id;
+	public void setClinicalResearchId(Integer clinicalResearchId) {
+		this.clinicalResearchId = clinicalResearchId;
 	}
 
 	public String getTitle() {
@@ -76,44 +77,44 @@ public class ClinicalResearch implements DalPojo {
 		this.description = description;
 	}
 
-	public String getResearch_application_form_location() {
-		return research_application_form_location;
+	public String getApplicationLocation() {
+		return applicationLocation;
 	}
 
-	public void setResearch_application_form_location(String research_application_form_location) {
-		this.research_application_form_location = research_application_form_location;
+	public void setApplicationLocation(String applicationLocation) {
+		this.applicationLocation = applicationLocation;
 	}
 
-	public String getResearch_assignment_contract_location() {
-		return research_assignment_contract_location;
+	public String getAssignmentContractLocation() {
+		return assignmentContractLocation;
 	}
 
-	public void setResearch_assignment_contract_location(String research_assignment_contract_location) {
-		this.research_assignment_contract_location = research_assignment_contract_location;
+	public void setAssignmentContractLocation(String assignmentContractLocation) {
+		this.assignmentContractLocation = assignmentContractLocation;
 	}
 
-	public Timestamp getCreate_time() {
-		return create_time;
+	public Timestamp getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Timestamp create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
 	}
 
-	public Timestamp getLast_update_time() {
-		return last_update_time;
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
 	}
 
-	public void setLast_update_time(Timestamp last_update_time) {
-		this.last_update_time = last_update_time;
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 }
