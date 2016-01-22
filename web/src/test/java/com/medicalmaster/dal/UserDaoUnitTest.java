@@ -84,7 +84,8 @@ public class UserDaoUnitTest {
 	public void testInsert1() throws Exception {
 		DalHints hints = new DalHints();
 		User daoPojo = new User();
-		daoPojo.setAuthentication("authentication");
+		daoPojo.setName("name");
+/*		daoPojo.setAuthentication("authentication");
 		daoPojo.setCreateTime(new Timestamp(System.currentTimeMillis()));
 		daoPojo.setDepartment("department");
 		daoPojo.setDoctorNumber("doctorNumber");
@@ -93,13 +94,13 @@ public class UserDaoUnitTest {
 		daoPojo.setHosptialId(1);
 		daoPojo.setIdentityNumber("identityNumber");
 		daoPojo.setMobilePhoneNumber("mobilePhoneNumber");
-		daoPojo.setName("name");
+		
 		daoPojo.setNickName("nickName");
 		daoPojo.setProfessionalRank(1);
 		daoPojo.setSex(true);
 		daoPojo.setTitle("title");
 		daoPojo.setType(1);
-		
+		*/
 		int affected = dao.insert(hints, daoPojo);
 	}
 	
