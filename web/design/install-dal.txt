@@ -1,0 +1,9 @@
+TODO: 
+1. copy real pom and make separate directory for rach artifact below
+2. remove additional dependency in pom
+
+mvn install:install-file  -Dfile=lib/dal-java-clientv/dal-java-client-1.4.1.5.jar  -DgroupId=com.ctrip.platform  -DartifactId=dal-java-client -Dversion=1.4.1.5 -Dpackaging=jar
+
+mvn install:install-file  -Dfile=lib/dal-common/dal-common-1.1.4.jar  -DgroupId=com.ctrip.platform  -DartifactId=dal-common -Dversion=1.1.4 -Dpackaging=jar
+
+mvn install:install-file  -Dfile=lib/java-appinternals/java-appinternals-1.0.3.jar  -DgroupId=com.ctrip.platform  -DartifactId=java-appinternals -Dversion=1.0.3 -Dpackaging=jar
