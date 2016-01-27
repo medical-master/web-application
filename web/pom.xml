@@ -97,13 +97,6 @@
 							</goals>
 						</execution>
 					</executions>
-					<configuration>
-						<executable>C:\DevTools\ConfigGen\ConfigGen.exe</executable>
-						<arguments>
-							<argument>-gd</argument>
-							<argument>${project.basedir}</argument>
-						</arguments>
-					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
