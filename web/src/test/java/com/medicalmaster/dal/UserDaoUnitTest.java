@@ -79,9 +79,10 @@ public class UserDaoUnitTest {
 	public void testGetAll() throws Exception {
 		List<User> list = dao.getAll(new DalHints());
 	}
-	
+
 	@Test
 	public void testInsert1() throws Exception {
+		dao = new UserDao();
 		DalHints hints = new DalHints();
 		User daoPojo = new User();
 		daoPojo.setName("name");
