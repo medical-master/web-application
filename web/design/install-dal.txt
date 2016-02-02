@@ -1,6 +1,3 @@
-TODO: 
-1. copy real pom and make separate directory for each artifact below
-2. remove additional dependency in pom
-
-
 mvn install:install-file  -Dfile=lib/java-appinternals/java-appinternals-1.0.3.jar  -DgroupId=com.ctrip.platform  -DartifactId=java-appinternals -Dversion=1.0.3 -Dpackaging=jar
+
+mvn install:install-file  -Dfile=sqljdbc.jar  -DgroupId=com.microsoft.sqlserver  -DartifactId=sqljdbc -Dversion=4.0.2206 -Dpackaging=jar
