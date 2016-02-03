@@ -11,7 +11,7 @@
 <html lang="zh-CN">
 	<jsp:include page="header.jsp" flush="true" />
   <body>
-	<jsp:include page="internalnavbar.jsp" flush="true" />
+	<jsp:include page="navbar.jsp" flush="true" />
 	<div class="container">
 	<jsp:include page="<%=pageSelectedAtRuntime%>" flush="true" />
 	</div>
