@@ -8,6 +8,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class MedicalMasterApp extends ResourceConfig {
 
     public MedicalMasterApp() {
+//    	property("jersey.config.server.mvc.templateBasepath.jsp", "");  
+//    	register(JspMvcFeature.class); 
     	packages("com.medicalmaster.web.resource");
     }
 }
