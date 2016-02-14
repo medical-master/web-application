@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical_master")
+@Database(name="medical-master")
 @Table(name="user")
 public class User implements DalPojo {
 	
@@ -37,10 +37,6 @@ public class User implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String authentication;
 	
-	@Column(name="createTime")
-	@Type(value=Types.TIMESTAMP)
-	private Timestamp createTime;
-	
 	@Column(name="type")
 	@Type(value=Types.INTEGER)
 	private Integer type;
@@ -52,6 +48,10 @@ public class User implements DalPojo {
 	@Column(name="nickName")
 	@Type(value=Types.VARCHAR)
 	private String nickName;
+	
+	@Column(name="createTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp createTime;
 	
 	@Column(name="sex")
 	@Type(value=Types.BIT)
@@ -84,6 +84,14 @@ public class User implements DalPojo {
 	@Column(name="mobilePhoneNumber")
 	@Type(value=Types.VARCHAR)
 	private String mobilePhoneNumber;
+	
+	@Column(name="status")
+	@Type(value=Types.INTEGER)
+	private Integer status;
+	
+	@Column(name="inviteCode")
+	@Type(value=Types.VARCHAR)
+	private String inviteCode;
 	
 	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
@@ -121,14 +129,6 @@ public class User implements DalPojo {
 		this.authentication = authentication;
 	}
 
-	public Timestamp getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Timestamp createTime) {
-		this.createTime = createTime;
-	}
-
 	public Integer getType() {
 		return type;
 	}
@@ -151,6 +151,14 @@ public class User implements DalPojo {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
 	}
 
 	public Boolean getSex() {
@@ -215,6 +223,22 @@ public class User implements DalPojo {
 
 	public void setMobilePhoneNumber(String mobilePhoneNumber) {
 		this.mobilePhoneNumber = mobilePhoneNumber;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getInviteCode() {
+		return inviteCode;
+	}
+
+	public void setInviteCode(String inviteCode) {
+		this.inviteCode = inviteCode;
 	}
 
 	public Timestamp getLastUpdateTime() {

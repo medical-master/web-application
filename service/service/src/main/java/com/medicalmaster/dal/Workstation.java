@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical_master")
+@Database(name="medical-master")
 @Table(name="workstation")
 public class Workstation implements DalPojo {
 	
@@ -48,6 +48,10 @@ public class Workstation implements DalPojo {
 	@Column(name="allowDownload")
 	@Type(value=Types.BIT)
 	private Boolean allowDownload;
+	
+	@Column(name="status")
+	@Type(value=Types.INTEGER)
+	private Integer status;
 	
 	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
@@ -111,6 +115,14 @@ public class Workstation implements DalPojo {
 
 	public void setAllowDownload(Boolean allowDownload) {
 		this.allowDownload = allowDownload;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public Timestamp getCreateTime() {

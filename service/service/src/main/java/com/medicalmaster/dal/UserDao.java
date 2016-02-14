@@ -15,7 +15,7 @@ import java.util.Map;
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
 public class UserDao {
-    private static final String DATA_BASE = "medical_master";
+    private static final String DATA_BASE = "medical-master";
 	private static DatabaseCategory dbCategory = null;
 	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from user";
 	private static final String ALL_SQL_PATTERN = "SELECT * FROM user";
@@ -305,6 +305,19 @@ public class UserDao {
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
+	}
+	/**
+	 * find by initation code
+	**/
+	public int activateByInviteCode (Integer status, String authentication, String inviteCode, Integer initStatus, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		UpdateSqlBuilder builder = new UpdateSqlBuilder("user", dbCategory);
+		builder.update("status", status, Types.INTEGER);
+		builder.update("authentication", authentication, Types.VARCHAR);
+		builder.equal("inviteCode", inviteCode, Types.VARCHAR, false);
+		builder.equal("status", initStatus, Types.INTEGER, false);
+		String sql = builder.build();
+		return client.update(sql, builder.buildParameters(), hints);
 	}
 
 }
