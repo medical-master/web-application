@@ -15,7 +15,7 @@ import java.util.Map;
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
 public class UserDao {
-    private static final String DATA_BASE = "medical-master";
+    private static final String DATA_BASE = "medical_master";
 	private static DatabaseCategory dbCategory = null;
 	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from user";
 	private static final String ALL_SQL_PATTERN = "SELECT * FROM user";

@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.ctrip.platform.dal.dao.DalClientFactory;
 import com.medicalmaster.domain.user.UserManager;
 import com.medicalmaster.domain.user.UserType;
 import com.medicalmaster.web.resource.response.Status;
@@ -31,7 +32,7 @@ public class UserResource {
 	static {
 		try {
 			manager = new UserManager();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
