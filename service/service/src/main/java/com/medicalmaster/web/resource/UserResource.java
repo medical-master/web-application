@@ -75,7 +75,7 @@ public class UserResource {
 			return Status.fail(message);
 		}
 	}
-
+/*
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
     public Status updateUser(
@@ -92,4 +92,5 @@ public class UserResource {
 			return Status.fail("Activate master");
 		}
 	}
+	*/
 }
