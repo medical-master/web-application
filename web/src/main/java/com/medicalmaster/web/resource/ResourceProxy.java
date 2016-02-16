@@ -27,7 +27,7 @@ public class ResourceProxy {
 	@GET
 	@Path("resources")
 	@Produces("text/html")
-	@Template("index.foo")
+//	@Template("index.foo")
     public String getResource(@Context UriInfo ui, @Context HttpHeaders hh, @Context Request request) {
 	    MultivaluedMap<String, String> queryParams = ui.getQueryParameters();
 	    MultivaluedMap<String, String> pathParams = ui.getPathParameters();
