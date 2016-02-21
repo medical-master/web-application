@@ -3,20 +3,19 @@ package com.medicalmaster.web.resource;
 import java.sql.SQLException;
 
 import javax.annotation.Resource;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.ctrip.platform.dal.dao.DalClientFactory;
 import com.medicalmaster.domain.user.UserManager;
-import com.medicalmaster.domain.user.UserType;
 import com.medicalmaster.web.resource.response.Status;
+import com.medicalmaster.web.resource.resquest.CreateUserRequest;
+import com.xross.tools.xunit.XunitFactory;
 
 @Resource
 @Path("/users")
@@ -47,30 +46,12 @@ public class UserResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-    public Status createUser(
-    		@FormParam("action") String action, 
-    		@FormParam("name") String name, 
-    		@FormParam("email") String email, 
-    		@FormParam("authentication") String authentication,
-    		@FormParam("type") UserType type, 
-    		@FormParam("mobilePhoneNumber") String mobilePhoneNumber) {
-
+    public Status createUser(@BeanParam CreateUserRequest createUser) {
 		String message = "undefined";
 		try {
-			switch (action) {
-			case REGISTER:
-				message = "Register user";
-				manager.register(type, name, authentication, email, mobilePhoneNumber);
-				break;
-			case INVITE_MASTER:
-				message = "Invite master";
-				manager.inviteMaster(name, email, mobilePhoneNumber);
-				break;
-			default:
-				throw new IllegalStateException("Unknown action");
-			}
-			return Status.success(message);
-		} catch (SQLException e) {
+			XunitFactory factory = XunitFactory.load("user.xunit");
+			return (Status)factory.getConverter("register user").convert(createUser);
+		} catch (Throwable e) {
 			e.printStackTrace();
 			return Status.fail(message);
 		}

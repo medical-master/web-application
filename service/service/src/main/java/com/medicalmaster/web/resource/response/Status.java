@@ -1,6 +1,11 @@
 package com.medicalmaster.web.resource.response;
 
-public class Status {
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.xross.tools.xunit.Context;
+
+@XmlRootElement
+public class Status implements Context {
 	public static final String SUCCESS = "success";
 	public static final String FAIL = "fail";
 	
