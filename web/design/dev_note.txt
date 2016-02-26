@@ -1,1 +1,2 @@
-1. If debug/run the application with Jetty in dev environment, make sure Jetty version is above 8.x. Otherwise it won't work properly, the reason seems to be lower version doesn't support web3.0.  
+1. If debug/run the application with Jetty in dev environment, make sure Jetty version is above 8.x. Otherwise it won't work properly, the reason seems to be lower version doesn't support web3.0.
+2. To define a pojo for json/xml serialization/deserialization, it MUST contains no constructor or one default constructor. Otherwise, the operation will fail
