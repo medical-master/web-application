@@ -1,4 +1,4 @@
-package com.medicalmaster.web.resource.proxy;
+package com.medicalmaster.web.control;
 
 public class RequestRsourceProcessor {
 

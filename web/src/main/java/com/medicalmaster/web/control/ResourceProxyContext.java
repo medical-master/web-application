@@ -1,14 +1,32 @@
-package com.medicalmaster.web.resource.proxy;
+package com.medicalmaster.web.control;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.medicalmaster.web.resource.HttpMethod;
 import com.xross.tools.xunit.Context;
 
 public class ResourceProxyContext implements Context {
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+	
 	private String resource;
 	private HttpMethod method;
 	private String userId;
 	private String userName;
 
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
+	}
 	public String getResource() {
 		return resource;
 	}

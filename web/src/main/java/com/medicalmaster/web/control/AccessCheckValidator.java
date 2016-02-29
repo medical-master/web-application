@@ -1,4 +1,4 @@
-package com.medicalmaster.web.resource.proxy;
+package com.medicalmaster.web.control;
 
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Validator;

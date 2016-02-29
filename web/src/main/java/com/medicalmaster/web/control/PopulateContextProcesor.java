@@ -1,4 +1,4 @@
-package com.medicalmaster.web.resource.proxy;
+package com.medicalmaster.web.control;
 
 import com.medicalmaster.web.resource.HttpMethod;
 import com.xross.tools.xunit.Context;
