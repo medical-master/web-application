@@ -1,4 +1,4 @@
-package com.medicalmaster.domain.user;
+package com.medicalmaster.common.user;
 
 public enum UserStatus {
 	invited, activated, deactivated;

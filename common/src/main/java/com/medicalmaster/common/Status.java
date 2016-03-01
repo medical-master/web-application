@@ -1,12 +1,16 @@
-package com.medicalmaster.web.resource.response;
+package com.medicalmaster.common;
 
-public class Status {
+import com.xross.tools.xunit.Context;
+
+public class Status implements Context {
 	public static final String SUCCESS = "success";
 	public static final String FAIL = "fail";
 	
 	private String code;
 	private String message;
 
+	public Status(){}
+	
 	public Status(String code, String message) {
 		this.code = code;
 		this.message = message;

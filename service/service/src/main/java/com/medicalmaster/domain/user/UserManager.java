@@ -3,6 +3,8 @@ package com.medicalmaster.domain.user;
 import java.security.MessageDigest;
 import java.sql.SQLException;
 
+import com.medicalmaster.common.user.UserStatus;
+import com.medicalmaster.common.user.UserType;
 import com.medicalmaster.dal.User;
 import com.medicalmaster.dal.UserDao;
 

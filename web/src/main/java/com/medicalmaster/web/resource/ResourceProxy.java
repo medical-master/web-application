@@ -19,7 +19,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import com.medicalmaster.web.resource.resquest.CreateUserRequest;
+import com.medicalmaster.common.user.CreateUserRequest;
 
 @Resource
 @Path("/resources")

@@ -1,8 +1,7 @@
-package com.medicalmaster.web.resource.resquest;
+package com.medicalmaster.common.user;
 
 import javax.ws.rs.FormParam;
 
-import com.medicalmaster.common.user.UserType;
 import com.xross.tools.xunit.Context;
 
 public class CreateUserRequest implements Context {
