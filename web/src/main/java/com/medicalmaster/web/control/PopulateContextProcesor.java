@@ -8,7 +8,7 @@ public class PopulateContextProcesor implements Processor{
 
 	@Override
 	public void process(Context ctx) {
-		ResourceProxyContext rpc = (ResourceProxyContext)ctx;
+		WebContext rpc = (WebContext)ctx;
 		rpc.setResource("users");
 		rpc.setMethod(HttpMethod.GET);
 		rpc.setUserId("111");

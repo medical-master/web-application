@@ -2,17 +2,28 @@ package com.medicalmaster.web.control;
 
 import java.io.IOException;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.xross.tools.xunit.Processor;
 import com.xross.tools.xunit.XunitFactory;
 
 @WebServlet(name="MainServlet", urlPatterns="/action")  
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;  
+	private Processor main;
+	
+	public void init(ServletConfig config) throws ServletException {
+	    try {
+		    main = XunitFactory.load("main.xunit").getProcessor("main");
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+	}
 	   
 	@Override  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
@@ -35,16 +46,11 @@ public class MainServlet extends HttpServlet {
 	}
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    XunitFactory f;
 		try {
-			f = XunitFactory.load("main.xunit");
-		    ResourceProxyContext ctx = new ResourceProxyContext();
-		    ctx.setRequest(request);
-		    ctx.setResponse(response);
-		    f.getProcessor("main").process(ctx);
+		    WebContext ctx = new WebContext(request, response);
+		    main.process(ctx);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ServletException(e);
 		}
 		response.getWriter().write("Hello User.");  
 	}

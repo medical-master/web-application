@@ -6,9 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.medicalmaster.web.resource.HttpMethod;
 import com.xross.tools.xunit.Context;
 
-public class ResourceProxyContext implements Context {
+public class WebContext implements Context {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	
+	public WebContext(HttpServletRequest request, HttpServletResponse response){
+		this.request = request;
+		this.response = response;
+	}
 	
 	private String resource;
 	private HttpMethod method;

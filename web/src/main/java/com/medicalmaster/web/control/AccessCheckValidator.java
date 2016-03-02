@@ -7,7 +7,7 @@ public class AccessCheckValidator implements Validator {
 
 	@Override
 	public boolean validate(Context ctx) {
-		ResourceProxyContext rpc = (ResourceProxyContext)ctx;
+		WebContext rpc = (WebContext)ctx;
 		return "Jerry".equals(rpc.getUserName());
 	}
 }
