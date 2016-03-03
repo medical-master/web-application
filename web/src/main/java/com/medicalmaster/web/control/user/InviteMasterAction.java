@@ -23,14 +23,14 @@ public class InviteMasterAction implements Processor {
 	
 	public InviteMasterAction() {
 		Client client = ClientBuilder.newClient();
-		userResourceTarget = client.target("http://localhost:9091").path("resource/users");
+		userResourceTarget = client.target("http://localhost:8081").path("service/resources/users");
 	}
 
 	@Override
 	public void process(Context ctx) {
 		WebContext context = (WebContext)ctx;
 		Status s = post(context, CreateUserRequest.class, Status.class);
-		context.setResult(s);;
+		context.setResult(s.getMessage());
 		
 	}
 

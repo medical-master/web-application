@@ -52,6 +52,5 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
-		response.getWriter().write("Hello User.");  
 	}
 }

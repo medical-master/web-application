@@ -24,7 +24,7 @@ public class InviteMaster implements Converter{
 		String message = "undefined";
 		
 		try{
-			message = "The generated invite code for master %s is $s";
+			message = "The generated invite code for master %s is %s";
 			String inviteCode = manager.inviteMaster(ctx.getName(), ctx.getEmail(), ctx.getMobilePhoneNumber());
 			return Status.success(String.format(message, ctx.getName(), inviteCode));
 		} catch (SQLException e) {
