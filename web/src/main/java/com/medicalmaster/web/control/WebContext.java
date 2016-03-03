@@ -9,6 +9,7 @@ import com.xross.tools.xunit.Context;
 public class WebContext implements Context {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	private Object result;
 	
 	public WebContext(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
@@ -20,6 +21,13 @@ public class WebContext implements Context {
 	private String userId;
 	private String userName;
 
+	
+	public Object getResult() {
+		return result;
+	}
+	public void setResult(Object result) {
+		this.result = result;
+	}
 	public HttpServletRequest getRequest() {
 		return request;
 	}
