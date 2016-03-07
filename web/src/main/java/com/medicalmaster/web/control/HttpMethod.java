@@ -1,4 +1,4 @@
-package com.medicalmaster.web.resource;
+package com.medicalmaster.web.control;
 
 public enum HttpMethod {
 	GET, POST, PUT, DELETE

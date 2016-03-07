@@ -3,7 +3,6 @@ package com.medicalmaster.web.control;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.medicalmaster.web.resource.HttpMethod;
 import com.xross.tools.xunit.Context;
 
 public class WebContext implements Context {

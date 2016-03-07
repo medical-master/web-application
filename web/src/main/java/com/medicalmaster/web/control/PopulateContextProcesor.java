@@ -1,6 +1,5 @@
 package com.medicalmaster.web.control;
 
-import com.medicalmaster.web.resource.HttpMethod;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Processor;
 
