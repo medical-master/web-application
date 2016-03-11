@@ -15,5 +15,6 @@ public class InviteMasterAction implements Processor {
 		WebContext context = (WebContext)ctx;
 		Status s = ResourceProxy.post(context, userResourceUrl, CreateUserRequest.class, Status.class);
 		context.setResult(s.getMessage());
+		context.setResponseSection("status.jsp");
 	}
 }

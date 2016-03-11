@@ -1,17 +1,16 @@
 <%@page pageEncoding="UTF-8"%>
 
 <%
-	String pageSelectedAtRuntime = (String)request.getAttribute("responsePage");
+	String pageSelectedAtRuntime = (String)request.getAttribute("responseSection");
 	if(pageSelectedAtRuntime == null)
-		pageSelectedAtRuntime = "user/inviteMaster.jsp";
-		//pageSelectedAtRuntime = "user/registerMaster.jsp";
+		pageSelectedAtRuntime = "home.jsp";
 %>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<jsp:include page="header.jsp" flush="true" />
   <body>
-	<jsp:include page="internalnavbar.jsp" flush="true" />
+	<jsp:include page="navbar.jsp" flush="true" />
 	<div class="container">
 	<jsp:include page="<%=pageSelectedAtRuntime%>" flush="true" />
 	</div>

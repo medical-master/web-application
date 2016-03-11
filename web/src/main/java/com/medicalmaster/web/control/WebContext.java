@@ -9,6 +9,8 @@ public class WebContext implements Context {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private Object result;
+	private String targetPage;
+	private boolean redirect;
 	
 	public WebContext(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
@@ -20,12 +22,29 @@ public class WebContext implements Context {
 	private String userId;
 	private String userName;
 
+	public void wrapException(Throwable e) {
+		new RuntimeException(e);
+	}
 	
+	public String getTargetPage() {
+		return targetPage;
+	}
+	public void setResponseSection(String targetPage) {
+		this.targetPage = targetPage;
+		request.setAttribute("responseSection", targetPage);
+	}
+	public boolean isRedirect() {
+		return redirect;
+	}
+	public void setRedirect(boolean redirect) {
+		this.redirect = redirect;
+	}
 	public Object getResult() {
 		return result;
 	}
 	public void setResult(Object result) {
 		this.result = result;
+		request.setAttribute("result", result);
 	}
 	public HttpServletRequest getRequest() {
 		return request;
