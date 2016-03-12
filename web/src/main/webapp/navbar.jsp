@@ -34,7 +34,7 @@
           </ul>
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
-			  <a class="btn btn-primary" href="action?view=user/login">登陆</a>
+			  <a class="btn btn-primary" href="action?view=user/login">登录</a>
 			  <a class="btn btn-default" href="action?view=user/registerUser">注册</a>
               <input type="text" class="form-control" placeholder="搜索">
             </div>
