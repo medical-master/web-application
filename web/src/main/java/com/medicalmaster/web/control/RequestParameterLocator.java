@@ -8,6 +8,7 @@ import com.xross.tools.xunit.UnitPropertiesAware;
 
 public class RequestParameterLocator implements Locator, UnitPropertiesAware {
 	private String parameterName;
+	private String defaultKay;
 	@Override
 	public String locate(Context ctx) {
 		WebContext rpc = (WebContext)ctx;
@@ -16,11 +17,12 @@ public class RequestParameterLocator implements Locator, UnitPropertiesAware {
 
 	@Override
 	public void setDefaultKey(String key) {
+		defaultKay = key;
 	}
 
 	@Override
 	public String getDefaultKey() {
-		return null;
+		return defaultKay;
 	}
 
 	@Override

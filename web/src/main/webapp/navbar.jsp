@@ -9,14 +9,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">医大师</a>
+          <a class="navbar-brand" href="action?view=home">医大师</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-           <li class="active"><a href="#">工作站</a></li>
-            <li><a href="#about">诊疗方案</a></li>
-            <li><a href="#contact">课题研究</a></li>
-            <li><a href="#contact">培训资料</a></li>
+           <li class="active"><a href="action?view=workstation/home">工作站</a></li>
+            <li><a href="action?view=diagnosis/home">诊疗方案</a></li>
+            <li><a href="action?view=research/home">临床研究</a></li>
+            <li><a href="action?view=training/home">教育培训</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">系统维护 <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -24,7 +24,7 @@
                 <li><a href="#">发布课题研究通知</a></li>
                 <li><a href="#">发布课题研究模板</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">用户维护</a></li>
+                <li><a href="action?view=user/home">用户维护</a></li>
                 <li><a href="#">工作站管理</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">在线留言管理</a></li>
@@ -38,6 +38,7 @@
             </div>
             <button type="submit" class="btn btn-default">确认</button>
           </form>
+		  <a class="navbar-form navbar-right" href="action?view=user/registerUser">注册</a>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
