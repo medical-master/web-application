@@ -34,11 +34,12 @@
           </ul>
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
+			  <a class="btn btn-primary" href="action?view=user/login">登陆</a>
+			  <a class="btn btn-default" href="action?view=user/registerUser">注册</a>
               <input type="text" class="form-control" placeholder="搜索">
             </div>
             <button type="submit" class="btn btn-default">确认</button>
           </form>
-		  <a class="navbar-form navbar-right" href="action?view=user/registerUser">注册</a>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
