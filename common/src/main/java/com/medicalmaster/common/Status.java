@@ -8,6 +8,7 @@ public class Status implements Context {
 	
 	private String code;
 	private String message;
+	private Throwable exception;
 
 	public Status(){}
 	
@@ -22,6 +23,12 @@ public class Status implements Context {
 
 	public static Status fail(String message) {
 		return new Status(FAIL, message);
+	}
+
+	public static Status fail(String message, Throwable exception) {
+		Status s = new Status(FAIL, message);
+		s.exception = exception;
+		return s;
 	}
 
 	public String getCode() {

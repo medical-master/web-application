@@ -1,10 +1,13 @@
 package com.medicalmaster.resource;
 
+import java.sql.SQLException;
+
 import javax.annotation.Resource;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -12,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.medicalmaster.common.Status;
 import com.medicalmaster.common.user.CreateUserRequest;
+import com.medicalmaster.common.user.UpdateUserRequest;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.XunitFactory;
 
@@ -44,32 +48,29 @@ public class UserResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-    public Status createUser(@BeanParam CreateUserRequest createUser) {
-		String message = "undefined";
+    public Status createUser(@BeanParam CreateUserRequest createUserRequest) {
+		String message = createUserRequest.getAction();
 		try {
 			XunitFactory factory = XunitFactory.load("user.xunit");
-			return (Status)factory.getConverter("register user").convert(createUser);
+			return (Status)factory.getConverter("create user").convert(createUserRequest);
 		} catch (Throwable e) {
 			e.printStackTrace();
-			return Status.fail(message);
+			return Status.fail(message, e);
 		}
 	}
-/*
+
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
     public Status updateUser(
-    		@FormParam("action") String action, 
-    		@FormParam("inviteCode") String inviteCode, 
-    		@FormParam("authentication") String authentication,
-    		@FormParam("mobilePhoneNumber") String mobilePhoneNumber) {
-
+    		@BeanParam UpdateUserRequest updateUserRequest) {
+		String message = updateUserRequest.getAction();
 		try {
-			manager.activateMaster(inviteCode, authentication, mobilePhoneNumber);
-			return Status.success("Activate master");
-		} catch (SQLException e) {
+			XunitFactory factory = XunitFactory.load("user.xunit");
+			return (Status)factory.getConverter("update user").convert(updateUserRequest);
+		} catch (Throwable e) {
 			e.printStackTrace();
-			return Status.fail("Activate master");
+			return Status.fail(message, e);
 		}
 	}
-	*/
+
 }
