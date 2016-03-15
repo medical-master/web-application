@@ -1,4 +1,4 @@
-package com.medicalmaster.web.control;
+package com.medicalmaster.resource.control.user;
 
 import java.lang.reflect.Field;
 

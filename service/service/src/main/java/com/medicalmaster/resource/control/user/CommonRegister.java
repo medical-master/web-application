@@ -1,10 +1,10 @@
-package com.medicalmaster.web.control;
+package com.medicalmaster.resource.control.user;
 
 import java.sql.SQLException;
 
+import com.medicalmaster.common.Status;
+import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.domain.user.UserManager;
-import com.medicalmaster.web.resource.response.Status;
-import com.medicalmaster.web.resource.resquest.CreateUserRequest;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Converter;
 

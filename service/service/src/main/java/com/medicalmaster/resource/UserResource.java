@@ -1,6 +1,4 @@
-package com.medicalmaster.web.resource;
-
-import java.sql.SQLException;
+package com.medicalmaster.resource;
 
 import javax.annotation.Resource;
 import javax.ws.rs.BeanParam;
@@ -12,9 +10,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.medicalmaster.common.Status;
+import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.domain.user.UserManager;
-import com.medicalmaster.web.resource.response.Status;
-import com.medicalmaster.web.resource.resquest.CreateUserRequest;
 import com.xross.tools.xunit.XunitFactory;
 
 @Resource

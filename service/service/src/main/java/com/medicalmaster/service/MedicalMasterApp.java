@@ -1,4 +1,4 @@
-package com.medicalmaster.web.service;
+package com.medicalmaster.service;
 
 import java.util.HashMap;
 import java.util.Map;
