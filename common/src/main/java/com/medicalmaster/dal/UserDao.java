@@ -315,7 +315,7 @@ public class UserDao {
 		builder.update("status", status, Types.INTEGER);
 		builder.update("authentication", authentication, Types.VARCHAR);
 		builder.equal("inviteCode", inviteCode, Types.VARCHAR, false);
-		builder.equal("status", initStatus, Types.INTEGER, false);
+//		builder.equal("status", initStatus, Types.INTEGER, false);
 		String sql = builder.build();
 		return client.update(sql, builder.buildParameters(), hints);
 	}

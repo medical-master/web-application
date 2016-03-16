@@ -11,7 +11,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
-import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.web.control.WebContext;
 
 public class ResourceProxy {
@@ -20,7 +19,7 @@ public class ResourceProxy {
 		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
 		
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-				.post(Entity.entity(populateForm(context, CreateUserRequest.class),
+				.post(Entity.entity(populateForm(context, reqClazz),
 						MediaType.APPLICATION_FORM_URLENCODED_TYPE),
 						respClazz);
 	}
@@ -36,7 +35,7 @@ public class ResourceProxy {
 		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
 		
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-				.put(Entity.entity(populateForm(context, CreateUserRequest.class),
+				.put(Entity.entity(populateForm(context, reqClazz),
 						MediaType.APPLICATION_FORM_URLENCODED_TYPE),
 						respClazz);
 	}
@@ -49,7 +48,7 @@ public class ResourceProxy {
 	}
 	
 	private static <T> Form populateForm(WebContext context, Class<T> clazz) {
-		String[] formFields = getFields(CreateUserRequest.class);
+		String[] formFields = getFields(clazz);
 
 		Form form = new Form();
 

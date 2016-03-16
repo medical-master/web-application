@@ -17,9 +17,6 @@ public class UpdateUserRequest implements Context {
 	@FormParam("authentication") 
 	private String authentication;
 	
-	@FormParam("invitionCode") 
-	private String invitionCode;
-	
 	@FormParam("hosptialId") 
 	private Integer hosptialId;
 	
@@ -86,14 +83,6 @@ public class UpdateUserRequest implements Context {
 
 	public void setAuthentication(String authentication) {
 		this.authentication = authentication;
-	}
-
-	public String getInvitionCode() {
-		return invitionCode;
-	}
-
-	public void setInvitionCode(String invitionCode) {
-		this.invitionCode = invitionCode;
 	}
 
 	public Integer getHosptialId() {
