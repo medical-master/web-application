@@ -4,13 +4,13 @@ import java.sql.SQLException;
 
 import com.medicalmaster.common.CommonResponse;
 import com.medicalmaster.common.Status;
-import com.medicalmaster.common.user.LoginRequest;
+import com.medicalmaster.common.user.UpdateUserRequest;
 import com.medicalmaster.dal.User;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Converter;
 
-public class LoginUser implements Converter{
+public class UpdateInfo implements Converter{
 	private static UserManager manager; 
 	static {
 		try {
@@ -22,16 +22,18 @@ public class LoginUser implements Converter{
 
 	@Override
 	public Context convert(Context context) {
-		LoginRequest ctx = (LoginRequest)context;
+		UpdateUserRequest ctx = (UpdateUserRequest)context;
 		String message = "undefined";
 		CommonResponse crc = new CommonResponse();
 		try{
-			message = "Login for user %s is success.";
-			User user = manager.getUser(ctx.getName(), ctx.getPassword());
-			CommonResponse.success(0, String.format(message, ctx.getName()), user);
+			message = "Update infomation for user %s is success.";
+			User user = new User();
+			
+			manager.updateInfo(user);;
+			Status.success(String.format(message, ctx.getName()));
 			return crc;
 		} catch (SQLException e) {
-			return CommonResponse.fail(0, ctx.getAction(), e);
+			return Status.fail(ctx.getAction(), e);
 		}
 	}
 }
