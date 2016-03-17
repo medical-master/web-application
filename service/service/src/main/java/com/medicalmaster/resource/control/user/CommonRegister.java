@@ -27,8 +27,7 @@ public class CommonRegister implements Converter{
 			manager.register(ctx.getType(), ctx.getName(), ctx.getAuthentication(), ctx.getEmail(), ctx.getMobilePhoneNumber());
 			return Status.success(String.format(message, ctx.getName()));
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return Status.fail(e.getMessage());
+			return Status.fail(ctx.getAction(), e);
 		}
 	}
 

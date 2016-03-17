@@ -28,8 +28,7 @@ public class ActivateMaster implements Converter{
 			manager.activateMaster(ctx.getInvitionCode(), "123456", ctx.getMobilePhoneNumber());
 			return Status.success(String.format(message, ctx.getInvitionCode(), "123456"));
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return Status.fail(String.format("Activated by code %s is faild", ctx.getInvitionCode()), e);
+			return Status.fail(ctx.getAction(), e);
 		}
 	}
 }

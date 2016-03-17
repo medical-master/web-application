@@ -1,5 +1,7 @@
 package com.medicalmaster.resource;
 
+import java.sql.SQLException;
+
 import javax.annotation.Resource;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
@@ -14,7 +16,9 @@ import javax.ws.rs.core.MediaType;
 import com.medicalmaster.common.Status;
 import com.medicalmaster.common.user.ActivateMasterRequest;
 import com.medicalmaster.common.user.CreateUserRequest;
+import com.medicalmaster.common.user.LoginRequest;
 import com.medicalmaster.common.user.UpdateUserRequest;
+import com.medicalmaster.dal.User;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.XunitFactory;
@@ -27,12 +31,9 @@ public class UserResource {
 	public static final String ACTIVATE_MASTER = "activateMaster";
 	public static final String REGISTER = "register";
 	
-	private static UserManager manager; 
 	private static XunitFactory factory;
-	// TODO shall we optimize here?
 	static {
 		try {
-			manager = new UserManager();
 			factory = XunitFactory.load("user.xunit");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,14 +43,15 @@ public class UserResource {
 	@GET
 	@Path("{userid}")
 	@Produces("text/plain")
-    public String getUser(@PathParam("userid") String userId) {
-		return userId;
+    public User getUser(@PathParam("userid") int userId) throws SQLException {
+		return new UserManager().getUser(userId);
 	}
 
 	@GET
-	@Produces("text/plain")
-    public String login(@PathParam("userid") String userId) {
-		return userId;
+	@Produces(MediaType.APPLICATION_JSON)
+    public User login(@BeanParam LoginRequest loginRequest) {
+		return null;
+//		return new UserManager().getUser(loginRequest.getName(), loginRequest.getPassword());
 	}
 	
 	@POST
@@ -70,15 +72,12 @@ public class UserResource {
 	@Path("{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
     public Status updateInfomation(
-    		@PathParam("userid") String userId,
     		@BeanParam UpdateUserRequest updateUserRequest) {
 		return handle(updateUserRequest, updateUserRequest.getAction());
 	}
-	
-	// TODO add common action to base context
+
 	private Status handle(Context ctx, String message) {
 		try {
-			XunitFactory factory = XunitFactory.load("user.xunit");
 			return (Status)factory.getConverter("user management").convert(ctx);
 		} catch (Throwable e) {
 			e.printStackTrace();

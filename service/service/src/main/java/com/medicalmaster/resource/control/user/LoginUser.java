@@ -2,13 +2,15 @@ package com.medicalmaster.resource.control.user;
 
 import java.sql.SQLException;
 
+import com.medicalmaster.common.CommonResponse;
 import com.medicalmaster.common.Status;
-import com.medicalmaster.common.user.CreateUserRequest;
+import com.medicalmaster.common.user.LoginRequest;
+import com.medicalmaster.dal.User;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Converter;
 
-public class InviteMaster implements Converter{
+public class LoginUser  implements Converter{
 	private static UserManager manager; 
 	static {
 		try {
@@ -20,15 +22,16 @@ public class InviteMaster implements Converter{
 
 	@Override
 	public Context convert(Context context) {
-		CreateUserRequest ctx = (CreateUserRequest)context;
+		LoginRequest ctx = (LoginRequest)context;
 		String message = "undefined";
-		
+		CommonResponse crc = new CommonResponse();
 		try{
-			message = "The generated invite code for master %s is %s";
-			String inviteCode = manager.inviteMaster(ctx.getName(), ctx.getEmail(), ctx.getMobilePhoneNumber());
-			return Status.success(String.format(message, ctx.getName(), inviteCode));
+			message = "Login for user %s is success.";
+			User user = manager.getUser(ctx.getName(), ctx.getPassword());
+			CommonResponse.success(0, String.format(message, ctx.getName()), user);
+			return crc;
 		} catch (SQLException e) {
-			return Status.fail(ctx.getAction(), e);
+			return CommonResponse.fail(0, ctx.getAction(), e);
 		}
 	}
 }

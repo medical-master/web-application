@@ -42,6 +42,11 @@ public class UserDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(id, hints);
 	}
+	public List<User> queryLike(User user, DalHints hints)
+			throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		return client.queryLike(user, hints);
+	}
     /**
 	 * Query User by User instance which the primary key is set
 	**/

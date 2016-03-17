@@ -2,6 +2,7 @@ package com.medicalmaster.domain.user;
 
 import java.security.MessageDigest;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.medicalmaster.common.user.UserStatus;
 import com.medicalmaster.common.user.UserType;
@@ -41,8 +42,23 @@ public class UserManager {
 		dao.insert(null, user);
 	}
 
-	public void completeInfo(UserType userType, String name, String mobilePhoneNumber) {
+	public void updateInfo(User user) throws SQLException {
+		dao.update(null, user);
+	}
+
+	public User getUser(Integer userId) throws SQLException {
+		return dao.queryByPk(userId, null);
+	}
+
+	public User getUser(String userName, String password) throws SQLException {
+		User user = new User();
+		user.setAuthentication(password);
+		user.setName(userName);
+		List<User> users = dao.queryLike(user, null);
+		if(users.size() != 1)
+			return null;
 		
+		return users.get(0);
 	}
 	
 	private String buildInviteCode() {
