@@ -1,17 +1,17 @@
 package com.medicalmaster.common.user;
 
-import javax.ws.rs.FormParam;
+import javax.ws.rs.QueryParam;
 
 import com.xross.tools.xunit.Context;
 
 public class LoginRequest implements Context {
-	@FormParam("action") 
+	@QueryParam("action") 
 	private String action;
-	
-	@FormParam("name") 
+
+	@QueryParam("name") 
 	private String name;
 	
-	@FormParam("password") 
+	@QueryParam("password") 
 	private String password;
 
 	public String getAction() {
@@ -21,7 +21,7 @@ public class LoginRequest implements Context {
 	public void setAction(String action) {
 		this.action = action;
 	}
-
+	
 	public String getName() {
 		return name;
 	}

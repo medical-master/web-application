@@ -13,13 +13,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.medicalmaster.common.RequestByIdContext;
 import com.medicalmaster.common.Status;
 import com.medicalmaster.common.user.ActivateMasterRequest;
 import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.common.user.LoginRequest;
 import com.medicalmaster.common.user.UpdateUserRequest;
-import com.medicalmaster.dal.User;
-import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.XunitFactory;
 
@@ -43,27 +42,29 @@ public class UserResource {
 	@GET
 	@Path("{userid}")
 	@Produces("text/plain")
-    public User getUser(@PathParam("userid") int userId) throws SQLException {
-		return new UserManager().getUser(userId);
+    public Context getUser(@PathParam("userid") int userId) throws SQLException {
+		RequestByIdContext req = new RequestByIdContext();
+		req.setId(userId);
+		req.setAction("get user");
+		return handle(req, req.getAction());
 	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-    public User login(@BeanParam LoginRequest loginRequest) {
-		return null;
-//		return new UserManager().getUser(loginRequest.getName(), loginRequest.getPassword());
+    public Context login(@BeanParam LoginRequest loginRequest) {
+		return handle(loginRequest, loginRequest.getAction());
 	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-    public Status createUser(@BeanParam CreateUserRequest createUserRequest) {
+    public Context createUser(@BeanParam CreateUserRequest createUserRequest) {
 		return handle(createUserRequest, createUserRequest.getAction());
 	}
 
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-    public Status activateMaster(
+    public Context activateMaster(
     		@BeanParam ActivateMasterRequest activateMasterRequest) {
 		return handle(activateMasterRequest, activateMasterRequest.getAction());
 	}
@@ -71,14 +72,14 @@ public class UserResource {
 	@PUT
 	@Path("{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
-    public Status updateInfomation(
+    public Context updateInfomation(
     		@BeanParam UpdateUserRequest updateUserRequest) {
 		return handle(updateUserRequest, updateUserRequest.getAction());
 	}
 
-	private Status handle(Context ctx, String message) {
+	private Context handle(Context ctx, String message) {
 		try {
-			return (Status)factory.getConverter("user management").convert(ctx);
+			return factory.getConverter("user management").convert(ctx);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			return Status.fail(message, e);

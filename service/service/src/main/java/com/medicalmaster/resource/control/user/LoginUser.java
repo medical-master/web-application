@@ -3,7 +3,6 @@ package com.medicalmaster.resource.control.user;
 import java.sql.SQLException;
 
 import com.medicalmaster.common.CommonResponse;
-import com.medicalmaster.common.Status;
 import com.medicalmaster.common.user.LoginRequest;
 import com.medicalmaster.dal.User;
 import com.medicalmaster.domain.user.UserManager;
