@@ -23,12 +23,10 @@ public class LoginUser implements Converter{
 	public Context convert(Context context) {
 		LoginRequest ctx = (LoginRequest)context;
 		String message = "undefined";
-		CommonResponse crc = new CommonResponse();
 		try{
 			message = "Login for user %s is success.";
 			User user = manager.getUser(ctx.getName(), ctx.getPassword());
-			CommonResponse.success(0, String.format(message, ctx.getName()), user);
-			return crc;
+			return CommonResponse.success(0, String.format(message, ctx.getName()), user);
 		} catch (SQLException e) {
 			return CommonResponse.fail(0, ctx.getAction(), e);
 		}

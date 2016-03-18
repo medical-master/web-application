@@ -8,12 +8,13 @@ import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Processor;
 
 public class LoginAction implements Processor {
-	private String userResourceUrl = "http://localhost:9091/service/resources/users";
+	private String userResourceUrl = "http://localhost:8081/service/resources/users";
 	
 	@Override
 	public void process(Context ctx) {
 		WebContext context = (WebContext)ctx;
 		CommonResponse s = ResourceProxy.get(context, userResourceUrl, LoginRequest.class, CommonResponse.class);
 		context.setResult(s.getMessage());
+		context.setResponseSection("status.jsp");
 	}
 }

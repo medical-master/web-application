@@ -13,6 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.medicalmaster.common.CommonResponse;
+import com.medicalmaster.common.ExceptionWraper;
 import com.medicalmaster.common.RequestByIdContext;
 import com.medicalmaster.common.Status;
 import com.medicalmaster.common.user.ActivateMasterRequest;
@@ -42,7 +44,7 @@ public class UserResource {
 	@GET
 	@Path("{userid}")
 	@Produces("text/plain")
-    public Context getUser(@PathParam("userid") int userId) throws SQLException {
+    public CommonResponse getUser(@PathParam("userid") int userId) throws SQLException {
 		RequestByIdContext req = new RequestByIdContext();
 		req.setId(userId);
 		req.setAction("get user");
@@ -51,20 +53,20 @@ public class UserResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-    public Context login(@BeanParam LoginRequest loginRequest) {
+    public CommonResponse login(@BeanParam LoginRequest loginRequest) {
 		return handle(loginRequest, loginRequest.getAction());
 	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-    public Context createUser(@BeanParam CreateUserRequest createUserRequest) {
+    public Status createUser(@BeanParam CreateUserRequest createUserRequest) {
 		return handle(createUserRequest, createUserRequest.getAction());
 	}
 
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-    public Context activateMaster(
+    public Status activateMaster(
     		@BeanParam ActivateMasterRequest activateMasterRequest) {
 		return handle(activateMasterRequest, activateMasterRequest.getAction());
 	}
@@ -72,17 +74,17 @@ public class UserResource {
 	@PUT
 	@Path("{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
-    public Context updateInfomation(
+    public Status updateInfomation(
     		@BeanParam UpdateUserRequest updateUserRequest) {
 		return handle(updateUserRequest, updateUserRequest.getAction());
 	}
 
-	private Context handle(Context ctx, String message) {
+	private <T> T handle(Context ctx, String message) {
 		try {
-			return factory.getConverter("user management").convert(ctx);
+			return (T)factory.getConverter("user management").convert(ctx);
 		} catch (Throwable e) {
-			e.printStackTrace();
-			return Status.fail(message, e);
+			ExceptionWraper.wrap(message, e);
+			return null;
 		}
 	}
 }

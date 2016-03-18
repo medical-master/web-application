@@ -1,3 +1,4 @@
 1. If debug/run the application with Jetty in dev environment, make sure Jetty version is above 8.x. Otherwise it won't work properly, the reason seems to be lower version doesn't support web3.0.
 2. To define a pojo for json/xml serialization/deserialization, it MUST contains no constructor or one default constructor. Otherwise, the operation will fail
 3. The input filed in jsp must have name attribute. otherewise the parameter will not be passed to server
+4. must explicitly declare return class instead of a common interface like Context

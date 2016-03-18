@@ -9,9 +9,11 @@ public class CommonResponse implements Context {
 	private Throwable exception;
 	private Object result;
 	
+	public CommonResponse(){}
+	
 	public static CommonResponse success(int statusCode, String message, Object result) {
 		CommonResponse crc = new CommonResponse();
-		crc.success = false;
+		crc.success = true;
 		crc.statusCode = statusCode;
 		crc.message = message;
 		crc.result = result;
