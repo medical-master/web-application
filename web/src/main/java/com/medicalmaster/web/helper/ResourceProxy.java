@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.FormParam;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -25,10 +27,17 @@ public class ResourceProxy {
 	}
 	
 	public static <T, K> K get(WebContext context, String url, Class<K> respClazz) {
-		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
+		WebTarget userResourceTarget = ClientBuilder.newClient().target(url); 
 		
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
 				.get(respClazz);
+	}
+	
+	public static <T, K> K get(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
+		WebTarget userResourceTarget = populateQuery(context, url, reqClazz);
+		
+		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
+				.get(respClazz);		
 	}
 	
 	public static <T, K> K put(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
@@ -47,8 +56,31 @@ public class ResourceProxy {
 				.delete(respClazz);
 	}
 	
-	private static <T> Form populateForm(WebContext context, Class<T> clazz) {
-		String[] formFields = getFields(clazz);
+	private static <T> WebTarget buildTarget(WebContext context, String baseUrl, Class<T> clazz) {
+		WebTarget userResourceTarget = ClientBuilder.newClient().target(baseUrl);
+		
+		String[] pathFields = getPathFields(clazz);
+		
+		for (String field: pathFields) {
+			userResourceTarget = userResourceTarget.path(context.getRequest().getParameter(field));
+		}
+		
+		return userResourceTarget;
+	}
+	
+	private static <T> WebTarget populateQuery(WebContext context, String baseUrl, Class<T> reqestClazz) {
+		WebTarget target = buildTarget(context, baseUrl, reqestClazz);
+
+		String[] queryFields = getQueryFields(reqestClazz);
+
+		for (String field: queryFields) {
+			target = target.queryParam(field, context.getRequest().getParameter(field));
+		}
+		return target;
+	}
+
+	private static <T> Form populateForm(WebContext context, Class<T> reqestClazz) {
+		String[] formFields = getFormFields(reqestClazz);
 
 		Form form = new Form();
 
@@ -58,9 +90,9 @@ public class ResourceProxy {
 		return form;
 	}
 
-	private static <T> String[] getFields(Class<T> clazz) {
+	private static <T> String[] getFormFields(Class<T> reqestClazz) {
 		List<String> fList = new ArrayList<>();
-		for (Field f : clazz.getDeclaredFields()) {
+		for (Field f : reqestClazz.getDeclaredFields()) {
 			FormParam param = f.getAnnotation(FormParam.class);
 			if (param != null)
 				fList.add(param.value());
@@ -68,4 +100,28 @@ public class ResourceProxy {
 		return fList.toArray(new String[fList.size()]);
 	}
 
+	private static <T> String[] getQueryFields(Class<T> reqestClazz) {
+		List<String> fList = new ArrayList<>();
+		for (Field f : reqestClazz.getDeclaredFields()) {
+			QueryParam param = f.getAnnotation(QueryParam.class);
+			if (param != null)
+				fList.add(param.value());
+		}
+		return fList.toArray(new String[fList.size()]);
+	}
+
+	/**
+	 * PathParam must be declared in order in request class
+	 * @param reqestClazz
+	 * @return
+	 */
+	private static <T> String[] getPathFields(Class<T> reqestClazz) {
+		List<String> fList = new ArrayList<>();
+		for (Field f : reqestClazz.getDeclaredFields()) {
+			PathParam param = f.getAnnotation(PathParam.class);
+			if (param != null)
+				fList.add(param.value());
+		}
+		return fList.toArray(new String[fList.size()]);
+	}
 }
