@@ -2,6 +2,7 @@ package com.medicalmaster.web.control;
 
 import javax.servlet.http.HttpSession;
 
+import com.medicalmaster.dal.User;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Processor;
 
@@ -21,11 +22,12 @@ public class PopulateContextProcesor implements Processor{
 	}
 
 	private void populateUserInfo(WebContext ctx) {
-		if(ctx.getRequest().getSession() == null)
+		HttpSession session = ctx.getRequest().getSession(false);
+		if(session == null || session.getAttribute("user") == null)
 			return;
 		
-		HttpSession session = ctx.getRequest().getSession();
-		ctx.setUserId((String)session.getAttribute("userId"));
-		ctx.setUserName((String)session.getAttribute("userName"));
+		User user = (User)session.getAttribute("user");
+		ctx.setUserId(String.valueOf(user.getUserId()));
+		ctx.setUserName(user.getName());
 	}
 }

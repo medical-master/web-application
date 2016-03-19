@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8"%>
+<%@page import="com.medicalmaster.dal.User"%>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -35,12 +36,13 @@
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
 <%
-	if(session == null || session.getAttribute("userName") == null) {
+	User user = session == null?null:(User)session.getAttribute("user");
 %>
+<%if(user == null) {%>
 			  <a class="btn btn-primary" href="action?view=user/login">登录</a>
 			  <a class="btn btn-default" href="action?view=user/registerUser">注册</a>
 <% } else { %>
-			  <a class="btn btn-primary" href="action?view=userInfo"><%=session.getAttribute("userName") %></a>
+			  <a class="btn btn-primary" href="action?view=userInfo"><%=user.getName()%></a>
 			  <a class="btn btn-default" href="action?module=user&action=logout/">退出</a>
 <% } %>
               <input type="text" class="form-control" placeholder="搜索">
