@@ -26,7 +26,10 @@ public class LoginUser implements Converter{
 		try{
 			message = "Login for user %s is success.";
 			User user = manager.getUser(ctx.getName(), ctx.getPassword());
-			return CommonResponse.success(0, String.format(message, ctx.getName()), user);
+			CommonResponse cr = CommonResponse.success(0, String.format(message, ctx.getName()));
+			cr.setResult("userName", user.getName());
+			cr.setResult("userId", user.getUserId().toString());
+			return cr;
 		} catch (SQLException e) {
 			return CommonResponse.fail(0, ctx.getAction(), e);
 		}

@@ -34,8 +34,15 @@
           </ul>
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
+<%
+	if(session == null || session.getAttribute("userName") == null) {
+%>
 			  <a class="btn btn-primary" href="action?view=user/login">登录</a>
 			  <a class="btn btn-default" href="action?view=user/registerUser">注册</a>
+<% } else { %>
+			  <a class="btn btn-primary" href="action?view=userInfo"><%=session.getAttribute("userName") %></a>
+			  <a class="btn btn-default" href="action?module=user&action=logout/">退出</a>
+<% } %>
               <input type="text" class="form-control" placeholder="搜索">
             </div>
             <button type="submit" class="btn btn-default">确认</button>

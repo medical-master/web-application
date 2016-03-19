@@ -18,7 +18,6 @@ public class PopulateContextProcesor implements Processor{
 		
 		String port = "8081";
 		rpc.setBaseServiceUrl(String.format("http://localhost:%s/service/resources/", port));
-		
 	}
 
 	private void populateUserInfo(WebContext ctx) {

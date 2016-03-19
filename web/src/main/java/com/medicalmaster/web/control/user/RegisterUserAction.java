@@ -8,12 +8,12 @@ import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Processor;
 
 public class RegisterUserAction implements Processor {
-	private String userResourceUrl = "http://localhost:8081/service/resources/users";
+	private String userResource = "users";
 	
 	@Override
 	public void process(Context ctx) {
 		WebContext context = (WebContext)ctx;
-		Status s = ResourceProxy.post(context, userResourceUrl, CreateUserRequest.class, Status.class);
+		Status s = ResourceProxy.post(context, context.getBaseServiceUrl() + userResource, CreateUserRequest.class, Status.class);
 		context.setResult(s.getMessage());
 	}
 }

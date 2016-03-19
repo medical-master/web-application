@@ -8,12 +8,12 @@ import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Processor;
 
 public class ActivateMasterAction implements Processor{
-	private String userResourceUrl = "http://localhost:8081/service/resources/users";
+	private String userResource = "users";
 	
 	@Override
 	public void process(Context ctx) {
 		WebContext context = (WebContext)ctx;
-		Status s = ResourceProxy.put(context, userResourceUrl, ActivateMasterRequest.class, Status.class);
+		Status s = ResourceProxy.put(context, context.getBaseServiceUrl() + userResource, ActivateMasterRequest.class, Status.class);
 		context.setResult(s.getMessage());
 		context.setTargetPage("status.jsp");
 	}
