@@ -16,6 +16,14 @@ import javax.ws.rs.core.MediaType;
 import com.medicalmaster.web.control.WebContext;
 
 public class ResourceProxy {
+	public static <T, K> K post(WebContext context, String url, T req, Class<K> respClazz) {
+		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
+		
+		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
+				.post(Entity.entity(req,
+						MediaType.APPLICATION_FORM_URLENCODED_TYPE),
+						respClazz);
+	}
 
 	public static <T, K> K post(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
 		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);

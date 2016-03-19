@@ -12,32 +12,26 @@ public class UpdateUserRequest implements Context {
 	@PathParam("userid") 
 	String userId;
 	
-	@FormParam("name") 
-	private String name;
-	
 	@FormParam("email") 
 	private String email; 
 	
-	@FormParam("authentication") 
-	private String authentication;
-	
 	@FormParam("hosptialId") 
-	private Integer hosptialId;
+	private String hosptialId;
 	
 	@FormParam("nickName")
 	private String nickName;
 	
 	@FormParam("sex")
-	private Boolean sex;
+	private String sex;
 	
 	@FormParam("department")
 	private String department;
 	
 	@FormParam("educationLevel")
-	private Integer educationLevel;
+	private String educationLevel;
 	
 	@FormParam("professionalRank")
-	private Integer professionalRank;
+	private String professionalRank;
 	
 	@FormParam("title")
 	private String title;
@@ -51,12 +45,6 @@ public class UpdateUserRequest implements Context {
 	@FormParam("mobilePhoneNumber")
 	private String mobilePhoneNumber;
 	
-	@FormParam("status")
-	private Integer status;
-	
-	@FormParam("inviteCode")
-	private String inviteCode;
-
 	public String getAction() {
 		return action;
 	}
@@ -73,14 +61,6 @@ public class UpdateUserRequest implements Context {
 		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -89,19 +69,11 @@ public class UpdateUserRequest implements Context {
 		this.email = email;
 	}
 
-	public String getAuthentication() {
-		return authentication;
-	}
-
-	public void setAuthentication(String authentication) {
-		this.authentication = authentication;
-	}
-
-	public Integer getHosptialId() {
+	public String getHosptialId() {
 		return hosptialId;
 	}
 
-	public void setHosptialId(Integer hosptialId) {
+	public void setHosptialId(String hosptialId) {
 		this.hosptialId = hosptialId;
 	}
 
@@ -113,11 +85,11 @@ public class UpdateUserRequest implements Context {
 		this.nickName = nickName;
 	}
 
-	public Boolean getSex() {
+	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(Boolean sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
@@ -129,19 +101,19 @@ public class UpdateUserRequest implements Context {
 		this.department = department;
 	}
 
-	public Integer getEducationLevel() {
+	public String getEducationLevel() {
 		return educationLevel;
 	}
 
-	public void setEducationLevel(Integer educationLevel) {
+	public void setEducationLevel(String educationLevel) {
 		this.educationLevel = educationLevel;
 	}
 
-	public Integer getProfessionalRank() {
+	public String getProfessionalRank() {
 		return professionalRank;
 	}
 
-	public void setProfessionalRank(Integer professionalRank) {
+	public void setProfessionalRank(String professionalRank) {
 		this.professionalRank = professionalRank;
 	}
 
@@ -175,21 +147,5 @@ public class UpdateUserRequest implements Context {
 
 	public void setMobilePhoneNumber(String mobilePhoneNumber) {
 		this.mobilePhoneNumber = mobilePhoneNumber;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public String getInviteCode() {
-		return inviteCode;
-	}
-
-	public void setInviteCode(String inviteCode) {
-		this.inviteCode = inviteCode;
 	}
 }

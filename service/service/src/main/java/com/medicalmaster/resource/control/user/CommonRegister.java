@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import com.medicalmaster.common.Status;
 import com.medicalmaster.common.user.CreateUserRequest;
+import com.medicalmaster.common.user.UserType;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Converter;
@@ -24,7 +25,7 @@ public class CommonRegister implements Converter{
 		
 		try {
 			String message = "Register user %s success";
-			manager.register(ctx.getType(), ctx.getName(), ctx.getAuthentication(), ctx.getEmail(), ctx.getMobilePhoneNumber());
+			manager.register(UserType.valueOf(ctx.getType()), ctx.getName(), ctx.getPassword(), ctx.getEmail(), ctx.getMobilePhoneNumber());
 			return Status.success(String.format(message, ctx.getName()));
 		} catch (SQLException e) {
 			return Status.fail(ctx.getAction(), e);

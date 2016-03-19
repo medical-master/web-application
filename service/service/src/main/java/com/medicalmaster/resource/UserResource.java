@@ -20,6 +20,7 @@ import com.medicalmaster.common.Status;
 import com.medicalmaster.common.user.ActivateMasterRequest;
 import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.common.user.LoginRequest;
+import com.medicalmaster.common.user.LoginResponse;
 import com.medicalmaster.common.user.UpdateUserRequest;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.XunitFactory;
@@ -53,7 +54,7 @@ public class UserResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-    public CommonResponse login(@BeanParam LoginRequest loginRequest) {
+    public LoginResponse login(@BeanParam LoginRequest loginRequest) {
 		return handle(loginRequest, loginRequest.getAction());
 	}
 	

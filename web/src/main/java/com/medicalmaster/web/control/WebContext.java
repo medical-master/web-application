@@ -84,4 +84,16 @@ public class WebContext implements Context {
 	public void setModule(String module) {
 		this.module = module;
 	}
+	
+	public String getParameter(String name) {
+		return request.getParameter(name);
+	}
+	
+	public Object getSessionAttr(String name) {
+		return request.getSession().getAttribute(name);
+	}
+
+	public void setSessionAttr(String name, Object value) {
+		request.getSession().setAttribute(name, value);
+	}
 }

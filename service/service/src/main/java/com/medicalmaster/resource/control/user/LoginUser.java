@@ -2,8 +2,8 @@ package com.medicalmaster.resource.control.user;
 
 import java.sql.SQLException;
 
-import com.medicalmaster.common.CommonResponse;
 import com.medicalmaster.common.user.LoginRequest;
+import com.medicalmaster.common.user.LoginResponse;
 import com.medicalmaster.dal.User;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
@@ -23,15 +23,16 @@ public class LoginUser implements Converter{
 	public Context convert(Context context) {
 		LoginRequest ctx = (LoginRequest)context;
 		String message = "undefined";
+		LoginResponse lr = new LoginResponse();
 		try{
 			message = "Login for user %s is success.";
 			User user = manager.getUser(ctx.getName(), ctx.getPassword());
-			CommonResponse cr = CommonResponse.success(0, String.format(message, ctx.getName()));
-			cr.setResult("userName", user.getName());
-			cr.setResult("userId", user.getUserId().toString());
-			return cr;
+			lr.setUser(user);
+			lr.setMessage(String.format(message, user.getName()));
+			return lr;
 		} catch (SQLException e) {
-			return CommonResponse.fail(0, ctx.getAction(), e);
+			lr.setSuccess(false);
+			return lr;
 		}
 	}
 }

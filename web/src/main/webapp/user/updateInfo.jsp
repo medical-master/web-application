@@ -1,48 +1,59 @@
 <%@page pageEncoding="UTF-8"%>
+<%@page import="com.medicalmaster.dal.User"%>
+<%
+	User user = (User)session.getAttribute("user");
+%>
       <form>
         <div class="form-group">
-          <label for="userNameInput">用户名</label>
-          <input type="text" class="form-control" id="userNameInput" placeholder="用户名">
+          <label for="unickNameInput"><%=user.getName()%></label>
+        </div>
+        <div class="form-group">
+          <label for="nickName">昵称</label>
+          <input type="text" class="form-control" id="nickName" name="nickName" value="<%=user.getNickName()%>">
         </div>
         <div class="form-group">
           <label for="mobileInput">手机号</label>
-          <input type="text" class="form-control" id="mobileInput" placeholder="手机号">
+          <input type="text" class="form-control" id="mobileInput" name="mobilePhoneNumber" placeholder="手机号">
         </div>
         <div class="form-group">
-          <label for="password Input">密码</label>
-          <input type="password" class="form-control" id="passwordInput" placeholder="密码">
+          <label for="emailInput">邮件</label>
+          <input type="email" class="form-control" id="emailInput" name="email" value="<%=user.getEmail()%>">
         </div>
         <div class="form-group">
-          <label for="passwordConfirmInput">密码确认</label>
-          <input type="password" class="form-control" id="passwordConfirmInput" placeholder="密码确认">
+          <label for="hosptialId">医院</label>
+          <input type="text" class="form-control" id=hosptialId name="hosptialId" value="<%=user.getHosptialId()%>">
+        </div>
+        <div class="form-group">
+          <label for="department">部门</label>
+          <input type="text" class="form-control" id="department" name="department" value="<%=user.getDepartment()%>">
+        </div>
+        <div class="form-group">
+          <label for="educationLevel">教育程度</label>
+          <input type="text" class="form-control" id="educationLevel" name="educationLevel" value="<%=user.getEducationLevel()%>">
+        </div>
+        <div class="form-group">
+          <label for="professionalRank">职称</label>
+          <input type="text" class="form-control" id="professionalRank" name="professionalRank" value="<%=user.getProfessionalRank()%>">
+        </div>
+        <div class="form-group">
+          <label for="title">职务</label>
+          <input type="text" class="form-control" id="title" name="title" value="<%=user.getTitle()%>">
+        </div>
+        <div class="form-group">
+          <label for="identityNumber">证件号</label>
+          <input type="text" class="form-control" id="identityNumber" name="identityNumber" value="<%=user.getIdentityNumber()%>">
+        </div>
+        <div class="form-group">
+          <label for="doctorNumber">医师编号</label>
+          <input type="text" class="form-control" id="doctorNumber" name="doctorNumber" value="<%=user.getDoctorNumber()%>">
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios0" value="user" checked>
-                            用户
-          </label>
+            <input type="radio" id="optionsRadios0" name="sex" value="true" checked>男性</label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="generalist">
-                            全科医生
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="specialist">
-                            专科医生
-          </label>
-        </div>
-        <div class="radio disabled">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios3" value="master">
-                            医大师 
-          </label>
-        </div>
-        <div class="form-group">
-          <label for="invitationInput">邀请码</label>
-          <input type="text" class="form-control" id="invitationInput" placeholder="邀请码">
+            <input type="radio" id="optionsRadios1" name="sex" value="false">女性</label>
         </div>
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="module" value="user management">

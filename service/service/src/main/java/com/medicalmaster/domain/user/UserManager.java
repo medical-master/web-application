@@ -39,6 +39,7 @@ public class UserManager {
 		user.setEmail(email);
 		user.setAuthentication(authentication);
 		user.setMobilePhoneNumber(mobilePhoneNumber);
+		user.setType(userType.ordinal());
 		dao.insert(null, user);
 	}
 
@@ -59,6 +60,11 @@ public class UserManager {
 			return null;
 		
 		return users.get(0);
+	}
+	
+	public String buildAuthentication(String password) {
+		// TODO replace with MD5
+		return password;
 	}
 	
 	private String buildInviteCode() {

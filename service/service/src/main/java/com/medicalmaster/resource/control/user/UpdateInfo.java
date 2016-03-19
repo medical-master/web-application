@@ -27,13 +27,32 @@ public class UpdateInfo implements Converter{
 		CommonResponse crc = new CommonResponse();
 		try{
 			message = "Update infomation for user %s is success.";
-			User user = new User();
+			User user = extract(ctx);
 			
 			manager.updateInfo(user);;
-			Status.success(String.format(message, ctx.getName()));
+			Status.success(String.format(message, ctx.getUserId().toString()));
 			return crc;
 		} catch (SQLException e) {
 			return Status.fail(ctx.getAction(), e);
 		}
+	}
+	
+	private User extract(UpdateUserRequest req) {
+		User user = new User();
+		
+		user.setUserId(Integer.parseInt(req.getUserId()));
+		user.setEmail(req.getEmail());
+		user.setHosptialId(Integer.parseInt(req.getHosptialId()));
+		user.setNickName(req.getNickName());
+		user.setSex(Boolean.parseBoolean(req.getSex()));
+		user.setDepartment(req.getDepartment());
+		user.setEducationLevel(Integer.parseInt(req.getEducationLevel()));
+		user.setProfessionalRank(Integer.parseInt(req.getProfessionalRank()));
+		user.setTitle(req.getTitle());
+		user.setIdentityNumber(req.getIdentityNumber());
+		user.setDoctorNumber(req.getDoctorNumber());
+		user.setMobilePhoneNumber(req.getMobilePhoneNumber());
+		
+		return user;
 	}
 }

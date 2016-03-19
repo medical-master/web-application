@@ -14,11 +14,11 @@ public class CreateUserRequest implements Context {
 	@FormParam("email") 
 	private String email; 
 	
-	@FormParam("authentication") 
-	private String authentication;
+	@FormParam("password") 
+	private String password;
 	
 	@FormParam("type") 
-	private UserType type;
+	private String type;
 	
 	@FormParam("mobilePhoneNumber")
 	private String mobilePhoneNumber;
@@ -47,19 +47,19 @@ public class CreateUserRequest implements Context {
 		this.email = email;
 	}
 
-	public String getAuthentication() {
-		return authentication;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setAuthentication(String authentication) {
-		this.authentication = authentication;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public UserType getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(UserType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

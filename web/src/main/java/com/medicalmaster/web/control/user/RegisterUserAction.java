@@ -13,7 +13,19 @@ public class RegisterUserAction implements Processor {
 	@Override
 	public void process(Context ctx) {
 		WebContext context = (WebContext)ctx;
-		Status s = ResourceProxy.post(context, context.getBaseServiceUrl() + userResource, CreateUserRequest.class, Status.class);
+		String errorMsg = validate(context);
+		Status s;
+		if(errorMsg == null)
+			s = ResourceProxy.post(context, context.getBaseServiceUrl() + userResource, CreateUserRequest.class, Status.class);
+		else
+			s = Status.fail(errorMsg);
 		context.setResult(s.getMessage());
+		context.setTargetPage("status.jsp");
+	}
+	
+	private String validate(WebContext ctx) {
+		if(!ctx.getParameter("password").equals(ctx.getParameter("passwordConfirm")))
+			return "The password values not same";
+		return null;
 	}
 }
