@@ -9,6 +9,6 @@ public class ShowPageProcesor implements Processor{
 	public void process(Context ctx) {
 		WebContext context = (WebContext)ctx;
 		String pageToShow = context.getRequest().getParameter("view");
-		context.setResponseSection(pageToShow +".jsp");
+		context.setTargetPage(pageToShow +".jsp");
 	}
 }

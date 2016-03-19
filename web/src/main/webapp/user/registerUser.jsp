@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8"%>
-      <form>
+      <form action="action" method="post">
         <div class="form-group">
           <label for="userNameInput">用户名</label>
           <input type="text" class="form-control" id="userNameInput" placeholder="用户名">
@@ -34,16 +34,8 @@
                             专科医生
           </label>
         </div>
-        <div class="radio disabled">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios3" value="master">
-                            医大师 
-          </label>
-        </div>
-        <div class="form-group">
-          <label for="invitationInput">邀请码</label>
-          <input type="text" class="form-control" id="invitationInput" placeholder="邀请码">
-        </div>
+        <input type="hidden" name="action" value="register">
+        <input type="hidden" name="module" value="user management">
         <button type="submit" class="btn btn-default">提交</button>
       </form>
  

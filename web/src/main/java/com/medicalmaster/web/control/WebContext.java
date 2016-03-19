@@ -11,25 +11,27 @@ public class WebContext implements Context {
 	private Object result;
 	private String targetPage;
 	private boolean redirect;
+	private String baseServiceUrl;
+	private String module;
+	private HttpMethod method;
+	private String userId;
+	private String userName;
 	
 	public WebContext(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
 		this.response = response;
 	}
 	
-	private String resource;
-	private HttpMethod method;
-	private String userId;
-	private String userName;
-
-	public void wrapException(Throwable e) {
-		new RuntimeException(e);
+	public String getBaseServiceUrl() {
+		return baseServiceUrl;
 	}
-	
+	public void setBaseServiceUrl(String baseServiceUrl) {
+		this.baseServiceUrl = baseServiceUrl;
+	}
 	public String getTargetPage() {
 		return targetPage;
 	}
-	public void setResponseSection(String targetPage) {
+	public void setTargetPage(String targetPage) {
 		this.targetPage = targetPage;
 		request.setAttribute("responseSection", targetPage);
 	}
@@ -58,12 +60,6 @@ public class WebContext implements Context {
 	public void setResponse(HttpServletResponse response) {
 		this.response = response;
 	}
-	public String getResource() {
-		return resource;
-	}
-	public void setResource(String resource) {
-		this.resource = resource;
-	}
 	public HttpMethod getMethod() {
 		return method;
 	}
@@ -81,5 +77,11 @@ public class WebContext implements Context {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getModule() {
+		return module;
+	}
+	public void setModule(String module) {
+		this.module = module;
 	}
 }

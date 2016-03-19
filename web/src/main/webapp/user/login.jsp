@@ -9,6 +9,6 @@
           <input type="password" class="form-control" id="passwordInput" name="password" placeholder="密码">
         </div>
         <input type="hidden" name="action" value="login">
-        <input type="hidden" name="domain" value="user management">
+        <input type="hidden" name="module" value="user management">
         <button type="submit" class="btn btn-default">登录</button>
       </form>

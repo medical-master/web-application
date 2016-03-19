@@ -8,8 +8,8 @@
           <label for="mobileInput">手机号</label>
           <input type="text" class="form-control" id="mobileInput" name="mobilePhoneNumber" placeholder="手机号">
         </div>
-        <input type="hidden" name="action" value="activate master">
-        <input type="hidden" name="domain" value="user management">
+        <input type="hidden" name="action" value="activate">
+        <input type="hidden" name="module" value="user management">
         <button type="submit" class="btn btn-default">提交</button>
       </form>
  

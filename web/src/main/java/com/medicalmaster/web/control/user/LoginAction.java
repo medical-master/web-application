@@ -15,6 +15,6 @@ public class LoginAction implements Processor {
 		WebContext context = (WebContext)ctx;
 		CommonResponse s = ResourceProxy.get(context, userResourceUrl, LoginRequest.class, CommonResponse.class);
 		context.setResult(s.getMessage());
-		context.setResponseSection("status.jsp");
+		context.setTargetPage("status.jsp");
 	}
 }

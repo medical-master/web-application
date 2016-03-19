@@ -44,6 +44,9 @@
           <label for="invitationInput">邀请码</label>
           <input type="text" class="form-control" id="invitationInput" placeholder="邀请码">
         </div>
+        <input type="hidden" name="action" value="update">
+        <input type="hidden" name="module" value="user management">
+        
         <button type="submit" class="btn btn-default">提交</button>
       </form>
  
