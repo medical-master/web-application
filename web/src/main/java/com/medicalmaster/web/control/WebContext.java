@@ -33,7 +33,7 @@ public class WebContext implements Context {
 	}
 	public void setTargetPage(String targetPage) {
 		this.targetPage = targetPage;
-		request.setAttribute("responseSection", targetPage);
+		setRequestAttr("responseSection", targetPage);
 	}
 	public boolean isRedirect() {
 		return redirect;
@@ -46,7 +46,7 @@ public class WebContext implements Context {
 	}
 	public void setResult(Object result) {
 		this.result = result;
-		request.setAttribute("result", result);
+		setRequestAttr("result", result);
 	}
 	public HttpServletRequest getRequest() {
 		return request;
@@ -89,8 +89,18 @@ public class WebContext implements Context {
 		return request.getParameter(name);
 	}
 	
-	public Object getSessionAttr(String name) {
-		return request.getSession().getAttribute(name);
+	public void setRequestAttr(String name, Object value) {
+		request.setAttribute(name, value);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> T getRequestAttr(String name) {
+		return (T)request.getAttribute(name);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> T getSessionAttr(String name) {
+		return (T)request.getSession().getAttribute(name);
 	}
 
 	public void setSessionAttr(String name, Object value) {

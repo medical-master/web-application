@@ -49,7 +49,7 @@ public class ResourceProxy {
 	}
 	
 	public static <T, K> K put(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
-		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
+		WebTarget userResourceTarget = populateQuery(context, url, reqClazz);
 		
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
 				.put(Entity.entity(populateForm(context, reqClazz),
