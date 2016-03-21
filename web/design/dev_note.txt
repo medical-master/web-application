@@ -3,6 +3,7 @@
 3. The input filed in jsp must have name attribute. otherewise the parameter will not be passed to server
 4. must explicitly declare return class instead of a common interface like Context
 5. all type for request should be string for easy normalize, this will be optimized later
+6. if page has error, you can debug in jsp to find out
 
 TODO
 1. fix null unit processing for converter

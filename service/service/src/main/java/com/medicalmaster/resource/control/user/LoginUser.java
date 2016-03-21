@@ -27,6 +27,12 @@ public class LoginUser implements Converter{
 		try{
 			message = "Login for user %s is success.";
 			User user = manager.getUser(ctx.getName(), ctx.getPassword());
+			if(user == null) {
+				lr.setSuccess(false);
+				lr.setMessage("The user name or password is incorrect");
+				return lr;
+			}
+				
 			lr.setUser(user);
 			lr.setMessage(String.format(message, user.getName()));
 			return lr;

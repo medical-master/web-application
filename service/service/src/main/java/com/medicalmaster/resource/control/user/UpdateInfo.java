@@ -24,14 +24,12 @@ public class UpdateInfo implements Converter{
 	public Context convert(Context context) {
 		UpdateUserRequest ctx = (UpdateUserRequest)context;
 		String message = "undefined";
-		CommonResponse crc = new CommonResponse();
 		try{
 			message = "Update infomation for user %s is success.";
 			User user = extract(ctx);
 			
 			manager.updateInfo(user);;
-			Status.success(String.format(message, ctx.getUserId().toString()));
-			return crc;
+			return Status.success(String.format(message, manager.getUser(user.getUserId()).getName()));
 		} catch (SQLException e) {
 			return Status.fail(ctx.getAction(), e);
 		}

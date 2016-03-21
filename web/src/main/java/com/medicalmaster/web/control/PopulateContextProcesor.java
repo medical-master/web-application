@@ -1,13 +1,17 @@
 package com.medicalmaster.web.control;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import com.medicalmaster.dal.User;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Processor;
+import com.xross.tools.xunit.UnitPropertiesAware;
 
-public class PopulateContextProcesor implements Processor{
-
+public class PopulateContextProcesor implements Processor, UnitPropertiesAware {
+	private String serviceUrl;
+	
 	@Override
 	public void process(Context ctx) {
 		WebContext rpc = (WebContext)ctx;
@@ -17,8 +21,7 @@ public class PopulateContextProcesor implements Processor{
 		
 		populateUserInfo(rpc);
 		
-		String port = "8081";
-		rpc.setBaseServiceUrl(String.format("http://localhost:%s/service/resources/", port));
+		rpc.setBaseServiceUrl(serviceUrl);
 	}
 
 	private void populateUserInfo(WebContext ctx) {
@@ -29,5 +32,13 @@ public class PopulateContextProcesor implements Processor{
 		User user = (User)session.getAttribute("user");
 		ctx.setUserId(String.valueOf(user.getUserId()));
 		ctx.setUserName(user.getName());
+	}
+
+	@Override
+	public void setUnitProperties(Map<String, String> properties) {
+		String serviceHost = properties.get("serviceHost");
+		String servicePath = properties.get("servicePath");
+		String servicePort = properties.get("servicePort");
+		serviceUrl = serviceHost + ":" + servicePort + servicePath + "/";
 	}
 }
