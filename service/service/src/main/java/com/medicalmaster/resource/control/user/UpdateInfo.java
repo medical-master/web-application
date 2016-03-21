@@ -2,8 +2,7 @@ package com.medicalmaster.resource.control.user;
 
 import java.sql.SQLException;
 
-import com.medicalmaster.common.CommonResponse;
-import com.medicalmaster.common.Status;
+import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.common.user.UpdateUserRequest;
 import com.medicalmaster.dal.User;
 import com.medicalmaster.domain.user.UserManager;
@@ -24,14 +23,21 @@ public class UpdateInfo implements Converter{
 	public Context convert(Context context) {
 		UpdateUserRequest ctx = (UpdateUserRequest)context;
 		String message = "undefined";
+		GetUserInfoResponse guir = new GetUserInfoResponse();
+		User user = extract(ctx);
 		try{
 			message = "Update infomation for user %s is success.";
-			User user = extract(ctx);
 			
 			manager.updateInfo(user);;
-			return Status.success(String.format(message, manager.getUser(user.getUserId()).getName()));
+			user = manager.getUser(user.getUserId());
+			guir.setUser(user);
+			guir.setMessage(String.format(message, user.getName()));
+			guir.setSuccess(true);
+			return guir;
 		} catch (SQLException e) {
-			return Status.fail(ctx.getAction(), e);
+			guir.setSuccess(false);
+			guir.setMessage(String.format("Update infomation for user id %s is success.", user.getUserId()));
+			return guir;
 		}
 	}
 	

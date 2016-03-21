@@ -16,8 +16,16 @@ import javax.ws.rs.core.MediaType;
 import com.medicalmaster.web.control.WebContext;
 
 public class ResourceProxy {
+	/**
+	 * Post to url with given request and get the response of given type
+	 * @param context
+	 * @param url
+	 * @param req
+	 * @param respClazz
+	 * @return
+	 */
 	public static <T, K> K post(WebContext context, String url, T req, Class<K> respClazz) {
-		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
+		WebTarget userResourceTarget = buildTarget(context, url, req.getClass());
 		
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
 				.post(Entity.entity(req,
@@ -25,8 +33,16 @@ public class ResourceProxy {
 						respClazz);
 	}
 
+	/**
+	 * Post to url with given request which defined by the request type and get the response of given type. 
+	 * @param context
+	 * @param url
+	 * @param reqClazz
+	 * @param respClazz
+	 * @return
+	 */
 	public static <T, K> K post(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
-		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
+		WebTarget userResourceTarget = buildTarget(context, url, reqClazz);
 		
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
 				.post(Entity.entity(populateForm(context, reqClazz),
@@ -34,6 +50,13 @@ public class ResourceProxy {
 						respClazz);
 	}
 	
+	/**
+	 * Query from the given url and get response for the given type
+	 * @param context
+	 * @param url
+	 * @param respClazz
+	 * @return
+	 */
 	public static <T, K> K get(WebContext context, String url, Class<K> respClazz) {
 		WebTarget userResourceTarget = ClientBuilder.newClient().target(url); 
 		
@@ -41,6 +64,14 @@ public class ResourceProxy {
 				.get(respClazz);
 	}
 	
+	/**
+	 * Query from the given url with the path and parameter defined in the given type and get response for the given type
+	 * @param context
+	 * @param url
+	 * @param reqClazz
+	 * @param respClazz
+	 * @return
+	 */
 	public static <T, K> K get(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
 		WebTarget userResourceTarget = populateQuery(context, url, reqClazz);
 		
@@ -48,8 +79,16 @@ public class ResourceProxy {
 				.get(respClazz);		
 	}
 	
+	/**
+	 * Put to the given url with the parameters defined in the given request type and return with the instance of the given response type
+	 * @param context
+	 * @param url
+	 * @param reqClazz
+	 * @param respClazz
+	 * @return
+	 */
 	public static <T, K> K put(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
-		WebTarget userResourceTarget = populateQuery(context, url, reqClazz);
+		WebTarget userResourceTarget = buildTarget(context, url, reqClazz);
 		
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
 				.put(Entity.entity(populateForm(context, reqClazz),
@@ -57,23 +96,18 @@ public class ResourceProxy {
 						respClazz);
 	}
 	
+	/**
+	 * Delete with the given url and return with the instance of the given response type
+	 * @param context
+	 * @param url
+	 * @param respClazz
+	 * @return
+	 */
 	public static <T, K> K delete(WebContext context, String url, Class<K> respClazz) {
 		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
 		
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
 				.delete(respClazz);
-	}
-	
-	private static <T> WebTarget buildTarget(WebContext context, String baseUrl, Class<T> clazz) {
-		WebTarget userResourceTarget = ClientBuilder.newClient().target(baseUrl);
-		
-		String[] pathFields = getPathFields(clazz);
-		
-		for (String field: pathFields) {
-			userResourceTarget = userResourceTarget.path(context.getRequest().getParameter(field));
-		}
-		
-		return userResourceTarget;
 	}
 	
 	private static <T> WebTarget populateQuery(WebContext context, String baseUrl, Class<T> reqestClazz) {
@@ -87,6 +121,26 @@ public class ResourceProxy {
 		return target;
 	}
 
+	/**
+	 * To build target url by adding path using the parameter value annotated by PathParam in request class.
+	 * PathParam is usually used by locate resource with id, like users/1234, where 1234 can be marked as PathParam
+	 * @param context
+	 * @param baseUrl
+	 * @param clazz
+	 * @return
+	 */
+	private static <T> WebTarget buildTarget(WebContext context, String baseUrl, Class<T> clazz) {
+		WebTarget userResourceTarget = ClientBuilder.newClient().target(baseUrl);
+		
+		String[] pathFields = getPathFields(clazz);
+		
+		for (String field: pathFields) {
+			userResourceTarget = userResourceTarget.path(context.getRequest().getParameter(field));
+		}
+		
+		return userResourceTarget;
+	}
+	
 	private static <T> Form populateForm(WebContext context, Class<T> reqestClazz) {
 		String[] formFields = getFormFields(reqestClazz);
 

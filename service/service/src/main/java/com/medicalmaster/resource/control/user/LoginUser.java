@@ -3,7 +3,7 @@ package com.medicalmaster.resource.control.user;
 import java.sql.SQLException;
 
 import com.medicalmaster.common.user.LoginRequest;
-import com.medicalmaster.common.user.LoginResponse;
+import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.dal.User;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
@@ -23,7 +23,7 @@ public class LoginUser implements Converter{
 	public Context convert(Context context) {
 		LoginRequest ctx = (LoginRequest)context;
 		String message = "undefined";
-		LoginResponse lr = new LoginResponse();
+		GetUserInfoResponse lr = new GetUserInfoResponse();
 		try{
 			message = "Login for user %s is success.";
 			User user = manager.getUser(ctx.getName(), ctx.getPassword());

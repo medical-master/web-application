@@ -1,9 +1,7 @@
 package com.medicalmaster.web.control.user;
 
-import javax.servlet.http.HttpSession;
-
+import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.common.user.LoginRequest;
-import com.medicalmaster.common.user.LoginResponse;
 import com.medicalmaster.web.control.WebContext;
 import com.medicalmaster.web.helper.ResourceProxy;
 import com.xross.tools.xunit.Context;
@@ -15,11 +13,10 @@ public class LoginAction implements Processor {
 	@Override
 	public void process(Context ctx) {
 		WebContext context = (WebContext)ctx;
-		LoginResponse cr = ResourceProxy.get(context, context.getBaseServiceUrl() + userResource, LoginRequest.class, LoginResponse.class);
+		GetUserInfoResponse guir = ResourceProxy.get(context, context.getBaseServiceUrl() + userResource, LoginRequest.class, GetUserInfoResponse.class);
 
-		HttpSession s = context.getRequest().getSession();
-		s.setAttribute("user", cr.getUser());
-		context.setResult(cr.getMessage());
+		context.setSessionAttr("user", guir.getUser());
+		context.setResult(guir.getMessage());
 		context.setTargetPage("status.jsp");
 	}
 }

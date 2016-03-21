@@ -3,9 +3,11 @@ package com.medicalmaster.common.user;
 import com.medicalmaster.dal.User;
 import com.xross.tools.xunit.Context;
 
-public class LoginResponse implements Context {
+public class GetUserInfoResponse implements Context {
+	private User user;
 	private boolean success;
 	private String message;
+	
 	public String getMessage() {
 		return message;
 	}
@@ -21,9 +23,6 @@ public class LoginResponse implements Context {
 	public void setSuccess(boolean success) {
 		this.success = success;
 	}
-
-
-	private User user;
 
 	public User getUser() {
 		return user;

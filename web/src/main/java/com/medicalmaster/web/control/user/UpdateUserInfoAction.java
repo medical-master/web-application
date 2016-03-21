@@ -1,6 +1,6 @@
 package com.medicalmaster.web.control.user;
 
-import com.medicalmaster.common.Status;
+import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.common.user.UpdateUserRequest;
 import com.medicalmaster.web.control.WebContext;
 import com.medicalmaster.web.helper.ResourceProxy;
@@ -13,8 +13,10 @@ public class UpdateUserInfoAction implements Processor{
 	@Override
 	public void process(Context ctx) {
 		WebContext context = (WebContext)ctx;
-		Status s = ResourceProxy.put(context, context.getBaseServiceUrl() + userResource, UpdateUserRequest.class, Status.class);
-		context.setResult(s.getMessage());
+		GetUserInfoResponse guir = ResourceProxy.put(context, context.getBaseServiceUrl() + userResource, UpdateUserRequest.class, GetUserInfoResponse.class);
+
+		context.setSessionAttr("user", guir.getUser());
+		context.setResult(guir.getMessage());
 		context.setTargetPage("status.jsp");
 	}
 }
