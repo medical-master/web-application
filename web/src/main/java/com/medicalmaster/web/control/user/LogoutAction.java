@@ -13,8 +13,7 @@ public class LogoutAction implements Processor {
 		WebContext context = (WebContext)ctx;
 
 		HttpSession s = context.getRequest().getSession();
-		s.removeAttribute("userName");
-		s.removeAttribute("userId");
+		s.removeAttribute("user");
 		context.setResult("you are logout now");
 		context.setTargetPage("status.jsp");
 	}

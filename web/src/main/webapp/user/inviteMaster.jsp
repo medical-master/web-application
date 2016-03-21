@@ -9,6 +9,6 @@
           <input type="email" class="form-control" id="emailInput" name="email" placeholder="abc@example.com">
         </div>
         <input type="hidden" name="action" value="invite">
-        <input type="hidden" name="module" value="user management">
+        <input type="hidden" name="module" value="user">
         <button type="submit" class="btn btn-default">发送邀请</button>
       </form>

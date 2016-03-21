@@ -51,5 +51,5 @@
         <%if(user.getSex() == null || user.getSex()){%>男性<% } else { %>女性<% } %>
       </div>
 
-      <a href="action?view=user/updateInfo">更新信息</a></li>
+      <a href="action?view=user/updateInfo">更新信息</a>
  

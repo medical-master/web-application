@@ -43,7 +43,7 @@
 			  <a class="btn btn-default" href="action?view=user/registerUser">注册</a>
 <% } else { %>
 			  <a class="btn btn-primary" href="action?view=user/viewInfo"><%=user.getName()%></a>
-			  <a class="btn btn-default" href="action?module=user&action=logout/">退出</a>
+			  <a class="btn btn-default" href="action?module=user&action=logout">退出</a>
 <% } %>
               <input type="text" class="form-control" placeholder="搜索">
             </div>

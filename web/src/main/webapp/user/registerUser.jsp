@@ -33,7 +33,7 @@
             <input type="radio" id="optionsRadios2" name="type" value="SPECIALIST">专科医生</label>
         </div>
         <input type="hidden" name="action" value="register">
-        <input type="hidden" name="module" value="user management">
+        <input type="hidden" name="module" value="user">
         <button type="submit" class="btn btn-default">提交</button>
       </form>
  

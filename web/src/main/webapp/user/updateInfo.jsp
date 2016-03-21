@@ -67,7 +67,7 @@
         </div>
         <input type="hidden" name="userid" value="<%=user.getUserId()%>">
         <input type="hidden" name="action" value="update">
-        <input type="hidden" name="module" value="user management">
+        <input type="hidden" name="module" value="user">
         
         <button type="submit" class="btn btn-default">提交</button>
       </form>
