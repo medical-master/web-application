@@ -110,6 +110,20 @@ public class ResourceProxy {
 				.delete(respClazz);
 	}
 	
+	/**
+	 * Delete with the given url and request and return with the instance of the given response type
+	 * @param context
+	 * @param url
+	 * @param respClazz
+	 * @return
+	 */
+	public static <T, K> K delete(WebContext context, String url, Class<T> reqestClazz, Class<K> respClazz) {
+		WebTarget target = buildTarget(context, url, reqestClazz);
+		
+		return target.request(MediaType.APPLICATION_JSON_TYPE)
+				.delete(respClazz);
+	}
+	
 	private static <T> WebTarget populateQuery(WebContext context, String baseUrl, Class<T> reqestClazz) {
 		WebTarget target = buildTarget(context, baseUrl, reqestClazz);
 

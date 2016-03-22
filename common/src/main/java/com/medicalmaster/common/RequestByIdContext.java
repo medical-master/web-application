@@ -8,7 +8,7 @@ public class RequestByIdContext implements Context {
 	@FormParam("action") 
 	private String action;
 
-	@FormParam("action") 
+	@FormParam("id") 
 	private Integer id;
 
 	public String getAction() {

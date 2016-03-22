@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.annotation.Resource;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -13,14 +14,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.medicalmaster.common.CommonResponse;
 import com.medicalmaster.common.ExceptionWraper;
 import com.medicalmaster.common.RequestByIdContext;
 import com.medicalmaster.common.Status;
 import com.medicalmaster.common.user.ActivateMasterRequest;
 import com.medicalmaster.common.user.CreateUserRequest;
-import com.medicalmaster.common.user.LoginRequest;
 import com.medicalmaster.common.user.GetUserInfoResponse;
+import com.medicalmaster.common.user.LoginRequest;
 import com.medicalmaster.common.user.UpdateUserRequest;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.XunitFactory;
@@ -63,6 +63,16 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
     public Status createUser(@BeanParam CreateUserRequest createUserRequest) {
 		return handle(createUserRequest, createUserRequest.getAction());
+	}
+
+	@DELETE
+	@Path("{userid}")
+	@Produces(MediaType.APPLICATION_JSON)
+    public Status deleteUser(@PathParam("userid") int userId) {
+		RequestByIdContext req = new RequestByIdContext();
+		req.setId(userId);
+		req.setAction("remove");
+		return handle(req, req.getAction());
 	}
 
 	@PUT

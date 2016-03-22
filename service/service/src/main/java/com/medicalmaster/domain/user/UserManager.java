@@ -62,6 +62,12 @@ public class UserManager {
 		return users.get(0);
 	}
 	
+	public int removeUser(Integer userId) throws SQLException {
+		User u = new User();
+		u.setUserId(userId);
+		return dao.delete(null, u);
+	}
+	
 	public String buildAuthentication(String password) {
 		// TODO replace with MD5
 		return password;
