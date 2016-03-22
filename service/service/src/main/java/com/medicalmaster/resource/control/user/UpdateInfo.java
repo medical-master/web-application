@@ -2,6 +2,7 @@ package com.medicalmaster.resource.control.user;
 
 import java.sql.SQLException;
 
+import com.medicalmaster.common.helper.ParseHelper;
 import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.common.user.UpdateUserRequest;
 import com.medicalmaster.dal.User;
@@ -44,14 +45,14 @@ public class UpdateInfo implements Converter{
 	private User extract(UpdateUserRequest req) {
 		User user = new User();
 		
-		user.setUserId(Integer.parseInt(req.getUserId()));
+		user.setUserId(ParseHelper.parseInt(req.getUserId()));
 		user.setEmail(req.getEmail());
-		user.setHosptialId(Integer.parseInt(req.getHosptialId()));
+		user.setHosptialId(ParseHelper.parseInt(req.getHosptialId()));
 		user.setNickName(req.getNickName());
-		user.setSex(Boolean.parseBoolean(req.getSex()));
+		user.setSex(ParseHelper.parseBoolean(req.getSex()));
 		user.setDepartment(req.getDepartment());
-		user.setEducationLevel(Integer.parseInt(req.getEducationLevel()));
-		user.setProfessionalRank(Integer.parseInt(req.getProfessionalRank()));
+		user.setEducationLevel(ParseHelper.parseInt(req.getEducationLevel()));
+		user.setProfessionalRank(ParseHelper.parseInt(req.getProfessionalRank()));
 		user.setTitle(req.getTitle());
 		user.setIdentityNumber(req.getIdentityNumber());
 		user.setDoctorNumber(req.getDoctorNumber());
