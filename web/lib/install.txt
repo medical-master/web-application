@@ -1,0 +1,1 @@
+mvn install:install-file -DpomFile=sqljdbc-4.0.2206.pom -Dfile=sqljdbc-4.0.2206.jar
