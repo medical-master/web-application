@@ -15,7 +15,7 @@ import java.util.Map;
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
 public class SystemPropertyDao {
-    private static final String DATA_BASE = "medical_master";
+    private static final String DATA_BASE = "medical-master";
 	private static DatabaseCategory dbCategory = null;
 	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from system_property";
 	private static final String ALL_SQL_PATTERN = "SELECT * FROM system_property";
@@ -34,13 +34,15 @@ public class SystemPropertyDao {
 		this.baseClient = DalClientFactory.getClient(DATA_BASE);
 	}
 	/**
-	 * Query SystemProperty by the specified ID
-	 * The ID must be a number
+	 * Query SystemProperty by complex primary key
 	**/
-	public SystemProperty queryByPk(Number id, DalHints hints)
+	public SystemProperty queryByPk(Integer propertyId, Integer categoryId, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
-		return client.queryByPk(id, hints);
+		SystemProperty pk = new SystemProperty();		
+		pk.setPropertyId(propertyId);
+		pk.setCategoryId(categoryId);
+		return client.queryByPk(pk, hints);
 	}
     /**
 	 * Query SystemProperty by SystemProperty instance which the primary key is set
