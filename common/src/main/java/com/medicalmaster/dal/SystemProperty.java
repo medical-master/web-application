@@ -15,27 +15,39 @@ import java.sql.Timestamp;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical_master")
+@Database(name="medical-master")
 @Table(name="system_property")
 public class SystemProperty implements DalPojo {
 	
 	@Id
 	@Column(name="propertyId")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
 	private Integer propertyId;
 	
+	@Id
 	@Column(name="categoryId")
 	@Type(value=Types.INTEGER)
 	private Integer categoryId;
 	
-	@Column(name="value")
+	@Column(name="name")
 	@Type(value=Types.VARCHAR)
-	private String value;
+	private String name;
 	
-	@Column(name="comment")
+	@Column(name="description")
 	@Type(value=Types.VARCHAR)
-	private String comment;
+	private String description;
+	
+	@Column(name="alias")
+	@Type(value=Types.VARCHAR)
+	private String alias;
+	
+	@Column(name="parentId")
+	@Type(value=Types.INTEGER)
+	private Integer parentId;
+	
+	@Column(name="extend")
+	@Type(value=Types.VARCHAR)
+	private String extend;
 	
 	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
@@ -61,20 +73,44 @@ public class SystemProperty implements DalPojo {
 		this.categoryId = categoryId;
 	}
 
-	public String getValue() {
-		return value;
+	public String getName() {
+		return name;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getExtend() {
+		return extend;
+	}
+
+	public void setExtend(String extend) {
+		this.extend = extend;
 	}
 
 	public Timestamp getCreateTime() {
