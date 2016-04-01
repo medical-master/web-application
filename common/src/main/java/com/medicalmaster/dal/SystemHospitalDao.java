@@ -6,7 +6,6 @@ import com.ctrip.platform.dal.dao.helper.*;
 import com.ctrip.platform.dal.dao.sqlbuilder.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,38 +13,38 @@ import java.util.Map;
 
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
-public class CommentDao {
-    private static final String DATA_BASE = "medical_master";
+public class SystemHospitalDao {
+    private static final String DATA_BASE = "medical-master";
 	private static DatabaseCategory dbCategory = null;
-	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from comment";
-	private static final String ALL_SQL_PATTERN = "SELECT * FROM comment";
-	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM comment LIMIT ?, ?";
-	private DalParser<Comment> parser = null;	
+	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from system_hospital";
+	private static final String ALL_SQL_PATTERN = "SELECT * FROM system_hospital";
+	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM system_hospital LIMIT ?, ?";
+	private DalParser<SystemHospital> parser = null;	
 	private DalScalarExtractor extractor = new DalScalarExtractor();
-	private DalTableDao<Comment> client;
+	private DalTableDao<SystemHospital> client;
 	private DalQueryDao queryDao = null;
 	private DalClient baseClient;
 	
-	public CommentDao() throws SQLException {
-		parser = new DalDefaultJpaParser<>(Comment.class);
-		this.client = new DalTableDao<Comment>(parser);
+	public SystemHospitalDao() throws SQLException {
+		parser = new DalDefaultJpaParser<>(SystemHospital.class);
+		this.client = new DalTableDao<SystemHospital>(parser);
 		dbCategory = this.client.getDatabaseCategory();
 		this.queryDao = new DalQueryDao(DATA_BASE);
 		this.baseClient = DalClientFactory.getClient(DATA_BASE);
 	}
 	/**
-	 * Query Comment by the specified ID
+	 * Query SystemHospital by the specified ID
 	 * The ID must be a number
 	**/
-	public Comment queryByPk(Number id, DalHints hints)
+	public SystemHospital queryByPk(Number id, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(id, hints);
 	}
     /**
-	 * Query Comment by Comment instance which the primary key is set
+	 * Query SystemHospital by SystemHospital instance which the primary key is set
 	**/
-	public Comment queryByPk(Comment pk, DalHints hints)
+	public SystemHospital queryByPk(SystemHospital pk, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(pk, hints);
@@ -60,10 +59,10 @@ public class CommentDao {
 		return result.intValue();
 	}
 	/**
-	 * Query Comment with paging function
+	 * Query SystemHospital with paging function
 	 * The pageSize and pageNo must be greater than zero.
 	**/
-	public List<Comment> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
+	public List<SystemHospital> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
 		if(pageNo < 1 || pageSize < 1) 
 			throw new SQLException("Illigal pagesize or pageNo, pls check");	
         StatementParameters parameters = new StatementParameters();
@@ -76,10 +75,10 @@ public class CommentDao {
 	/**
 	 * Get all records in the whole table
 	**/
-	public List<Comment> getAll(DalHints hints) throws SQLException {
+	public List<SystemHospital> getAll(DalHints hints) throws SQLException {
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
-		List<Comment> result = null;
+		List<SystemHospital> result = null;
 		result = queryDao.query(ALL_SQL_PATTERN, parameters, hints, parser);
 		return result;
 	}
@@ -95,7 +94,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, Comment daoPojo) throws SQLException {
+	public int insert(DalHints hints, SystemHospital daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -114,7 +113,7 @@ public class CommentDao {
 	 *            list of pojos to be inserted
 	 * @return how many rows been affected
 	 */
-	public int[] insert(DalHints hints, List<Comment> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -134,7 +133,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, KeyHolder keyHolder, Comment daoPojo) throws SQLException {
+	public int insert(DalHints hints, KeyHolder keyHolder, SystemHospital daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -157,7 +156,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] insert(DalHints hints, KeyHolder keyHolder, List<Comment> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, KeyHolder keyHolder, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -172,7 +171,7 @@ public class CommentDao {
 	 * @return how many rows been affected for inserting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchInsert(DalHints hints, List<Comment> daoPojos) throws SQLException {
+	public int[] batchInsert(DalHints hints, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -189,7 +188,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, List<Comment> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -207,7 +206,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<Comment> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -221,7 +220,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int delete(DalHints hints, Comment daoPojo) throws SQLException {
+	public int delete(DalHints hints, SystemHospital daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -235,7 +234,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] delete(DalHints hints, List<Comment> daoPojos) throws SQLException {
+	public int[] delete(DalHints hints, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -250,7 +249,7 @@ public class CommentDao {
 	 * @return how many rows been affected for deleting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchDelete(DalHints hints, List<Comment> daoPojos) throws SQLException {
+	public int[] batchDelete(DalHints hints, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -269,7 +268,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int update(DalHints hints, Comment daoPojo) throws SQLException {
+	public int update(DalHints hints, SystemHospital daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -288,7 +287,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] update(DalHints hints, List<Comment> daoPojos) throws SQLException {
+	public int[] update(DalHints hints, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -300,7 +299,7 @@ public class CommentDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] batchUpdate(DalHints hints, List<Comment> daoPojos) throws SQLException {
+	public int[] batchUpdate(DalHints hints, List<SystemHospital> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);

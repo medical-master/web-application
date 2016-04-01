@@ -13,38 +13,38 @@ import java.util.Map;
 
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
-public class SystemPropertyCategoryDao {
+public class EdsSearchStaticsDao {
     private static final String DATA_BASE = "medical-master";
 	private static DatabaseCategory dbCategory = null;
-	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from system_property_category";
-	private static final String ALL_SQL_PATTERN = "SELECT * FROM system_property_category";
-	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM system_property_category LIMIT ?, ?";
-	private DalParser<SystemPropertyCategory> parser = null;	
+	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from eds_search_statics";
+	private static final String ALL_SQL_PATTERN = "SELECT * FROM eds_search_statics";
+	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM eds_search_statics LIMIT ?, ?";
+	private DalParser<EdsSearchStatics> parser = null;	
 	private DalScalarExtractor extractor = new DalScalarExtractor();
-	private DalTableDao<SystemPropertyCategory> client;
+	private DalTableDao<EdsSearchStatics> client;
 	private DalQueryDao queryDao = null;
 	private DalClient baseClient;
 	
-	public SystemPropertyCategoryDao() throws SQLException {
-		parser = new DalDefaultJpaParser<>(SystemPropertyCategory.class);
-		this.client = new DalTableDao<SystemPropertyCategory>(parser);
+	public EdsSearchStaticsDao() throws SQLException {
+		parser = new DalDefaultJpaParser<>(EdsSearchStatics.class);
+		this.client = new DalTableDao<EdsSearchStatics>(parser);
 		dbCategory = this.client.getDatabaseCategory();
 		this.queryDao = new DalQueryDao(DATA_BASE);
 		this.baseClient = DalClientFactory.getClient(DATA_BASE);
 	}
 	/**
-	 * Query SystemPropertyCategory by the specified ID
+	 * Query EdsSearchStatics by the specified ID
 	 * The ID must be a number
 	**/
-	public SystemPropertyCategory queryByPk(Number id, DalHints hints)
+	public EdsSearchStatics queryByPk(Number id, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(id, hints);
 	}
     /**
-	 * Query SystemPropertyCategory by SystemPropertyCategory instance which the primary key is set
+	 * Query EdsSearchStatics by EdsSearchStatics instance which the primary key is set
 	**/
-	public SystemPropertyCategory queryByPk(SystemPropertyCategory pk, DalHints hints)
+	public EdsSearchStatics queryByPk(EdsSearchStatics pk, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(pk, hints);
@@ -59,10 +59,10 @@ public class SystemPropertyCategoryDao {
 		return result.intValue();
 	}
 	/**
-	 * Query SystemPropertyCategory with paging function
+	 * Query EdsSearchStatics with paging function
 	 * The pageSize and pageNo must be greater than zero.
 	**/
-	public List<SystemPropertyCategory> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
+	public List<EdsSearchStatics> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
 		if(pageNo < 1 || pageSize < 1) 
 			throw new SQLException("Illigal pagesize or pageNo, pls check");	
         StatementParameters parameters = new StatementParameters();
@@ -75,10 +75,10 @@ public class SystemPropertyCategoryDao {
 	/**
 	 * Get all records in the whole table
 	**/
-	public List<SystemPropertyCategory> getAll(DalHints hints) throws SQLException {
+	public List<EdsSearchStatics> getAll(DalHints hints) throws SQLException {
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
-		List<SystemPropertyCategory> result = null;
+		List<EdsSearchStatics> result = null;
 		result = queryDao.query(ALL_SQL_PATTERN, parameters, hints, parser);
 		return result;
 	}
@@ -94,7 +94,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, SystemPropertyCategory daoPojo) throws SQLException {
+	public int insert(DalHints hints, EdsSearchStatics daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -113,7 +113,7 @@ public class SystemPropertyCategoryDao {
 	 *            list of pojos to be inserted
 	 * @return how many rows been affected
 	 */
-	public int[] insert(DalHints hints, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -133,7 +133,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, KeyHolder keyHolder, SystemPropertyCategory daoPojo) throws SQLException {
+	public int insert(DalHints hints, KeyHolder keyHolder, EdsSearchStatics daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -156,7 +156,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] insert(DalHints hints, KeyHolder keyHolder, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, KeyHolder keyHolder, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -171,7 +171,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected for inserting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchInsert(DalHints hints, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int[] batchInsert(DalHints hints, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -188,7 +188,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -206,7 +206,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -220,7 +220,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int delete(DalHints hints, SystemPropertyCategory daoPojo) throws SQLException {
+	public int delete(DalHints hints, EdsSearchStatics daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -234,7 +234,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] delete(DalHints hints, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int[] delete(DalHints hints, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -249,7 +249,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected for deleting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchDelete(DalHints hints, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int[] batchDelete(DalHints hints, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -268,7 +268,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int update(DalHints hints, SystemPropertyCategory daoPojo) throws SQLException {
+	public int update(DalHints hints, EdsSearchStatics daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -287,7 +287,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] update(DalHints hints, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int[] update(DalHints hints, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -299,7 +299,7 @@ public class SystemPropertyCategoryDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] batchUpdate(DalHints hints, List<SystemPropertyCategory> daoPojos) throws SQLException {
+	public int[] batchUpdate(DalHints hints, List<EdsSearchStatics> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);

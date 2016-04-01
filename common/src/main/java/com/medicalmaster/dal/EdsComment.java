@@ -15,35 +15,47 @@ import java.sql.Timestamp;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical_master")
-@Table(name="comment")
-public class Comment implements DalPojo {
+@Database(name="medical-master")
+@Table(name="eds_comment")
+public class EdsComment implements DalPojo {
 	
 	@Id
-	@Column(name="commentId")
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
-	private Integer commentId;
+	private Integer id;
 	
-	@Column(name="userId")
+	@Column(name="title")
+	@Type(value=Types.VARCHAR)
+	private String title;
+	
+	@Column(name="comment")
+	@Type(value=Types.VARCHAR)
+	private String comment;
+	
+	@Column(name="commentUser")
 	@Type(value=Types.INTEGER)
-	private Integer userId;
-	
-	@Column(name="commenterName")
-	@Type(value=Types.VARCHAR)
-	private String commenterName;
-	
-	@Column(name="contactInfo")
-	@Type(value=Types.VARCHAR)
-	private String contactInfo;
+	private Integer commentUser;
 	
 	@Column(name="commentTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp commentTime;
 	
+	@Column(name="phone")
+	@Type(value=Types.VARCHAR)
+	private String phone;
+	
+	@Column(name="email")
+	@Type(value=Types.VARCHAR)
+	private String email;
+	
 	@Column(name="feedback")
 	@Type(value=Types.VARCHAR)
 	private String feedback;
+	
+	@Column(name="feedbackUser")
+	@Type(value=Types.INTEGER)
+	private Integer feedbackUser;
 	
 	@Column(name="feedbackTime")
 	@Type(value=Types.TIMESTAMP)
@@ -53,36 +65,36 @@ public class Comment implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer status;
 
-	public Integer getCommentId() {
-		return commentId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCommentId(Integer commentId) {
-		this.commentId = commentId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getCommenterName() {
-		return commenterName;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setCommenterName(String commenterName) {
-		this.commenterName = commenterName;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
-	public String getContactInfo() {
-		return contactInfo;
+	public Integer getCommentUser() {
+		return commentUser;
 	}
 
-	public void setContactInfo(String contactInfo) {
-		this.contactInfo = contactInfo;
+	public void setCommentUser(Integer commentUser) {
+		this.commentUser = commentUser;
 	}
 
 	public Timestamp getCommentTime() {
@@ -93,12 +105,36 @@ public class Comment implements DalPojo {
 		this.commentTime = commentTime;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getFeedback() {
 		return feedback;
 	}
 
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
+	}
+
+	public Integer getFeedbackUser() {
+		return feedbackUser;
+	}
+
+	public void setFeedbackUser(Integer feedbackUser) {
+		this.feedbackUser = feedbackUser;
 	}
 
 	public Timestamp getFeedbackTime() {

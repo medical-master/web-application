@@ -14,9 +14,9 @@ import java.sql.Types;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical_master")
-@Table(name="hospital")
-public class Hospital implements DalPojo {
+@Database(name="medical-master")
+@Table(name="system_hospital")
+public class SystemHospital implements DalPojo {
 	
 	@Id
 	@Column(name="hospitalId")

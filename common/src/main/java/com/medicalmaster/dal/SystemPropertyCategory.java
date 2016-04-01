@@ -14,13 +14,12 @@ import java.sql.Types;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical_master")
+@Database(name="medical-master")
 @Table(name="system_property_category")
 public class SystemPropertyCategory implements DalPojo {
 	
 	@Id
 	@Column(name="categoryId")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
 	private Integer categoryId;
 	

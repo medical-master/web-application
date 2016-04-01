@@ -15,13 +15,17 @@ import java.sql.Timestamp;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical_master")
-@Table(name="clinical_research")
-public class ClinicalResearch implements DalPojo {
+@Database(name="medical-master")
+@Table(name="eds_clinical_research_stage")
+public class EdsClinicalResearchStage implements DalPojo {
 	
 	@Id
-	@Column(name="clinicalResearchId")
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Type(value=Types.INTEGER)
+	private Integer id;
+	
+	@Column(name="clinicalResearchId")
 	@Type(value=Types.INTEGER)
 	private Integer clinicalResearchId;
 	
@@ -33,25 +37,45 @@ public class ClinicalResearch implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String description;
 	
-	@Column(name="applicationLocation")
-	@Type(value=Types.VARCHAR)
-	private String applicationLocation;
+	@Column(name="resourceId")
+	@Type(value=Types.INTEGER)
+	private Integer resourceId;
 	
-	@Column(name="assignmentContractLocation")
-	@Type(value=Types.VARCHAR)
-	private String assignmentContractLocation;
+	@Column(name="viewStatus")
+	@Type(value=Types.TINYINT)
+	private Integer viewStatus;
+	
+	@Column(name="status")
+	@Type(value=Types.INTEGER)
+	private Integer status;
+	
+	@Column(name="publishTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp publishTime;
 	
 	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp createTime;
 	
+	@Column(name="createUser")
+	@Type(value=Types.INTEGER)
+	private Integer createUser;
+	
 	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp lastUpdateTime;
 	
-	@Column(name="userId")
+	@Column(name="lastUpdateUser")
 	@Type(value=Types.INTEGER)
-	private Integer userId;
+	private Integer lastUpdateUser;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getClinicalResearchId() {
 		return clinicalResearchId;
@@ -77,20 +101,36 @@ public class ClinicalResearch implements DalPojo {
 		this.description = description;
 	}
 
-	public String getApplicationLocation() {
-		return applicationLocation;
+	public Integer getResourceId() {
+		return resourceId;
 	}
 
-	public void setApplicationLocation(String applicationLocation) {
-		this.applicationLocation = applicationLocation;
+	public void setResourceId(Integer resourceId) {
+		this.resourceId = resourceId;
 	}
 
-	public String getAssignmentContractLocation() {
-		return assignmentContractLocation;
+	public Integer getViewStatus() {
+		return viewStatus;
 	}
 
-	public void setAssignmentContractLocation(String assignmentContractLocation) {
-		this.assignmentContractLocation = assignmentContractLocation;
+	public void setViewStatus(Integer viewStatus) {
+		this.viewStatus = viewStatus;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Timestamp getPublishTime() {
+		return publishTime;
+	}
+
+	public void setPublishTime(Timestamp publishTime) {
+		this.publishTime = publishTime;
 	}
 
 	public Timestamp getCreateTime() {
@@ -101,6 +141,14 @@ public class ClinicalResearch implements DalPojo {
 		this.createTime = createTime;
 	}
 
+	public Integer getCreateUser() {
+		return createUser;
+	}
+
+	public void setCreateUser(Integer createUser) {
+		this.createUser = createUser;
+	}
+
 	public Timestamp getLastUpdateTime() {
 		return lastUpdateTime;
 	}
@@ -109,12 +157,12 @@ public class ClinicalResearch implements DalPojo {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getLastUpdateUser() {
+		return lastUpdateUser;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setLastUpdateUser(Integer lastUpdateUser) {
+		this.lastUpdateUser = lastUpdateUser;
 	}
 
 }

@@ -16,8 +16,8 @@ import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
 @Database(name="medical-master")
-@Table(name="workstation")
-public class Workstation implements DalPojo {
+@Table(name="eds_workstation")
+public class EdsWorkstation implements DalPojo {
 	
 	@Id
 	@Column(name="workstationId")
@@ -25,13 +25,17 @@ public class Workstation implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer workstationId;
 	
-	@Column(name="userId")
+	@Column(name="expertId")
 	@Type(value=Types.INTEGER)
-	private Integer userId;
+	private Integer expertId;
 	
 	@Column(name="name")
 	@Type(value=Types.VARCHAR)
 	private String name;
+	
+	@Column(name="subLink")
+	@Type(value=Types.VARCHAR)
+	private String subLink;
 	
 	@Column(name="description")
 	@Type(value=Types.VARCHAR)
@@ -45,9 +49,21 @@ public class Workstation implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String keywords;
 	
-	@Column(name="allowDownload")
-	@Type(value=Types.BIT)
-	private Boolean allowDownload;
+	@Column(name="illCode")
+	@Type(value=Types.INTEGER)
+	private Integer illCode;
+	
+	@Column(name="ownerUser")
+	@Type(value=Types.INTEGER)
+	private Integer ownerUser;
+	
+	@Column(name="members")
+	@Type(value=Types.INTEGER)
+	private Integer members;
+	
+	@Column(name="attends")
+	@Type(value=Types.INTEGER)
+	private Integer attends;
 	
 	@Column(name="status")
 	@Type(value=Types.INTEGER)
@@ -57,9 +73,25 @@ public class Workstation implements DalPojo {
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp createTime;
 	
+	@Column(name="createUser")
+	@Type(value=Types.INTEGER)
+	private Integer createUser;
+	
+	@Column(name="activateTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp activateTime;
+	
+	@Column(name="publishTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp publishTime;
+	
 	@Column(name="lastUpdateTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp lastUpdateTime;
+	
+	@Column(name="lastUpdateUser")
+	@Type(value=Types.INTEGER)
+	private Integer lastUpdateUser;
 
 	public Integer getWorkstationId() {
 		return workstationId;
@@ -69,12 +101,12 @@ public class Workstation implements DalPojo {
 		this.workstationId = workstationId;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getExpertId() {
+		return expertId;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setExpertId(Integer expertId) {
+		this.expertId = expertId;
 	}
 
 	public String getName() {
@@ -83,6 +115,14 @@ public class Workstation implements DalPojo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSubLink() {
+		return subLink;
+	}
+
+	public void setSubLink(String subLink) {
+		this.subLink = subLink;
 	}
 
 	public String getDescription() {
@@ -109,12 +149,36 @@ public class Workstation implements DalPojo {
 		this.keywords = keywords;
 	}
 
-	public Boolean getAllowDownload() {
-		return allowDownload;
+	public Integer getIllCode() {
+		return illCode;
 	}
 
-	public void setAllowDownload(Boolean allowDownload) {
-		this.allowDownload = allowDownload;
+	public void setIllCode(Integer illCode) {
+		this.illCode = illCode;
+	}
+
+	public Integer getOwnerUser() {
+		return ownerUser;
+	}
+
+	public void setOwnerUser(Integer ownerUser) {
+		this.ownerUser = ownerUser;
+	}
+
+	public Integer getMembers() {
+		return members;
+	}
+
+	public void setMembers(Integer members) {
+		this.members = members;
+	}
+
+	public Integer getAttends() {
+		return attends;
+	}
+
+	public void setAttends(Integer attends) {
+		this.attends = attends;
 	}
 
 	public Integer getStatus() {
@@ -133,12 +197,44 @@ public class Workstation implements DalPojo {
 		this.createTime = createTime;
 	}
 
+	public Integer getCreateUser() {
+		return createUser;
+	}
+
+	public void setCreateUser(Integer createUser) {
+		this.createUser = createUser;
+	}
+
+	public Timestamp getActivateTime() {
+		return activateTime;
+	}
+
+	public void setActivateTime(Timestamp activateTime) {
+		this.activateTime = activateTime;
+	}
+
+	public Timestamp getPublishTime() {
+		return publishTime;
+	}
+
+	public void setPublishTime(Timestamp publishTime) {
+		this.publishTime = publishTime;
+	}
+
 	public Timestamp getLastUpdateTime() {
 		return lastUpdateTime;
 	}
 
 	public void setLastUpdateTime(Timestamp lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
+	}
+
+	public Integer getLastUpdateUser() {
+		return lastUpdateUser;
+	}
+
+	public void setLastUpdateUser(Integer lastUpdateUser) {
+		this.lastUpdateUser = lastUpdateUser;
 	}
 
 }

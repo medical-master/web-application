@@ -6,7 +6,6 @@ import com.ctrip.platform.dal.dao.helper.*;
 import com.ctrip.platform.dal.dao.sqlbuilder.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,38 +13,38 @@ import java.util.Map;
 
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
-public class TrainingMaterialDao {
-    private static final String DATA_BASE = "medical_master";
+public class EdsExpertCommunityDao {
+    private static final String DATA_BASE = "medical-master";
 	private static DatabaseCategory dbCategory = null;
-	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from training_material";
-	private static final String ALL_SQL_PATTERN = "SELECT * FROM training_material";
-	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM training_material LIMIT ?, ?";
-	private DalParser<TrainingMaterial> parser = null;	
+	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from eds_expert_community";
+	private static final String ALL_SQL_PATTERN = "SELECT * FROM eds_expert_community";
+	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM eds_expert_community LIMIT ?, ?";
+	private DalParser<EdsExpertCommunity> parser = null;	
 	private DalScalarExtractor extractor = new DalScalarExtractor();
-	private DalTableDao<TrainingMaterial> client;
+	private DalTableDao<EdsExpertCommunity> client;
 	private DalQueryDao queryDao = null;
 	private DalClient baseClient;
 	
-	public TrainingMaterialDao() throws SQLException {
-		parser = new DalDefaultJpaParser<>(TrainingMaterial.class);
-		this.client = new DalTableDao<TrainingMaterial>(parser);
+	public EdsExpertCommunityDao() throws SQLException {
+		parser = new DalDefaultJpaParser<>(EdsExpertCommunity.class);
+		this.client = new DalTableDao<EdsExpertCommunity>(parser);
 		dbCategory = this.client.getDatabaseCategory();
 		this.queryDao = new DalQueryDao(DATA_BASE);
 		this.baseClient = DalClientFactory.getClient(DATA_BASE);
 	}
 	/**
-	 * Query TrainingMaterial by the specified ID
+	 * Query EdsExpertCommunity by the specified ID
 	 * The ID must be a number
 	**/
-	public TrainingMaterial queryByPk(Number id, DalHints hints)
+	public EdsExpertCommunity queryByPk(Number id, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(id, hints);
 	}
     /**
-	 * Query TrainingMaterial by TrainingMaterial instance which the primary key is set
+	 * Query EdsExpertCommunity by EdsExpertCommunity instance which the primary key is set
 	**/
-	public TrainingMaterial queryByPk(TrainingMaterial pk, DalHints hints)
+	public EdsExpertCommunity queryByPk(EdsExpertCommunity pk, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(pk, hints);
@@ -60,10 +59,10 @@ public class TrainingMaterialDao {
 		return result.intValue();
 	}
 	/**
-	 * Query TrainingMaterial with paging function
+	 * Query EdsExpertCommunity with paging function
 	 * The pageSize and pageNo must be greater than zero.
 	**/
-	public List<TrainingMaterial> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
+	public List<EdsExpertCommunity> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
 		if(pageNo < 1 || pageSize < 1) 
 			throw new SQLException("Illigal pagesize or pageNo, pls check");	
         StatementParameters parameters = new StatementParameters();
@@ -76,10 +75,10 @@ public class TrainingMaterialDao {
 	/**
 	 * Get all records in the whole table
 	**/
-	public List<TrainingMaterial> getAll(DalHints hints) throws SQLException {
+	public List<EdsExpertCommunity> getAll(DalHints hints) throws SQLException {
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
-		List<TrainingMaterial> result = null;
+		List<EdsExpertCommunity> result = null;
 		result = queryDao.query(ALL_SQL_PATTERN, parameters, hints, parser);
 		return result;
 	}
@@ -95,7 +94,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, TrainingMaterial daoPojo) throws SQLException {
+	public int insert(DalHints hints, EdsExpertCommunity daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -114,7 +113,7 @@ public class TrainingMaterialDao {
 	 *            list of pojos to be inserted
 	 * @return how many rows been affected
 	 */
-	public int[] insert(DalHints hints, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -134,7 +133,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, KeyHolder keyHolder, TrainingMaterial daoPojo) throws SQLException {
+	public int insert(DalHints hints, KeyHolder keyHolder, EdsExpertCommunity daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -157,7 +156,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] insert(DalHints hints, KeyHolder keyHolder, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, KeyHolder keyHolder, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -172,7 +171,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected for inserting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchInsert(DalHints hints, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int[] batchInsert(DalHints hints, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -189,7 +188,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -207,7 +206,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -221,7 +220,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int delete(DalHints hints, TrainingMaterial daoPojo) throws SQLException {
+	public int delete(DalHints hints, EdsExpertCommunity daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -235,7 +234,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] delete(DalHints hints, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int[] delete(DalHints hints, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -250,7 +249,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected for deleting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchDelete(DalHints hints, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int[] batchDelete(DalHints hints, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -269,7 +268,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int update(DalHints hints, TrainingMaterial daoPojo) throws SQLException {
+	public int update(DalHints hints, EdsExpertCommunity daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -288,7 +287,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] update(DalHints hints, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int[] update(DalHints hints, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -300,7 +299,7 @@ public class TrainingMaterialDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] batchUpdate(DalHints hints, List<TrainingMaterial> daoPojos) throws SQLException {
+	public int[] batchUpdate(DalHints hints, List<EdsExpertCommunity> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);

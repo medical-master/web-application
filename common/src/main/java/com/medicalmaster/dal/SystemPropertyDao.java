@@ -36,12 +36,12 @@ public class SystemPropertyDao {
 	/**
 	 * Query SystemProperty by complex primary key
 	**/
-	public SystemProperty queryByPk(Integer propertyId, Integer categoryId, DalHints hints)
+	public SystemProperty queryByPk(Integer categoryId, Integer propertyId, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SystemProperty pk = new SystemProperty();		
-		pk.setPropertyId(propertyId);
 		pk.setCategoryId(categoryId);
+		pk.setPropertyId(propertyId);
 		return client.queryByPk(pk, hints);
 	}
     /**

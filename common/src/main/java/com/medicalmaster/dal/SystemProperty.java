@@ -20,14 +20,14 @@ import com.ctrip.platform.dal.dao.DalPojo;
 public class SystemProperty implements DalPojo {
 	
 	@Id
-	@Column(name="propertyId")
-	@Type(value=Types.INTEGER)
-	private Integer propertyId;
-	
-	@Id
 	@Column(name="categoryId")
 	@Type(value=Types.INTEGER)
 	private Integer categoryId;
+	
+	@Id
+	@Column(name="propertyId")
+	@Type(value=Types.INTEGER)
+	private Integer propertyId;
 	
 	@Column(name="name")
 	@Type(value=Types.VARCHAR)
@@ -49,6 +49,10 @@ public class SystemProperty implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String extend;
 	
+	@Column(name="sortNo")
+	@Type(value=Types.INTEGER)
+	private Integer sortNo;
+	
 	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp createTime;
@@ -57,20 +61,20 @@ public class SystemProperty implements DalPojo {
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp lastUpdateTime;
 
-	public Integer getPropertyId() {
-		return propertyId;
-	}
-
-	public void setPropertyId(Integer propertyId) {
-		this.propertyId = propertyId;
-	}
-
 	public Integer getCategoryId() {
 		return categoryId;
 	}
 
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public Integer getPropertyId() {
+		return propertyId;
+	}
+
+	public void setPropertyId(Integer propertyId) {
+		this.propertyId = propertyId;
 	}
 
 	public String getName() {
@@ -111,6 +115,14 @@ public class SystemProperty implements DalPojo {
 
 	public void setExtend(String extend) {
 		this.extend = extend;
+	}
+
+	public Integer getSortNo() {
+		return sortNo;
+	}
+
+	public void setSortNo(Integer sortNo) {
+		this.sortNo = sortNo;
 	}
 
 	public Timestamp getCreateTime() {
