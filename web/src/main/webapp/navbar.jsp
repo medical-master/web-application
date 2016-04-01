@@ -1,54 +1,63 @@
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.medicalmaster.dal.User"%>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="action?view=home">医大师</a>
+<div class="container-fluid" style="background-color: #e4e4e4;">
+  <div class="row">
+    <div class="col-md-6">
+      <img alt="ImedMaster" width="150px" height="100px" style="
+    margin-left: 40px;" src="resources/images/head-logo.png" />
+    </div>
+    <div class="col-md-6" style="margin-top:50px;">
+      <form role="form">
+        <div class="input-group" style="margin-right:40px;">
+          <input type="text" class="form-control" placeholder="请输入专家姓名、地区、疾病、科室等关键词">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-           <li class="active"><a href="action?view=workstation/home">工作站</a></li>
-            <li><a href="action?view=diagnosis/home">诊疗方案</a></li>
-            <li><a href="action?view=research/home">临床研究</a></li>
-            <li><a href="action?view=training/home">教育培训</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">系统维护 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li role="separator" class="divider"></li>
-                <li><a href="#">发布课题研究通知</a></li>
-                <li><a href="#">发布课题研究模板</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="action?view=user/home">用户维护</a></li>
-                <li><a href="#">工作站管理</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">在线留言管理</a></li>
-                <li><a href="#">访问记录查看</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-<%
-	User user = session == null?null:(User)session.getAttribute("user");
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" >
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active">
+                <a href="action?view=home">主页</a>
+              </li>
+              <li>
+                <a href="action?view=workstation/home">专家工作站</a>
+              </li>
+              <li>
+                <a href="action?view=diagnosis/home">诊疗方案</a>
+              </li>
+              <li>
+                <a href="action?view=research/home">临床研究</a>
+              </li>
+              <li>
+                <a href="action?view=training/home">教育培训</a>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <%
+  User user = session == null?null:(User)session.getAttribute("user");
 %>
-<%if(user == null) {%>
-			  <a class="btn btn-primary" href="action?view=user/login">登录</a>
-			  <a class="btn btn-default" href="action?view=user/registerUser">注册</a>
-<% } else { %>
-			  <a class="btn btn-primary" href="action?view=user/viewInfo"><%=user.getName()%></a>
-			  <a class="btn btn-default" href="action?module=user&action=logout">退出</a>
-<% } %>
-              <input type="text" class="form-control" placeholder="搜索">
-            </div>
-            <button type="submit" class="btn btn-default">确认</button>
-          </form>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+                <%if(user == null) {%>
+                <a class="btn btn-primary" href="action?view=user/login">登录</a>
+                <a class="btn btn-default" href="action?view=user/registerUser">注册</a>
+                <% } else { %>
+                <a class="btn btn-primary" href="action?view=user/viewInfo">
+                  <%=user.getName()%></a>
+                <a class="btn btn-default" href="action?module=user&action=logout">退出</a>
+                <% } %>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
