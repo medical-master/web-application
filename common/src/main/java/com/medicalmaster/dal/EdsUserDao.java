@@ -50,6 +50,11 @@ public class EdsUserDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(pk, hints);
 	}
+	public List<EdsUser> queryLike(EdsUser user, DalHints hints)
+			throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		return client.queryLike(user, hints);
+	}
 	/**
 	 * Get the records count
 	**/
@@ -305,6 +310,16 @@ public class EdsUserDao {
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
+	}
+	public int activateByInviteCode (Integer status, String authentication, String inviteCode, Integer initStatus, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		UpdateSqlBuilder builder = new UpdateSqlBuilder("user", dbCategory);
+		builder.update("status", status, Types.INTEGER);
+		builder.update("authentication", authentication, Types.VARCHAR);
+		builder.equal("inviteCode", inviteCode, Types.VARCHAR, false);
+//		builder.equal("status", initStatus, Types.INTEGER, false);
+		String sql = builder.build();
+		return client.update(sql, builder.buildParameters(), hints);
 	}
 
 }

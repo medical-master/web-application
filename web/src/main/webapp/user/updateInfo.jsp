@@ -1,7 +1,7 @@
 <%@page pageEncoding="UTF-8"%>
-<%@page import="com.medicalmaster.dal.User"%>
+<%@page import="com.medicalmaster.dal.EdsUser"%>
 <%
-	User user = (User)session.getAttribute("user");
+	EdsUser user = (EdsUser)session.getAttribute("user");
 %>
       <form>
         <div class="form-group">

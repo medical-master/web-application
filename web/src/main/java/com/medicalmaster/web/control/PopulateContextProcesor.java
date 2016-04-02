@@ -4,7 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import com.medicalmaster.dal.User;
+import com.medicalmaster.dal.EdsUser;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Processor;
 import com.xross.tools.xunit.UnitPropertiesAware;
@@ -29,7 +29,7 @@ public class PopulateContextProcesor implements Processor, UnitPropertiesAware {
 		if(session == null || session.getAttribute("user") == null)
 			return;
 		
-		User user = (User)session.getAttribute("user");
+		EdsUser user = (EdsUser)session.getAttribute("user");
 		ctx.setUserId(String.valueOf(user.getUserId()));
 		ctx.setUserName(user.getName());
 	}

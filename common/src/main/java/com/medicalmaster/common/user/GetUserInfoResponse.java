@@ -1,10 +1,10 @@
 package com.medicalmaster.common.user;
 
-import com.medicalmaster.dal.User;
+import com.medicalmaster.dal.EdsUser;
 import com.xross.tools.xunit.Context;
 
 public class GetUserInfoResponse implements Context {
-	private User user;
+	private EdsUser user;
 	private boolean success;
 	private String message;
 	
@@ -24,11 +24,11 @@ public class GetUserInfoResponse implements Context {
 		this.success = success;
 	}
 
-	public User getUser() {
+	public EdsUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(EdsUser user) {
 		this.user = user;
 	}
 	

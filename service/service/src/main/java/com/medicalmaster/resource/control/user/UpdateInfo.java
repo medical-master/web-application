@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import com.medicalmaster.common.helper.ParseHelper;
 import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.common.user.UpdateUserRequest;
-import com.medicalmaster.dal.User;
+import com.medicalmaster.dal.EdsUser;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Converter;
@@ -25,7 +25,7 @@ public class UpdateInfo implements Converter{
 		UpdateUserRequest ctx = (UpdateUserRequest)context;
 		String message = "undefined";
 		GetUserInfoResponse guir = new GetUserInfoResponse();
-		User user = extract(ctx);
+		EdsUser user = extract(ctx);
 		try{
 			message = "Update infomation for user %s is success.";
 			
@@ -42,8 +42,8 @@ public class UpdateInfo implements Converter{
 		}
 	}
 	
-	private User extract(UpdateUserRequest req) {
-		User user = new User();
+	private EdsUser extract(UpdateUserRequest req) {
+		EdsUser user = new EdsUser();
 		
 		user.setUserId(ParseHelper.parseInt(req.getUserId()));
 		user.setEmail(req.getEmail());

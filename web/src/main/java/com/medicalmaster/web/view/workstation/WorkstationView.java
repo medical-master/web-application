@@ -9,7 +9,7 @@ public class WorkstationView {
 		return null;
 	}
 	
-	public EdsWorkstation getWorkstation() {
+	public EdsWorkstation getWorkstation(int workStationId) {
 		return null;
 	}
 }
