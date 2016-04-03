@@ -1,5 +1,4 @@
 <%@page pageEncoding="UTF-8"%>
-<%@page import="com.medicalmaster.dal.User"%>
 <div class="container-fluid" style="background-color: #e4e4e4;">
   <div class="row">
     <div class="col-md-6">
@@ -43,17 +42,18 @@
             </ul>
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
-                <%
+                <img src="resources/images/user-icon-default.png" alt="用户Icon" width="40px" height="40px" class="img-circle"/>
+                <%-- <%
   User user = session == null?null:(User)session.getAttribute("user");
 %>
-                <%if(user == null) {%>
-                <a class="btn btn-primary" href="action?view=user/login">登录</a>
-                <a class="btn btn-default" href="action?view=user/registerUser">注册</a>
-                <% } else { %>
+                <%if(user == null) {%> --%>
+                <a class="btn btn-primary btn-sm" href="action?view=user/login">登录</a>
+                <a class="btn btn-default btn-sm" href="action?view=user/registerUser">注册</a>
+                <%-- <% } else { %>
                 <a class="btn btn-primary" href="action?view=user/viewInfo">
                   <%=user.getName()%></a>
                 <a class="btn btn-default" href="action?module=user&action=logout">退出</a>
-                <% } %>
+                <% } %> --%>
             </form>
           </div>
         </div>
