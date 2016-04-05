@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import com.medicalmaster.common.user.LoginRequest;
 import com.medicalmaster.common.user.GetUserInfoResponse;
-import com.medicalmaster.dal.User;
+import com.medicalmaster.dal.EdsUser;
 import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Converter;
@@ -26,7 +26,7 @@ public class LoginUser implements Converter{
 		GetUserInfoResponse lr = new GetUserInfoResponse();
 		try{
 			message = "Login for user %s is success.";
-			User user = manager.getUser(ctx.getName(), ctx.getPassword());
+			EdsUser user = manager.getUser(ctx.getName(), ctx.getPassword());
 			if(user == null) {
 				lr.setSuccess(false);
 				lr.setMessage("The user name or password is incorrect");
