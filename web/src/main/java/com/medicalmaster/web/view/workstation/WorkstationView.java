@@ -1,20 +1,28 @@
 package com.medicalmaster.web.view.workstation;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import com.medicalmaster.dal.EdsWorkstation;
-import com.xross.tools.xunit.Context;
-import com.xross.tools.xunit.Processor;
+import com.medicalmaster.dal.Workstation;
+import com.medicalmaster.dal.WorkstationDao;
+import com.medicalmaster.dal.WorkstationFollowerDao;
 
 public class WorkstationView
 {
-	public List<EdsWorkstation> displayWorkstations() 
+	private WorkstationDao dao;
+	private WorkstationFollowerDao followerDao;
+	public WorkstationView() throws SQLException 
 	{
-		System.out.println("dddddddddddddddd");
-		return null;
+		dao = new WorkstationDao();
+		followerDao = new WorkstationFollowerDao();
 	}
 	
-	public EdsWorkstation getWorkstation(int workStationId) 
+	public List<Workstation> displayWorkstations() throws SQLException 
+	{
+		return dao.getAll(null);
+	}
+	
+	public Workstation getWorkstation(int workStationId) 
 	{
 		System.out.println("ddddddddddddddddffffffffffff");
 		return null;
