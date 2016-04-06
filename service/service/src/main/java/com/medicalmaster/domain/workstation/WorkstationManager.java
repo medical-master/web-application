@@ -3,12 +3,12 @@ package com.medicalmaster.domain.workstation;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.medicalmaster.dal.EdsWorkstation;
-import com.medicalmaster.dal.EdsWorkstationDao;
+import com.medicalmaster.dal.Workstation;
+import com.medicalmaster.dal.WorkstationDao;
 
 public class WorkstationManager 
 {
-	private EdsWorkstationDao dao;
+	private WorkstationDao dao;
 	
 	/**
 	 * 创建构造方法
@@ -16,7 +16,7 @@ public class WorkstationManager
 	 */
 	public WorkstationManager() throws SQLException 
 	{
-		dao = new EdsWorkstationDao();
+		dao = new WorkstationDao();
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public class WorkstationManager
 	 * @throws SQLException 
 	 * @return List<EdsWorkstation>
 	 */
-	public List<EdsWorkstation> getAllWorkstation() throws SQLException 
+	public List<Workstation> getAllWorkstation() throws SQLException 
 	{
 		return dao.getAll(null);
 	}
@@ -33,7 +33,7 @@ public class WorkstationManager
 	 * 修改工作站信息
 	 * @throws SQLException 
 	 */
-	public void updateWorkstation(EdsWorkstation edsWorkstation) throws SQLException 
+	public void updateWorkstation(Workstation edsWorkstation) throws SQLException 
 	{
 		dao.update(null, edsWorkstation);
 	}
@@ -44,9 +44,9 @@ public class WorkstationManager
 	 */
 	public int removeWorkstation(Integer workstationId) throws SQLException
 	{
-		EdsWorkstation edsWorkstation = new EdsWorkstation();
-		edsWorkstation.setWorkstationId(workstationId);
-		return dao.delete(null, edsWorkstation);
+		Workstation workstation = new Workstation();
+		workstation.setWorkstationId(workstationId);
+		return dao.delete(null, workstation);
 	}
 	
 	/**
@@ -55,8 +55,8 @@ public class WorkstationManager
 	 */
 	public void insertWorkstation() throws SQLException
 	{
-		EdsWorkstation edsWorkstation = new EdsWorkstation();
-		dao.insert(null, edsWorkstation);
+		Workstation workstation = new Workstation();
+		dao.insert(null, workstation);
 	}
 }
 
