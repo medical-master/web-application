@@ -9,17 +9,8 @@ import com.xross.tools.xunit.XunitFactory;
  * Created By guanrong.xie Created On 2016年4月6日 CopyRight@IMedMaster
  */
 public class Resources {
-	protected String converterId = null;
-	protected static String xunitName = null;
+	protected static String converterId = null;
 	protected static XunitFactory factory;
-
-	static {
-		try {
-			factory = XunitFactory.load(xunitName);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	@SuppressWarnings("unchecked")
 	protected <T> T handle(Context ctx, String message) {

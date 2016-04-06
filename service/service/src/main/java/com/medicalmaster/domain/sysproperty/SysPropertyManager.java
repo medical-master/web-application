@@ -27,7 +27,7 @@ public class SysPropertyManager {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<SysProperty> getSysProperties(int categoryId) throws SQLException {
+	public List<SysProperty> getSysProperties(Integer categoryId) throws SQLException {
 		// TODO
 		return null;
 	}
@@ -40,7 +40,7 @@ public class SysPropertyManager {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<SysProperty> getSysProperties(int categoryId, int parentId) throws SQLException {
+	public List<SysProperty> getSysProperties(Integer categoryId, Integer parentId) throws SQLException {
 		// TOTO
 		return null;
 	}
