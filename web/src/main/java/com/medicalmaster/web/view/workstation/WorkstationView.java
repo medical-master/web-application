@@ -2,14 +2,14 @@ package com.medicalmaster.web.view.workstation;
 
 import java.util.List;
 
-import com.medicalmaster.dal.EdsWorkstation;
+import com.medicalmaster.dal.Workstation;
 
 public class WorkstationView {
-	public List<EdsWorkstation> displayWorkstations() {
+	public List<Workstation> displayWorkstations() {
 		return null;
 	}
 	
-	public EdsWorkstation getWorkstation(int workStationId) {
+	public Workstation getWorkstation(int workStationId) {
 		return null;
 	}
 }
