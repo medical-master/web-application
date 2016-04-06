@@ -1,5 +1,5 @@
 <Datasources>
-	<Datasource name="medical_master"
+	<Datasource name="medical-master"
               userName="eds"
               password="Eds88888"
               connectionUrl="jdbc:mysql://115.159.23.43:3306/medical_master?useUnicode=true&amp;characterEncoding=UTF-8"
