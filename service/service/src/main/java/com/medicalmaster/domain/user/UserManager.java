@@ -6,20 +6,20 @@ import java.util.List;
 
 import com.medicalmaster.common.user.UserStatus;
 import com.medicalmaster.common.user.UserType;
-import com.medicalmaster.dal.EdsUser;
-import com.medicalmaster.dal.EdsUserDao;
+import com.medicalmaster.dal.User;
+import com.medicalmaster.dal.UserDao;
 
 public class UserManager {
-	private EdsUserDao dao;
+	private UserDao dao;
 	
 	public UserManager() throws SQLException {
-		dao = new EdsUserDao();
+		dao = new UserDao();
 	}
 	
 	public String inviteMaster(String name, String email, String mobilePhoneNumber) throws SQLException {
 		String inviteCode = buildInviteCode();
 		
-		EdsUser user = new EdsUser();
+		User user = new User();
 		user.setName(name);
 		user.setEmail(email);
 		user.setMobilePhoneNumber(mobilePhoneNumber);
@@ -33,37 +33,37 @@ public class UserManager {
 //		dao.activateByInviteCode(UserStatus.activated.intValue(), authentication, inviteCode, UserStatus.invited.intValue(), null);
 	}
 	
-	public void register(UserType EdsUserType, String name, String authentication, String email, String mobilePhoneNumber) throws SQLException {
-		EdsUser user = new EdsUser();
+	public void register(UserType UserType, String name, String authentication, String email, String mobilePhoneNumber) throws SQLException {
+		User user = new User();
 		user.setName(name);
 		user.setEmail(email);
 		user.setAuthentication(authentication);
 		user.setMobilePhoneNumber(mobilePhoneNumber);
-		user.setType(EdsUserType.ordinal());
+		user.setType(UserType.ordinal());
 		dao.insert(null, user);
 	}
 
-	public void updateInfo(EdsUser EdsUser) throws SQLException {
-		dao.update(null, EdsUser);
+	public void updateInfo(User User) throws SQLException {
+		dao.update(null, User);
 	}
 
-	public EdsUser getUser(Integer EdsUserId) throws SQLException {
-		return dao.queryByPk(EdsUserId, null);
+	public User getUser(Integer UserId) throws SQLException {
+		return dao.queryByPk(UserId, null);
 	}
 
-	public EdsUser getUser(String EdsUserName, String password) throws SQLException {
-		EdsUser EdsUser = new EdsUser();
-		EdsUser.setAuthentication(password);
-		EdsUser.setName(EdsUserName);
-		List<EdsUser> EdsUsers = dao.queryLike(EdsUser, null);
-		if(EdsUsers.size() != 1)
+	public User getUser(String UserName, String password) throws SQLException {
+		User User = new User();
+		User.setAuthentication(password);
+		User.setName(UserName);
+		List<User> Users = dao.queryLike(User, null);
+		if(Users.size() != 1)
 			return null;
 		
-		return EdsUsers.get(0);
+		return Users.get(0);
 	}
 	
 	public int removeUser(Integer userId) throws SQLException {
-		EdsUser u = new EdsUser();
+		User u = new User();
 		u.setUserId(userId);
 		return dao.delete(null, u);
 	}
