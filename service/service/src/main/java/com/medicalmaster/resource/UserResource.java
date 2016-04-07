@@ -28,12 +28,8 @@ import com.xross.tools.xunit.XunitFactory;
 @Resource
 @Path("/users")
 public class UserResource {
-	//TODO create common artifact and store constants
-	public static final String INVITE_MASTER = "inviteMaster";
-	public static final String ACTIVATE_MASTER = "activateMaster";
-	public static final String REGISTER = "register";
-	
 	private static XunitFactory factory;
+
 	static {
 		try {
 			factory = XunitFactory.load("user.xunit");
@@ -41,11 +37,11 @@ public class UserResource {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@GET
 	@Path("{userid}")
 	@Produces("text/plain")
-    public GetUserInfoResponse getUser(@PathParam("userid") int userId) throws SQLException {
+	public GetUserInfoResponse getUser(@PathParam("userid") int userId) throws SQLException {
 		RequestByIdContext req = new RequestByIdContext();
 		req.setId(userId);
 		req.setAction("get user");
@@ -54,21 +50,21 @@ public class UserResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-    public GetUserInfoResponse login(@BeanParam LoginRequest loginRequest) {
+	public GetUserInfoResponse login(@BeanParam LoginRequest loginRequest) {
 		return handle(loginRequest, loginRequest.getAction());
 	}
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-    public Status createUser(@BeanParam CreateUserRequest createUserRequest) {
+	public Status createUser(@BeanParam CreateUserRequest createUserRequest) {
 		return handle(createUserRequest, createUserRequest.getAction());
 	}
 
 	@DELETE
 	@Path("{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
-    public Status deleteUser(@PathParam("userid") int userId) {
+	public Status deleteUser(@PathParam("userid") int userId) {
 		RequestByIdContext req = new RequestByIdContext();
 		req.setId(userId);
 		req.setAction("remove");
@@ -77,22 +73,20 @@ public class UserResource {
 
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-    public Status activateMaster(
-    		@BeanParam ActivateMasterRequest activateMasterRequest) {
+	public Status activateMaster(@BeanParam ActivateMasterRequest activateMasterRequest) {
 		return handle(activateMasterRequest, activateMasterRequest.getAction());
 	}
 
 	@PUT
 	@Path("{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
-    public GetUserInfoResponse updateInfomation(
-    		@BeanParam UpdateUserRequest updateUserRequest) {
+	public GetUserInfoResponse updateInfomation(@BeanParam UpdateUserRequest updateUserRequest) {
 		return handle(updateUserRequest, updateUserRequest.getAction());
 	}
 
 	private <T> T handle(Context ctx, String message) {
 		try {
-			return (T)factory.getConverter("user management").convert(ctx);
+			return (T) factory.getConverter("user management").convert(ctx);
 		} catch (Throwable e) {
 			ExceptionWraper.wrap(message, e);
 			return null;
