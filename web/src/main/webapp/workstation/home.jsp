@@ -2,7 +2,7 @@
 <%@page import="com.medicalmaster.web.view.workstation.WorkstationView"%>
 <%
 	WorkstationView workstationView = new WorkstationView();
-	workstationView.getWorkstation(1);
+	workstationView.getWorkstation(1); 
 %>
 <div class="container">
 	<div class="col-md-6">

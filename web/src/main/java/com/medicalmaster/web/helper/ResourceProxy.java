@@ -18,6 +18,7 @@ import com.medicalmaster.web.control.WebContext;
 public class ResourceProxy {
 	/**
 	 * Post to url with given request and get the response of given type
+	 * 
 	 * @param context
 	 * @param url
 	 * @param req
@@ -26,15 +27,15 @@ public class ResourceProxy {
 	 */
 	public static <T, K> K post(WebContext context, String url, T req, Class<K> respClazz) {
 		WebTarget userResourceTarget = buildTarget(context, url, req.getClass());
-		
+
 		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-				.post(Entity.entity(req,
-						MediaType.APPLICATION_FORM_URLENCODED_TYPE),
-						respClazz);
+				.post(Entity.entity(req, MediaType.APPLICATION_FORM_URLENCODED_TYPE), respClazz);
 	}
 
 	/**
-	 * Post to url with given request which defined by the request type and get the response of given type. 
+	 * Post to url with given request which defined by the request type and get
+	 * the response of given type.
+	 * 
 	 * @param context
 	 * @param url
 	 * @param reqClazz
@@ -43,29 +44,29 @@ public class ResourceProxy {
 	 */
 	public static <T, K> K post(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
 		WebTarget userResourceTarget = buildTarget(context, url, reqClazz);
-		
-		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-				.post(Entity.entity(populateForm(context, reqClazz),
-						MediaType.APPLICATION_FORM_URLENCODED_TYPE),
-						respClazz);
+
+		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE).post(
+				Entity.entity(populateForm(context, reqClazz), MediaType.APPLICATION_FORM_URLENCODED_TYPE), respClazz);
 	}
-	
+
 	/**
 	 * Query from the given url and get response for the given type
+	 * 
 	 * @param context
 	 * @param url
 	 * @param respClazz
 	 * @return
 	 */
 	public static <T, K> K get(WebContext context, String url, Class<K> respClazz) {
-		WebTarget userResourceTarget = ClientBuilder.newClient().target(url); 
-		
-		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-				.get(respClazz);
+		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
+
+		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE).get(respClazz);
 	}
-	
+
 	/**
-	 * Query from the given url with the path and parameter defined in the given type and get response for the given type
+	 * Query from the given url with the path and parameter defined in the given
+	 * type and get response for the given type
+	 * 
 	 * @param context
 	 * @param url
 	 * @param reqClazz
@@ -74,13 +75,55 @@ public class ResourceProxy {
 	 */
 	public static <T, K> K get(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
 		WebTarget userResourceTarget = populateQuery(context, url, reqClazz);
-		
-		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-				.get(respClazz);		
+
+		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE).get(respClazz);
 	}
-	
+
 	/**
-	 * Put to the given url with the parameters defined in the given request type and return with the instance of the given response type
+	 * Query from the given url with the path and parameter defined in the given
+	 * type and get response for the given type
+	 * 
+	 * @param context
+	 * @param url
+	 * @param reqClazz
+	 * @param respClazz
+	 * @return
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 */
+	public static <T, K> K get(String url, T req, Class<K> respClazz)
+			throws IllegalArgumentException, IllegalAccessException {
+		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
+	
+		for (Field f : req.getClass().getDeclaredFields()) {
+			PathParam param = f.getAnnotation(PathParam.class);
+			if (param != null) {
+				f.setAccessible(true);
+				Object value = f.get(req).toString();
+				if (value != null) {
+					userResourceTarget = userResourceTarget.path(value.toString());
+				}
+			}
+		}
+
+		for (Field f : req.getClass().getDeclaredFields()) {
+			QueryParam param = f.getAnnotation(QueryParam.class);
+			if (param != null) {
+				f.setAccessible(true);
+				Object value = f.get(req);
+				if (value != null) {
+					userResourceTarget = userResourceTarget.queryParam(param.value(), value);
+				}
+			}
+		}
+
+		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE).get(respClazz);
+	}
+
+	/**
+	 * Put to the given url with the parameters defined in the given request
+	 * type and return with the instance of the given response type
+	 * 
 	 * @param context
 	 * @param url
 	 * @param reqClazz
@@ -89,15 +132,15 @@ public class ResourceProxy {
 	 */
 	public static <T, K> K put(WebContext context, String url, Class<T> reqClazz, Class<K> respClazz) {
 		WebTarget userResourceTarget = buildTarget(context, url, reqClazz);
-		
-		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-				.put(Entity.entity(populateForm(context, reqClazz),
-						MediaType.APPLICATION_FORM_URLENCODED_TYPE),
-						respClazz);
+
+		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE).put(
+				Entity.entity(populateForm(context, reqClazz), MediaType.APPLICATION_FORM_URLENCODED_TYPE), respClazz);
 	}
-	
+
 	/**
-	 * Delete with the given url and return with the instance of the given response type
+	 * Delete with the given url and return with the instance of the given
+	 * response type
+	 * 
 	 * @param context
 	 * @param url
 	 * @param respClazz
@@ -105,13 +148,14 @@ public class ResourceProxy {
 	 */
 	public static <T, K> K delete(WebContext context, String url, Class<K> respClazz) {
 		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
-		
-		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE)
-				.delete(respClazz);
+
+		return userResourceTarget.request(MediaType.APPLICATION_JSON_TYPE).delete(respClazz);
 	}
-	
+
 	/**
-	 * Delete with the given url and request and return with the instance of the given response type
+	 * Delete with the given url and request and return with the instance of the
+	 * given response type
+	 * 
 	 * @param context
 	 * @param url
 	 * @param respClazz
@@ -119,25 +163,26 @@ public class ResourceProxy {
 	 */
 	public static <T, K> K delete(WebContext context, String url, Class<T> reqestClazz, Class<K> respClazz) {
 		WebTarget target = buildTarget(context, url, reqestClazz);
-		
-		return target.request(MediaType.APPLICATION_JSON_TYPE)
-				.delete(respClazz);
+
+		return target.request(MediaType.APPLICATION_JSON_TYPE).delete(respClazz);
 	}
-	
+
 	private static <T> WebTarget populateQuery(WebContext context, String baseUrl, Class<T> reqestClazz) {
 		WebTarget target = buildTarget(context, baseUrl, reqestClazz);
 
 		String[] queryFields = getQueryFields(reqestClazz);
 
-		for (String field: queryFields) {
+		for (String field : queryFields) {
 			target = target.queryParam(field, context.getRequest().getParameter(field));
 		}
 		return target;
 	}
 
 	/**
-	 * To build target url by adding path using the parameter value annotated by PathParam in request class.
-	 * PathParam is usually used by locate resource with id, like users/1234, where 1234 can be marked as PathParam
+	 * To build target url by adding path using the parameter value annotated by
+	 * PathParam in request class. PathParam is usually used by locate resource
+	 * with id, like users/1234, where 1234 can be marked as PathParam
+	 * 
 	 * @param context
 	 * @param baseUrl
 	 * @param clazz
@@ -145,22 +190,22 @@ public class ResourceProxy {
 	 */
 	private static <T> WebTarget buildTarget(WebContext context, String baseUrl, Class<T> clazz) {
 		WebTarget userResourceTarget = ClientBuilder.newClient().target(baseUrl);
-		
+
 		String[] pathFields = getPathFields(clazz);
-		
-		for (String field: pathFields) {
+
+		for (String field : pathFields) {
 			userResourceTarget = userResourceTarget.path(context.getRequest().getParameter(field));
 		}
-		
+
 		return userResourceTarget;
 	}
-	
+
 	private static <T> Form populateForm(WebContext context, Class<T> reqestClazz) {
 		String[] formFields = getFormFields(reqestClazz);
 
 		Form form = new Form();
 
-		for (String field: formFields) {
+		for (String field : formFields) {
 			form.param(field, context.getRequest().getParameter(field));
 		}
 		return form;
@@ -188,6 +233,7 @@ public class ResourceProxy {
 
 	/**
 	 * PathParam must be declared in order in request class
+	 * 
 	 * @param reqestClazz
 	 * @return
 	 */
