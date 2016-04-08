@@ -55,7 +55,7 @@ public class UserManager {
 		User User = new User();
 		User.setAuthentication(password);
 		User.setName(UserName);
-		List<User> Users = dao.queryLike(User, null);
+		List<User> Users = dao.findUser(UserName, password, null);
 		if(Users.size() != 1)
 			return null;
 		

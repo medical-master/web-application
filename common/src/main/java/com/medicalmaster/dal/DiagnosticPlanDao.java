@@ -306,5 +306,19 @@ public class DiagnosticPlanDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
+	/**
+	 * a
+	**/
+	public List<DiagnosticPlan> findByWorkstationIdStatus(Integer workstationId, Integer status, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("diagnostic_plan", dbCategory, false);
+		builder.select("id","createTime","createUser","resourceId","category","title","visitCnt","publishTime","lastUpdateTime","lastUpdateUser","publishStatus","brief","workstationId");
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
+		builder.equal("publishStatus", status, Types.INTEGER, false);
+		builder.orderBy("publishTime", false);
+	    String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		return queryDao.query(sql, parameters, hints, parser);
+	}
 
 }

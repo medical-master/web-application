@@ -15,7 +15,7 @@ import java.util.Map;
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
 public class WorkstationFollowerDao {
-    private static final String DATA_BASE = "medical_master";
+    private static final String DATA_BASE = "medical-master";
 	private static DatabaseCategory dbCategory = null;
 	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from workstation_follower";
 	private static final String ALL_SQL_PATTERN = "SELECT * FROM workstation_follower";

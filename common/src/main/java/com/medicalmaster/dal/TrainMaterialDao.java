@@ -306,5 +306,22 @@ public class TrainMaterialDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
+	/**
+	 * a
+	**/
+	public List<TrainMaterial> findByWorkstationIdStatus(Integer workstationId, Integer status, int pageNo, int pageSize, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("train_material", dbCategory, true);
+		builder.select("id","createTime","createUser","title","visitCnt","publishTime","lastUpdateTime","description","materialFile","lastUpdateUser","publishStatus","workstationId");
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
+		builder.equal("publishStatus", status, Types.INTEGER, false);
+		builder.orderBy("publishTime", false);
+	    String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		int index =  builder.getStatementParameterIndex();
+		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
+		parameters.set(index++, Types.INTEGER, pageSize);
+		return queryDao.query(sql, parameters, hints, parser);
+	}
 
 }

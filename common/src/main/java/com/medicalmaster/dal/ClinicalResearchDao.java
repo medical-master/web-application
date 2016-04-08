@@ -306,5 +306,21 @@ public class ClinicalResearchDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
+	/**
+	 * a
+	**/
+	public List<ClinicalResearch> findByWorkstationId(Integer workstationId, int pageNo, int pageSize, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("clinical_research", dbCategory, true);
+		builder.select("id","createTime","createUser","resourceId","title","publishTime","lastUpdateTime","description","viewStatus","lastUpdateUser","currentStatus","workstationId");
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
+		builder.orderBy("publishTime", false);
+	    String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		int index =  builder.getStatementParameterIndex();
+		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
+		parameters.set(index++, Types.INTEGER, pageSize);
+		return queryDao.query(sql, parameters, hints, parser);
+	}
 
 }

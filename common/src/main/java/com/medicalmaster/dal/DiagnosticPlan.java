@@ -49,6 +49,10 @@ public class DiagnosticPlan implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer visitCnt;
 	
+	@Column(name="publishStatus")
+	@Type(value=Types.INTEGER)
+	private Integer publishStatus;
+	
 	@Column(name="publishTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp publishTime;
@@ -123,6 +127,14 @@ public class DiagnosticPlan implements DalPojo {
 
 	public void setVisitCnt(Integer visitCnt) {
 		this.visitCnt = visitCnt;
+	}
+
+	public Integer getPublishStatus() {
+		return publishStatus;
+	}
+
+	public void setPublishStatus(Integer publishStatus) {
+		this.publishStatus = publishStatus;
 	}
 
 	public Timestamp getPublishTime() {
