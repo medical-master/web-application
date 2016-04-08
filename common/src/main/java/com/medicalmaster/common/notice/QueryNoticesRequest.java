@@ -1,7 +1,11 @@
 package com.medicalmaster.common.notice;
 
+import java.lang.reflect.Field;
+import java.util.List;
+
 import javax.ws.rs.QueryParam;
 
+import com.medicalmaster.common.helper.ReflectionHelper;
 import com.medicalmaster.common.request.get.PageRequest;
 
 /**
@@ -31,5 +35,4 @@ public class QueryNoticesRequest extends PageRequest {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
 }
