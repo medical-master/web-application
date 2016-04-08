@@ -9,9 +9,9 @@ import java.util.GregorianCalendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DateTk 
+public class DateTool 
 {
-	protected static Logger log = LoggerFactory.getLogger(DateTk.class);
+	protected static Logger log = LoggerFactory.getLogger(DateTool.class);
 
 	    public final static int MILLISECOND = Calendar.MILLISECOND;
 	    private static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -428,7 +428,7 @@ public class DateTk
 		
 		public static void main(String[] args) 
 		{
-			String time = DateTk.getMonthLastDay("",1);
+			String time = DateTool.getMonthLastDay("",1);
 			System.out.println(time);
 		}
 }
