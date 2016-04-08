@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical-master")
+@Database(name="medical_master")
 @Table(name="workstation_follower")
 public class WorkstationFollower implements DalPojo {
 	
