@@ -13,6 +13,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
+import com.medicalmaster.common.helper.ReflectionHelper;
 import com.medicalmaster.web.control.WebContext;
 
 public class ResourceProxy {
@@ -95,7 +96,7 @@ public class ResourceProxy {
 			throws IllegalArgumentException, IllegalAccessException {
 		WebTarget userResourceTarget = ClientBuilder.newClient().target(url);
 	
-		for (Field f : req.getClass().getDeclaredFields()) {
+		for (Field f : ReflectionHelper.getDeclaredFields(req.getClass(), true)) {
 			PathParam param = f.getAnnotation(PathParam.class);
 			if (param != null) {
 				f.setAccessible(true);
@@ -106,7 +107,7 @@ public class ResourceProxy {
 			}
 		}
 
-		for (Field f : req.getClass().getDeclaredFields()) {
+		for (Field f : ReflectionHelper.getDeclaredFields(req.getClass(), true)) {
 			QueryParam param = f.getAnnotation(QueryParam.class);
 			if (param != null) {
 				f.setAccessible(true);
@@ -213,7 +214,7 @@ public class ResourceProxy {
 
 	private static <T> String[] getFormFields(Class<T> reqestClazz) {
 		List<String> fList = new ArrayList<>();
-		for (Field f : reqestClazz.getDeclaredFields()) {
+		for (Field f : ReflectionHelper.getDeclaredFields(reqestClazz, true)) {
 			FormParam param = f.getAnnotation(FormParam.class);
 			if (param != null)
 				fList.add(param.value());
@@ -223,7 +224,7 @@ public class ResourceProxy {
 
 	private static <T> String[] getQueryFields(Class<T> reqestClazz) {
 		List<String> fList = new ArrayList<>();
-		for (Field f : reqestClazz.getDeclaredFields()) {
+		for (Field f : ReflectionHelper.getDeclaredFields(reqestClazz, true)) {
 			QueryParam param = f.getAnnotation(QueryParam.class);
 			if (param != null)
 				fList.add(param.value());
@@ -239,7 +240,7 @@ public class ResourceProxy {
 	 */
 	private static <T> String[] getPathFields(Class<T> reqestClazz) {
 		List<String> fList = new ArrayList<>();
-		for (Field f : reqestClazz.getDeclaredFields()) {
+		for (Field f : ReflectionHelper.getDeclaredFields(reqestClazz, true)) {
 			PathParam param = f.getAnnotation(PathParam.class);
 			if (param != null)
 				fList.add(param.value());

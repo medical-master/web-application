@@ -3,6 +3,7 @@ package com.medicalmaster.domain.workstation;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.medicalmaster.dal.Notice;
 import com.medicalmaster.dal.Workstation;
 import com.medicalmaster.dal.WorkstationDao;
 
@@ -57,6 +58,22 @@ public class WorkstationManager
 	{
 		Workstation workstation = new Workstation();
 		dao.insert(null, workstation);
+	}
+	
+	/**
+	 * 查询指定的工作站详细信息
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public Workstation queryWorkstationInfo(Integer id) throws SQLException 
+	{
+		return dao.queryByPk(id, null);
+	}
+	
+	public Integer countWorkstation() throws SQLException 
+	{
+		return dao.count(null);
 	}
 }
 

@@ -40,6 +40,14 @@ public class SysResource implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String fileUrl;
 	
+	@Column(name="fileSize")
+	@Type(value=Types.INTEGER)
+	private Integer fileSize;
+	
+	@Column(name="md5")
+	@Type(value=Types.VARCHAR)
+	private String md5;
+	
 	@Column(name="status")
 	@Type(value=Types.INTEGER)
 	private Integer status;
@@ -106,6 +114,22 @@ public class SysResource implements DalPojo {
 
 	public void setFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
+	}
+
+	public Integer getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(Integer fileSize) {
+		this.fileSize = fileSize;
+	}
+
+	public String getMd5() {
+		return md5;
+	}
+
+	public void setMd5(String md5) {
+		this.md5 = md5;
 	}
 
 	public Integer getStatus() {

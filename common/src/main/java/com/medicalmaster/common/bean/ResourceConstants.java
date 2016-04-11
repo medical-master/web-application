@@ -11,6 +11,8 @@ package com.medicalmaster.common.bean;
  */
 public class ResourceConstants {
 	public static final String PATH_NOTICE = "/notice";
+	
+	public static final String PATH_WORKSTATION = "/workstation";
 
 	public static final String PATH_CLINICAL_RESEARCH = "/clinicalResearch";
 

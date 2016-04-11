@@ -14,38 +14,38 @@ import java.util.Map;
 
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
-public class SysResourceDao {
+public class ExpertMienDao {
     private static final String DATA_BASE = "medical-master";
 	private static DatabaseCategory dbCategory = null;
-	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from sys_resource";
-	private static final String ALL_SQL_PATTERN = "SELECT * FROM sys_resource";
-	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM sys_resource LIMIT ?, ?";
-	private DalParser<SysResource> parser = null;	
+	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from expert_mien";
+	private static final String ALL_SQL_PATTERN = "SELECT * FROM expert_mien";
+	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM expert_mien LIMIT ?, ?";
+	private DalParser<ExpertMien> parser = null;	
 	private DalScalarExtractor extractor = new DalScalarExtractor();
-	private DalTableDao<SysResource> client;
+	private DalTableDao<ExpertMien> client;
 	private DalQueryDao queryDao = null;
 	private DalClient baseClient;
 	
-	public SysResourceDao() throws SQLException {
-		parser = new DalDefaultJpaParser<>(SysResource.class);
-		this.client = new DalTableDao<SysResource>(parser);
+	public ExpertMienDao() throws SQLException {
+		parser = new DalDefaultJpaParser<>(ExpertMien.class);
+		this.client = new DalTableDao<ExpertMien>(parser);
 		dbCategory = this.client.getDatabaseCategory();
 		this.queryDao = new DalQueryDao(DATA_BASE);
 		this.baseClient = DalClientFactory.getClient(DATA_BASE);
 	}
 	/**
-	 * Query SysResource by the specified ID
+	 * Query ExpertMien by the specified ID
 	 * The ID must be a number
 	**/
-	public SysResource queryByPk(Number id, DalHints hints)
+	public ExpertMien queryByPk(Number id, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(id, hints);
 	}
     /**
-	 * Query SysResource by SysResource instance which the primary key is set
+	 * Query ExpertMien by ExpertMien instance which the primary key is set
 	**/
-	public SysResource queryByPk(SysResource pk, DalHints hints)
+	public ExpertMien queryByPk(ExpertMien pk, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(pk, hints);
@@ -60,10 +60,10 @@ public class SysResourceDao {
 		return result.intValue();
 	}
 	/**
-	 * Query SysResource with paging function
+	 * Query ExpertMien with paging function
 	 * The pageSize and pageNo must be greater than zero.
 	**/
-	public List<SysResource> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
+	public List<ExpertMien> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
 		if(pageNo < 1 || pageSize < 1) 
 			throw new SQLException("Illigal pagesize or pageNo, pls check");	
         StatementParameters parameters = new StatementParameters();
@@ -76,10 +76,10 @@ public class SysResourceDao {
 	/**
 	 * Get all records in the whole table
 	**/
-	public List<SysResource> getAll(DalHints hints) throws SQLException {
+	public List<ExpertMien> getAll(DalHints hints) throws SQLException {
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
-		List<SysResource> result = null;
+		List<ExpertMien> result = null;
 		result = queryDao.query(ALL_SQL_PATTERN, parameters, hints, parser);
 		return result;
 	}
@@ -95,7 +95,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, SysResource daoPojo) throws SQLException {
+	public int insert(DalHints hints, ExpertMien daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -114,7 +114,7 @@ public class SysResourceDao {
 	 *            list of pojos to be inserted
 	 * @return how many rows been affected
 	 */
-	public int[] insert(DalHints hints, List<SysResource> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -134,7 +134,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, KeyHolder keyHolder, SysResource daoPojo) throws SQLException {
+	public int insert(DalHints hints, KeyHolder keyHolder, ExpertMien daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -157,7 +157,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] insert(DalHints hints, KeyHolder keyHolder, List<SysResource> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, KeyHolder keyHolder, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -172,7 +172,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected for inserting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchInsert(DalHints hints, List<SysResource> daoPojos) throws SQLException {
+	public int[] batchInsert(DalHints hints, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -189,7 +189,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, List<SysResource> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -207,7 +207,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<SysResource> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -221,7 +221,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int delete(DalHints hints, SysResource daoPojo) throws SQLException {
+	public int delete(DalHints hints, ExpertMien daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -235,7 +235,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] delete(DalHints hints, List<SysResource> daoPojos) throws SQLException {
+	public int[] delete(DalHints hints, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -250,7 +250,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected for deleting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchDelete(DalHints hints, List<SysResource> daoPojos) throws SQLException {
+	public int[] batchDelete(DalHints hints, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -269,7 +269,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int update(DalHints hints, SysResource daoPojo) throws SQLException {
+	public int update(DalHints hints, ExpertMien daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -288,7 +288,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] update(DalHints hints, List<SysResource> daoPojos) throws SQLException {
+	public int[] update(DalHints hints, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -300,7 +300,7 @@ public class SysResourceDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] batchUpdate(DalHints hints, List<SysResource> daoPojos) throws SQLException {
+	public int[] batchUpdate(DalHints hints, List<ExpertMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
