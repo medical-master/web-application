@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.medicalmaster.common.workstation.QueryWorkstationRequest;
+
 /**
  * 反射
  * 
@@ -69,9 +71,15 @@ public class ReflectionHelper {
 	@SuppressWarnings("rawtypes")
 	public static Field getDeclaredField(Class cz, String fieldName, boolean includeSuperClass)
 			throws NoSuchFieldException, SecurityException {
-		Field field = cz.getDeclaredField(fieldName);
+		Field field = null;
+		try {
+			field = cz.getDeclaredField(fieldName);
+		} catch (Exception exception) {
+
+		}
+
 		if (includeSuperClass && field == null) {
-			getSuperDeclaredField(cz, fieldName);
+			return getSuperDeclaredField(cz, fieldName);
 		}
 
 		return field;
@@ -92,11 +100,21 @@ public class ReflectionHelper {
 			return null;
 		}
 
-		Field field = superCz.getDeclaredField(fieldName);
+		Field field = null;
+		try {
+			field = superCz.getDeclaredField(fieldName);
+		} catch (Exception exception) {
+		}
+
 		if (field != null) {
 			return field;
 		}
 
 		return getSuperDeclaredField(superCz, fieldName);
+	}
+
+	public static void main(String[] args) throws NoSuchFieldException, SecurityException {
+		Field field = getDeclaredField(QueryWorkstationRequest.class, "action", true);
+		System.out.println(field.getName());
 	}
 }
