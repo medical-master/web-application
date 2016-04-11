@@ -328,8 +328,8 @@ public class ClinicalResearchDao {
 	public List<ClinicalResearch> findAllByWorkstationId(Integer workstationId, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("clinical_research", dbCategory, false);
-		builder.select("id","createTime","createUser","resourceId","title","publishTime","lastUpdateTime","description","viewStatus","lastUpdateUser","currentStatus","workstationId");
-		builder.equal("workstationId", workstationId, Types.INTEGER, false);
+		builder.select("publishTime","resourceId","currentStatus","createTime","workstationId","description","lastUpdateUser","createUser","id","title","viewStatus","lastUpdateTime");
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();
 		return queryDao.query(sql, parameters, hints, parser);

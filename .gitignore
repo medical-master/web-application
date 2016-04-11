@@ -10,3 +10,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+.settings
+/common/*.classpath
+/service/service/*.classpath
+/service/service/*.project
+/service/service/*.gitignore
+/common/*.gitignore
+/web/*.gitignore
+/common/*.project

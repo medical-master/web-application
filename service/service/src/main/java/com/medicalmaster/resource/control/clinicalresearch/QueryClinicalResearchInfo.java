@@ -1,5 +1,10 @@
 package com.medicalmaster.resource.control.clinicalresearch;
 
+import java.sql.SQLException;
+
+import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchInfoResponse;
+import com.medicalmaster.common.request.get.IdRequest;
+import com.medicalmaster.dal.ClinicalResearch;
 import com.xross.tools.xunit.Context;
 
 /**
@@ -21,8 +26,18 @@ public class QueryClinicalResearchInfo extends ClinicalResearchCoverter {
 	 */
 	@Override
 	public Context convert(Context inputCtx) {
-		// TODO Auto-generated method stub
-		return null;
+		IdRequest request = (IdRequest) inputCtx;
+		QueryClinicalResearchInfoResponse response = new QueryClinicalResearchInfoResponse();
+		try {
+			ClinicalResearch research = manager.queryInfo(request.getId());
+			response.setResearch(research);
+			response.setSuccess(true);
+		} catch (SQLException exception) {
+			response.setSuccess(false);
+			response.setMessage("数据库查询失败");
+		}
+
+		return response;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.medicalmaster.common;
 
+import com.medicalmaster.common.request.get.PageRequest;
+
 /**
  * 分页响应
  * <P>
@@ -78,4 +80,13 @@ public class PageResponse extends Response {
 		this.pageCnt = pageCnt;
 	}
 
+	/**
+	 * 从PageRequest中获取分页信息
+	 * 
+	 * @param request
+	 */
+	public void covert(PageRequest request) {
+		this.pageSize = request.getPageSize();
+		this.pageNo = request.getPageNo();
+	}
 }

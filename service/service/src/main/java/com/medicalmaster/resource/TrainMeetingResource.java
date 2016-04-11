@@ -1,9 +1,16 @@
 package com.medicalmaster.resource;
 
 import javax.annotation.Resource;
+import javax.ws.rs.BeanParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
 
 import com.medicalmaster.common.bean.ResourceConstants;
+import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsRequest;
+import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsResponse;
+import com.xross.tools.xunit.XunitFactory;
 
 /**
  * 培训会议
@@ -17,5 +24,19 @@ import com.medicalmaster.common.bean.ResourceConstants;
 @Resource
 @Path(ResourceConstants.PATH_TRAIN_MEETING)
 public class TrainMeetingResource extends Resources {
+	static {
+		try {
+			factory = XunitFactory.load("trainMeeting.xunit");
+			converterId = "trainMeeting branch";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	public QueryTrainMeetingsResponse queryTrainMeetings(@BeanParam QueryTrainMeetingsRequest request) {
+		request.setAction("queryList");
+		return handle(request, request.getAction());
+	}
 }

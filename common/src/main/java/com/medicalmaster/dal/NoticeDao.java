@@ -306,5 +306,33 @@ public class NoticeDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
+	/**
+	 * findNoticeCnt
+	**/
+	public List<Integer> findNoticesCnt(Integer publishStatus, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("notice", dbCategory, false);
+		builder.select("id");
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, true);
+        String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		return queryDao.query(sql, parameters, hints, Integer.class);
+	}
+	/**
+	 * findNotice
+	**/
+	public List<Notice> findNotice(Integer publishStatus, int pageNo, int pageSize, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("notice", dbCategory, true);
+		builder.select("createTime","createUser","id","title","content","publishStatus");
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, true);
+		builder.orderBy("createTime", false);
+	    String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		int index =  builder.getStatementParameterIndex();
+		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
+		parameters.set(index++, Types.INTEGER, pageSize);
+		return queryDao.query(sql, parameters, hints, parser);
+	}
 
 }

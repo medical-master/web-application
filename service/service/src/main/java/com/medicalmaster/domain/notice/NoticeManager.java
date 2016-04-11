@@ -26,12 +26,17 @@ public class NoticeManager {
 		dao = new NoticeDao();
 	}
 
-	public Integer countNotices() throws SQLException {
-		return dao.count(null);
+	public Integer countNotices(QueryNoticesRequest request) throws SQLException {
+		List<Integer> list = dao.findNoticesCnt(request.getStatus(), null);
+		if (list == null) {
+			return 0;
+		}
+
+		return list.size();
 	}
 
 	public List<Notice> queryNotices(QueryNoticesRequest request) throws SQLException {
-		return dao.queryByPage(request.getPageSize(), request.getPageNo(), null);
+		return dao.findNotice(request.getStatus(), request.getPageSize(), request.getPageNo(), null);
 	}
 
 	public Notice queryNoticeInfo(Integer id) throws SQLException {

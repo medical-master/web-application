@@ -36,7 +36,7 @@ public class QueryNotices extends NoticeCoverter {
 
 		QueryNoticesResponse response = new QueryNoticesResponse();
 		try {
-			Integer recordCnt = manager.countNotices();
+			Integer recordCnt = manager.countNotices(request);
 			Integer pageCnt = PageHelper.calcPageCnt(recordCnt, request.getPageSize());
 
 			List<Notice> notices = manager.queryNotices(request);

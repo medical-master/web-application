@@ -306,5 +306,35 @@ public class TrainMeetingDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
+	/**
+	 * findTrainMeeting Count
+	**/
+	public List<Integer> findTrainMeetingCnt(Integer workstationId, Integer publishStatus, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, false);
+		builder.select("id");
+		builder.equal("workstationId", workstationId, Types.INTEGER, false);
+		builder.equal("publishStatus", publishStatus, Types.INTEGER, false);
+        String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		return queryDao.query(sql, parameters, hints, Integer.class);
+	}
+	/**
+	 * findTrainMeeting Count
+	**/
+	public List<TrainMeeting> findTrainMeeting(Integer workstationId, Integer publishStatu, int pageNo, int pageSize, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, true);
+		builder.select("meetingTime","meetingAddr","createTime","workstationId","lastUpdateUser","createUser","id","title","content","publishStatus","lastUpdateTime");
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, true);
+		builder.equalNullable("publishStatus", publishStatu, Types.INTEGER, true);
+		builder.orderBy("createTime", false);
+	    String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		int index =  builder.getStatementParameterIndex();
+		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
+		parameters.set(index++, Types.INTEGER, pageSize);
+		return queryDao.query(sql, parameters, hints, parser);
+	}
 
 }
