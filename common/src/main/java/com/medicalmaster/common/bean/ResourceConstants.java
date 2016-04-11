@@ -18,7 +18,7 @@ public class ResourceConstants {
 	/** 临床研究 */
 	public static final String PATH_CLINICAL_RESEARCH = "/clinicalResearch";
 	/** 诊疗方案 */
-	public static final String PATH_DIAGNOSTIC_PLAN = "/diagnostic/plan";
+	public static final String PATH_DIAGNOSTIC_PLAN = "/diagplan";
 	/** 医院 */
 	public static final String PATH_HOSPITAL = "/hospital";
 	/** 系统代码 */

@@ -307,14 +307,31 @@ public class DiagnosticPlanDao {
 		return client.batchUpdate(hints, daoPojos);
 	}
 	/**
-	 * a
+	 * findDiagnosticPlans
 	**/
-	public List<DiagnosticPlan> findByWorkstationIdStatus(Integer workstationId, Integer status, DalHints hints) throws SQLException {
+	public List<DiagnosticPlan> findDiagnosticPlans(Integer workstationId, Integer publishStatus, int pageNo, int pageSize, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("diagnostic_plan", dbCategory, true);
+		builder.select("brief","publishTime","resourceId","title","visitCnt","createTime","workstationId","lastUpdateUser","createUser","id","category","publishStatus","lastUpdateTime");
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
+		builder.orderBy("publishTime", false);
+	    String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		int index =  builder.getStatementParameterIndex();
+		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
+		parameters.set(index++, Types.INTEGER, pageSize);
+		return queryDao.query(sql, parameters, hints, parser);
+	}
+	/**
+	 * findAllDiagnosticPlans
+	**/
+	public List<DiagnosticPlan> findAllDiagnosticPlans(Integer workstationId, Integer publishStatus, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("diagnostic_plan", dbCategory, false);
-		builder.select("id","createTime","createUser","resourceId","category","title","visitCnt","publishTime","lastUpdateTime","lastUpdateUser","publishStatus","brief","workstationId");
+		builder.select("brief","publishTime","resourceId","title","visitCnt","createTime","workstationId","lastUpdateUser","createUser","id","category","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
-		builder.equal("publishStatus", status, Types.INTEGER, false);
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
 		builder.orderBy("publishTime", false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();
