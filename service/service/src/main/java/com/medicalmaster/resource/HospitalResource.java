@@ -3,6 +3,8 @@ package com.medicalmaster.resource;
 import javax.annotation.Resource;
 import javax.ws.rs.Path;
 
+import com.medicalmaster.common.bean.ResourceConstants;
+
 /**
  * 医院
  * 
@@ -13,7 +15,7 @@ import javax.ws.rs.Path;
  * </P>
  */
 @Resource
-@Path("/hospital")
+@Path(ResourceConstants.PATH_HOSPITAL)
 public class HospitalResource extends Resources {
 	
 }

@@ -3,6 +3,8 @@ package com.medicalmaster.resource;
 import javax.annotation.Resource;
 import javax.ws.rs.Path;
 
+import com.medicalmaster.common.bean.ResourceConstants;
+
 /**
  * 培训会议
  * 
@@ -13,7 +15,7 @@ import javax.ws.rs.Path;
  * </P>
  */
 @Resource
-@Path("/train/meeting")
+@Path(ResourceConstants.PATH_TRAIN_MEETING)
 public class TrainMeetingResource extends Resources {
 
 }

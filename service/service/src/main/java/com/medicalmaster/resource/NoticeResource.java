@@ -8,6 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.notice.QueryNoticeInfoResponse;
 import com.medicalmaster.common.notice.QueryNoticesRequest;
 import com.medicalmaster.common.notice.QueryNoticesResponse;
@@ -24,7 +25,7 @@ import com.xross.tools.xunit.XunitFactory;
  * </P>
  */
 @Resource
-@Path("/notice")
+@Path(ResourceConstants.PATH_NOTICE)
 public class NoticeResource extends Resources {
 	static {
 		try {
