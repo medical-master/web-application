@@ -1,11 +1,15 @@
 package com.medicalmaster.resource.control.workstation;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Converter;
 
-public class ModifyWorkstation implements Converter
+public class ModifyWorkstation extends WorkstationCoverter
 {
-	@Override
+	protected static Logger logger = LoggerFactory.getLogger(ModifyWorkstation.class);
+
 	public Context convert(Context inputCtx) 
 	{
 		// TODO Auto-generated method stub

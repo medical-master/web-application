@@ -3,29 +3,59 @@ package com.medicalmaster.web.view.workstation;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.medicalmaster.dal.Workstation;
-import com.medicalmaster.dal.WorkstationDao;
-import com.medicalmaster.dal.WorkstationFollowerDao;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-public class WorkstationView
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.medicalmaster.common.bean.ResourceConstants;
+import com.medicalmaster.common.notice.QueryNoticesRequest;
+import com.medicalmaster.common.notice.QueryNoticesResponse;
+import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
+import com.medicalmaster.common.workstation.QueryWorkstationResponse;
+import com.medicalmaster.dal.Notice;
+import com.medicalmaster.dal.Workstation;
+import com.medicalmaster.web.helper.ResourceProxy;
+import com.medicalmaster.web.view.BaseView;
+
+public class WorkstationView extends BaseView
 {
-	private WorkstationDao dao;
-	private WorkstationFollowerDao followerDao;
-	public WorkstationView() throws SQLException 
+	protected static Logger log = LoggerFactory.getLogger(WorkstationView.class);
+	
+	public WorkstationView(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		dao = new WorkstationDao();
-		followerDao = new WorkstationFollowerDao();
+		super(request, response);
 	}
 	
 	public List<Workstation> displayWorkstations() throws SQLException 
 	{
-		return dao.getAll(null);
+		return null;
 	}
 	
-	public Workstation getWorkstation(int workStationId) 
+	public Workstation getWorkstation(int workStationId) throws IllegalArgumentException, IllegalAccessException 
 	{
-		System.out.println("ddddddddddddddddffffffffffff");
-		return null;
+		QueryWorkstationResponse req = new QueryWorkstationResponse();
+		QueryWorkstationInfoResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
+				+ ResourceConstants.PATH_WORKSTATION,req,QueryWorkstationInfoResponse.class);
+		
+		if (response.isSuccess()) 
+		{
+			List<Workstation> workstationList = response.getWorkstation();
+			if (workstationList.size() > 0)
+			{
+				log.info("title{}", workstationList.get(0).getActivateTime());
+				return workstationList.get(0);
+			}
+			else 
+			{
+				return null;
+			}
+		}
+		else 
+		{
+			return null;
+		}
 	}
 }
 
