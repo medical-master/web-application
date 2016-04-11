@@ -13,6 +13,7 @@ import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.notice.QueryNoticesRequest;
 import com.medicalmaster.common.notice.QueryNoticesResponse;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
+import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationResponse;
 import com.medicalmaster.dal.Notice;
 import com.medicalmaster.dal.Workstation;
@@ -28,14 +29,9 @@ public class WorkstationView extends BaseView
 		super(request, response);
 	}
 	
-	public List<Workstation> displayWorkstations() throws SQLException 
+	public List<Workstation> displayWorkstations() throws SQLException, IllegalArgumentException, IllegalAccessException 
 	{
-		return null;
-	}
-	
-	public Workstation getWorkstation(int workStationId) throws IllegalArgumentException, IllegalAccessException 
-	{
-		QueryWorkstationResponse req = new QueryWorkstationResponse();
+		QueryWorkstationRequest req = new QueryWorkstationRequest();
 		QueryWorkstationResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
 				+ ResourceConstants.PATH_WORKSTATION,req,QueryWorkstationResponse.class);
 		
@@ -45,7 +41,7 @@ public class WorkstationView extends BaseView
 			if (workstationList.size() > 0)
 			{
 				log.info("title{}", workstationList.get(0).getActivateTime());
-				return workstationList.get(0);
+				return workstationList;
 			}
 			else 
 			{
@@ -56,6 +52,31 @@ public class WorkstationView extends BaseView
 		{
 			return null;
 		}
+	}
+	
+	public Workstation getWorkstation() throws IllegalArgumentException, IllegalAccessException 
+	{
+//		QueryWorkstationRequest req = new QueryWorkstationRequest();
+//		QueryWorkstationResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
+//				+ ResourceConstants.PATH_WORKSTATION,req,QueryWorkstationResponse.class);
+//		
+//		if (response.isSuccess()) 
+//		{
+//			List<Workstation> workstationList = response.getWorkstation();
+//			if (workstationList.size() > 0)
+//			{
+//				log.info("title{}", workstationList.get(0).getActivateTime());
+//				return workstationList.get(0);
+//			}
+//			else 
+//			{
+//				return null;
+//			}
+//		}
+//		else 
+//		{
+			return null;
+//		}
 	}
 }
 

@@ -4,9 +4,8 @@
 <%@page import="com.medicalmaster.web.view.workstation.WorkstationView"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%
-	WorkstationView workstationView = new WorkstationView();
+	WorkstationView workstationView = new WorkstationView(request,response);
 	List<Workstation> workstationList = workstationView.displayWorkstations();
-	request.setAttribute("workstationList",workstationList);
 %>
 <div class="container">
 	<c:forEach items="${workstationList}" var="workstation">
