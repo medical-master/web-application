@@ -10,5 +10,15 @@ package com.medicalmaster.common.bean;
  * </P>
  */
 public class ResourceConstants {
-	public static final String PATH_NOTICE = "notice";
+	public static final String PATH_NOTICE = "/notice";
+	
+	public static final String PATH_WORKSTATION = "/workstation";
+
+	public static final String PATH_CLINICAL_RESEARCH = "/clinicalResearch";
+
+	public static final String PATH_SYS_RESOURCE = "/sysResource";
+
+	public static final String SAVE_BASE_PATH = "/app/sysresources/";
+
+	public static final String RESOURCE_TYPE_DEFAULT = "default";
 }

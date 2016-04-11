@@ -10,5 +10,5 @@ package com.medicalmaster.domain.clinicalresearch;
  * </P>
  */
 public class ClinicalResearchManager {
-
+	
 }

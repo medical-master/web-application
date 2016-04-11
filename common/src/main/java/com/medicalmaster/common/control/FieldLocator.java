@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Map;
 
 import com.medicalmaster.common.ExceptionWraper;
+import com.medicalmaster.common.helper.ReflectionHelper;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Locator;
 import com.xross.tools.xunit.UnitPropertiesAware;
@@ -15,7 +16,7 @@ public class FieldLocator implements Locator, UnitPropertiesAware {
 	@Override
 	public String locate(Context ctx) {
 		try {
-			Field field = ctx.getClass().getDeclaredField(fieldName);
+			Field field = ReflectionHelper.getDeclaredField(ctx.getClass(), fieldName, true);
 			field.setAccessible(true);
 			return field.get(ctx).toString();
 		} catch (Exception e) {

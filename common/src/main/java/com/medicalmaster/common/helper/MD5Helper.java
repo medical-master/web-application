@@ -3,7 +3,9 @@
  */
 package com.medicalmaster.common.helper;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -15,23 +17,25 @@ import java.security.NoSuchAlgorithmException;
  * 
  */
 public class MD5Helper {
-	public static char[] hexChar = { '0', '1', '2', '3', '4', '5', '6', '7',
-			'8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+	public static char[] hexChar = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-	public static String getFileMD5(String filePath) throws Exception {
+	public static String getFileMD5(File file) throws Exception {
 		MessageDigest messageDigest = null;
+		InputStream inputStream = null;
 		try {
 			messageDigest = MessageDigest.getInstance("MD5");
-			FileInputStream in = new FileInputStream(filePath);
+			inputStream = new FileInputStream(file);
 			byte[] buffer = new byte[1048576];
 			int len = 0;
-			while ((len = in.read(buffer)) > 0) {
+			while ((len = inputStream.read(buffer)) > 0) {
 				messageDigest.update(buffer, 0, len);
 			}
-			in.close();
 		} catch (Exception e) {
-			throw new Exception("获取文件[" + filePath + "+]MD5码异常!", e);
+			throw new Exception("获取文件[" + file.getAbsolutePath() + "+]MD5码异常!", e);
+		} finally {
+			CloseableHelper.close(inputStream);
 		}
+
 		return toHexString(messageDigest.digest());
 	}
 
@@ -46,8 +50,7 @@ public class MD5Helper {
 
 	public static String encrypt(String inStr) throws NoSuchAlgorithmException {
 		if ((inStr == null) || ("".equals(inStr))) {
-			throw new IllegalArgumentException(
-					"Parameter[inStr] can't be null.");
+			throw new IllegalArgumentException("Parameter[inStr] can't be null.");
 		}
 		MessageDigest md5 = MessageDigest.getInstance("MD5");
 		char[] charArray = inStr.toCharArray();
