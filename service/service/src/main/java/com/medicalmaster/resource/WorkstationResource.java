@@ -7,12 +7,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationResponse;
 import com.xross.tools.xunit.XunitFactory;
 
 @Resource
-@Path("/workstation")
+@Path(ResourceConstants.PATH_WORKSTATION)
 public class WorkstationResource extends Resources
 {
 	static 
