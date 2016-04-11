@@ -36,8 +36,8 @@ public class WorkstationView extends BaseView
 	public Workstation getWorkstation(int workStationId) throws IllegalArgumentException, IllegalAccessException 
 	{
 		QueryWorkstationResponse req = new QueryWorkstationResponse();
-		QueryWorkstationInfoResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
-				+ ResourceConstants.PATH_WORKSTATION,req,QueryWorkstationInfoResponse.class);
+		QueryWorkstationResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
+				+ ResourceConstants.PATH_WORKSTATION,req,QueryWorkstationResponse.class);
 		
 		if (response.isSuccess()) 
 		{
