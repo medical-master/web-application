@@ -3,6 +3,8 @@ package com.medicalmaster.resource;
 import javax.annotation.Resource;
 import javax.ws.rs.Path;
 
+import com.medicalmaster.common.bean.ResourceConstants;
+
 /**
  * 诊疗方案
  * <P>
@@ -12,7 +14,7 @@ import javax.ws.rs.Path;
  * </P>
  */
 @Resource
-@Path("/diagnostic/plan")
+@Path(ResourceConstants.PATH_DIAGNOSTIC_PLAN)
 public class DiagnosticPlanResource extends Resources {
 
 }

@@ -1,12 +1,15 @@
 <%@page pageEncoding="UTF-8"%>
-<footer class="footer">
-  <div class="container" style="
-    background-color: #000;
-    width: 100%;
-">
-    <p class="text-muted" align="center">沪ICP证123456号   Medical Mater&copy;2016</p>
-  </div>
-</footer>
+<div class="footer text-center">
+        <div class="container">
+            <p class="footer-tips">
+                <span><a href="##">中文</a> | <a href="##">英文</a></span>&nbsp;&nbsp;&nbsp;
+                <span><a href="##">电脑版</a> | <a href="##">手机版</a></span>
+            </p>
+            <p class="copyright">
+                沪ICP证 13456号 Copyright&copy;2016
+            </p>
+        </div>
+</div>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

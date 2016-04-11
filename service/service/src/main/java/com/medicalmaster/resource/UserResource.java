@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import com.medicalmaster.common.ExceptionWraper;
 import com.medicalmaster.common.RequestByIdContext;
 import com.medicalmaster.common.Status;
+import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.user.ActivateMasterRequest;
 import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.common.user.GetUserInfoResponse;
@@ -26,7 +27,7 @@ import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.XunitFactory;
 
 @Resource
-@Path("/users")
+@Path(ResourceConstants.PATH_USER)
 public class UserResource {
 	private static XunitFactory factory;
 

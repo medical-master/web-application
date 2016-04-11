@@ -1,63 +1,32 @@
 <%@page pageEncoding="UTF-8"%>
-<div class="container-fluid" style="background-color: #e4e4e4;">
-  <div class="row">
-    <div class="col-md-6">
-      <img alt="ImedMaster" width="150px" height="100px" style="
-    margin-left: 40px;" src="resources/images/head-logo.png" />
-    </div>
-    <div class="col-md-6" style="margin-top:50px;">
-      <form role="form">
-        <div class="input-group" style="margin-right:40px;">
-          <input type="text" class="form-control" placeholder="请输入专家姓名、地区、疾病、科室等关键词">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
+<div class="container">
+        <div class="header clearfix">
+            <div class="logo pull-left">
+                <a href="##"></a>
+            </div>
+            <div class="search-box pull-right">
+                <form action="###">
+                    <input type="text" class="search-keyword" placeholder="请输入专家姓名、地区、疾病、科室等关键词" />
+                    <button class="btn-search"></button>
+                </form>
+            </div>
         </div>
-      </form>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12" >
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li class="active">
-                <a href="action?view=home">主页</a>
-              </li>
-              <li>
-                <a href="action?view=workstation/home">专家工作站</a>
-              </li>
-              <li>
-                <a href="action?view=diagnosis/home">诊疗方案</a>
-              </li>
-              <li>
-                <a href="action?view=research/home">临床研究</a>
-              </li>
-              <li>
-                <a href="action?view=training/home">教育培训</a>
-              </li>
+        <div class="nav">
+            <ul class="list-inline navigation text-center">
+                <li class="active"><a href="">主页</a></li>
+                <li><a href="">专家工作站</a></li>
+                <li><a href="">诊疗方案</a></li>
+                <li><a href="">临床研究</a></li>
+                <li><a href="">教育培训</a></li>
             </ul>
-            <form class="navbar-form navbar-right" role="search">
-              <div class="form-group">
-                <img src="resources/images/user-icon-default.png" alt="用户Icon" width="40px" height="40px" class="img-circle"/>
-                <%-- <%
-  User user = session == null?null:(User)session.getAttribute("user");
-%>
-                <%if(user == null) {%> --%>
-                <a class="btn btn-primary btn-sm" href="action?view=user/login">登录</a>
-                <a class="btn btn-default btn-sm" href="action?view=user/registerUser">注册</a>
-                <%-- <% } else { %>
-                <a class="btn btn-primary" href="action?view=user/viewInfo">
-                  <%=user.getName()%></a>
-                <a class="btn btn-default" href="action?module=user&action=logout">退出</a>
-                <% } %> --%>
-            </form>
-          </div>
+            <div class="user-card">
+                <div class="user-image pull-left">
+                    <a href="##"><img src="resources/images/user-icon-default.png" alt="" /></a>
+                </div>
+                <div class="user-info pull-right">
+                    <h3 class="title">我的工作站点</h3>
+                    <p class="tip-text">点击图像登录\注册</p>
+                </div>
+            </div>
         </div>
-      </nav>
     </div>
-  </div>
-</div>

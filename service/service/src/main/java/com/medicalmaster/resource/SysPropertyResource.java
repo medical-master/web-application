@@ -7,6 +7,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.sysproperty.QuerySysPropertyResponse;
 import com.medicalmaster.resource.control.sysproperty.QuerySysPropertyRequest;
 import com.xross.tools.xunit.XunitFactory;
@@ -16,7 +17,7 @@ import com.xross.tools.xunit.XunitFactory;
  * Created By guanrong.xie Created On 2016年4月6日 CopyRight@IMedMaster
  */
 @Resource
-@Path("/sysproperty")
+@Path(ResourceConstants.PATH_SYS_PROPERTY)
 public class SysPropertyResource extends Resources {
 	static {
 		try {
