@@ -39,6 +39,6 @@ public class PopulateContextProcesor implements Processor, UnitPropertiesAware {
 		String serviceHost = properties.get("serviceHost");
 		String servicePath = properties.get("servicePath");
 		String servicePort = properties.get("servicePort");
-		serviceUrl = serviceHost + ":" + servicePort + servicePath + "/";
+		serviceUrl = serviceHost + ":" + servicePort + servicePath;
 	}
 }
