@@ -24,6 +24,10 @@ public class ExpertMien implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer id;
 	
+	@Column(name="expertId")
+	@Type(value=Types.INTEGER)
+	private Integer expertId;
+	
 	@Column(name="mienType")
 	@Type(value=Types.INTEGER)
 	private Integer mienType;
@@ -62,6 +66,14 @@ public class ExpertMien implements DalPojo {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getExpertId() {
+		return expertId;
+	}
+
+	public void setExpertId(Integer expertId) {
+		this.expertId = expertId;
 	}
 
 	public Integer getMienType() {

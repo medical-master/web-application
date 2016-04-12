@@ -306,5 +306,21 @@ public class WorkstationDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
+	/**
+	 * findWorkstations
+	**/
+	public List<Workstation> findWorkstations(Integer status, int pageNo, int pageSize, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("workstation", dbCategory, true);
+		builder.select("publishTime","expertId","keywords","subLink","description","domains","activateTime","createTime","workstationId","members","name","attends","rank","lastUpdateUser","createUser","illCode","status","lastUpdateTime");
+		builder.equalNullable("status", status, Types.INTEGER, false);
+		builder.orderBy("attends", false);
+	    String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
+		int index =  builder.getStatementParameterIndex();
+		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
+		parameters.set(index++, Types.INTEGER, pageSize);
+		return queryDao.query(sql, parameters, hints, parser);
+	}
 
 }

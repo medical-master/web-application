@@ -39,18 +39,6 @@ public class Expert implements DalPojo {
 	@Column(name="expertArea")
 	@Type(value=Types.VARCHAR)
 	private String expertArea;
-	
-	@Column(name="summaryHtml")
-	@Type(value=Types.INTEGER)
-	private Integer summaryHtml;
-	
-	@Column(name="academicHtml")
-	@Type(value=Types.INTEGER)
-	private Integer academicHtml;
-	
-	@Column(name="honorHtml")
-	@Type(value=Types.INTEGER)
-	private Integer honorHtml;
 
 	public Integer getId() {
 		return id;
@@ -90,30 +78,6 @@ public class Expert implements DalPojo {
 
 	public void setExpertArea(String expertArea) {
 		this.expertArea = expertArea;
-	}
-
-	public Integer getSummaryHtml() {
-		return summaryHtml;
-	}
-
-	public void setSummaryHtml(Integer summaryHtml) {
-		this.summaryHtml = summaryHtml;
-	}
-
-	public Integer getAcademicHtml() {
-		return academicHtml;
-	}
-
-	public void setAcademicHtml(Integer academicHtml) {
-		this.academicHtml = academicHtml;
-	}
-
-	public Integer getHonorHtml() {
-		return honorHtml;
-	}
-
-	public void setHonorHtml(Integer honorHtml) {
-		this.honorHtml = honorHtml;
 	}
 
 }

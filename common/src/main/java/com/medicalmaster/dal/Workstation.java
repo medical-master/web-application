@@ -37,6 +37,10 @@ public class Workstation implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String subLink;
 	
+	@Column(name="summery")
+	@Type(value=Types.VARCHAR)
+	private String summery;
+	
 	@Column(name="description")
 	@Type(value=Types.VARCHAR)
 	private String description;
@@ -123,6 +127,14 @@ public class Workstation implements DalPojo {
 
 	public void setSubLink(String subLink) {
 		this.subLink = subLink;
+	}
+
+	public String getSummery() {
+		return summery;
+	}
+
+	public void setSummery(String summery) {
+		this.summery = summery;
 	}
 
 	public String getDescription() {
