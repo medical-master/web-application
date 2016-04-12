@@ -1,7 +1,8 @@
 <%@page import="com.medicalmaster.dal.Workstation"%>
-<%@page import="java.util.List"%>
 <%@page pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
 <%@page import="com.medicalmaster.web.view.workstation.WorkstationView"%>
+<%@page import="com.medicalmaster.dal.WorkstationViewPojoPojo"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script>
@@ -17,11 +18,17 @@
 		});
 	});
 </script>
-
+<%
+	String id = request.getParameter("id");
+	WorkstationView workstationView = new WorkstationView(request,response);
+	WorkstationViewPojoPojo workstationViewPojo = workstationView.getWorkstationInfo(id);
+	request.setAttribute("workstationViewPojo",workstationViewPojo);
+%>
+<c:if test="${workstationViewPojo!= null}">
 <div class="row">
 	<div class="col-md-3" align="left">
 		<div class="span12">
-			<img src="resources/images/yushengyuan.png" alt="${workstation.name}">
+			<img src="resources/images/yushengyuan.png" alt="${workstationViewPojo.wksName}">
 			<br/>
 			<br/>
 		</div>
@@ -161,4 +168,4 @@
 		</div>
 	</div>
 </div>
-
+</c:if>
