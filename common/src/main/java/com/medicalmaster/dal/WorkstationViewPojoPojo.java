@@ -1,22 +1,23 @@
 package com.medicalmaster.dal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import com.ctrip.platform.dal.dao.annotation.Database;
-import com.ctrip.platform.dal.dao.annotation.Sensitive;
-import com.ctrip.platform.dal.dao.annotation.Type;
 import java.sql.Types;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.ctrip.platform.dal.dao.DalPojo;
+import com.ctrip.platform.dal.dao.annotation.Database;
+import com.ctrip.platform.dal.dao.annotation.Type;
 
 @Entity
 @Database(name="")
 @Table(name="")
 public class WorkstationViewPojoPojo implements DalPojo {
+	
+	@Column(name="workstationId")
+	@Type(value=Types.INTEGER)
+	private Integer workstationId;
 	
 	@Column(name="wksName")
 	@Type(value=Types.VARCHAR)
@@ -117,6 +118,14 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Column(name="fileUrl")
 	@Type(value=Types.VARCHAR)
 	private String fileUrl;
+
+	public Integer getWorkstationId() {
+		return workstationId;
+	}
+
+	public void setWorkstationId(Integer workstationId) {
+		this.workstationId = workstationId;
+	}
 
 	public String getWksName() {
 		return wksName;
