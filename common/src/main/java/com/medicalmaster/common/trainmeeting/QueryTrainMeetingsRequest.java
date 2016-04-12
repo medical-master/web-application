@@ -16,40 +16,40 @@ import com.medicalmaster.common.request.get.PageRequest;
 public class QueryTrainMeetingsRequest extends PageRequest {
 	@QueryParam("workstationId")
 	/** 工作站ID */
-	private String workstationId;
+	private Integer workstationId;
 
 	@QueryParam("publishStatu")
 	/** 发布状态 */
-	private String publishStatu;
+	private Integer publishStatu;
 
 	/**
 	 * @return the workstationId
 	 */
-	public String getWorkstationId() {
+	public Integer getWorkstationId() {
 		return workstationId;
 	}
 
 	/**
-	 * @param workstationId
-	 *            the workstationId to set
+	 * @param workstationId the workstationId to set
 	 */
-	public void setWorkstationId(String workstationId) {
+	public void setWorkstationId(Integer workstationId) {
 		this.workstationId = workstationId;
 	}
 
 	/**
 	 * @return the publishStatu
 	 */
-	public String getPublishStatu() {
+	public Integer getPublishStatu() {
 		return publishStatu;
 	}
 
 	/**
-	 * @param publishStatu
-	 *            the publishStatu to set
+	 * @param publishStatu the publishStatu to set
 	 */
-	public void setPublishStatu(String publishStatu) {
+	public void setPublishStatu(Integer publishStatu) {
 		this.publishStatu = publishStatu;
 	}
+
+	
 
 }

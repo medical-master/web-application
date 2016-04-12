@@ -306,18 +306,5 @@ public class UserDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
-	/**
-	 * a
-	**/
-	public List<User> findUser(String userName, String password, DalHints hints) throws SQLException {
-		hints = DalHints.createIfAbsent(hints);
-		SelectSqlBuilder builder = new SelectSqlBuilder("user", dbCategory, false);
-		builder.select("createTime","sex","professionalRank","status","lastUpdateTime","department","identityNumber","type","mobilePhoneNumber","title","nickName","email","doctorNumber","authentication","userId","name","educationLevel","iconResourceId","hosptialId");
-		builder.equal("name", userName, Types.VARCHAR, false);
-		builder.equal("authentication", password, Types.VARCHAR, false);
-	    String sql = builder.build();
-		StatementParameters parameters = builder.buildParameters();
-		return queryDao.query(sql, parameters, hints, parser);
-	}
 
 }

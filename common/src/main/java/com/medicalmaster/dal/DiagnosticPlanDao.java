@@ -314,6 +314,7 @@ public class DiagnosticPlanDao {
 		SelectSqlBuilder builder = new SelectSqlBuilder("diagnostic_plan", dbCategory, true);
 		builder.select("brief","publishTime","resourceId","title","visitCnt","createTime","workstationId","lastUpdateUser","createUser","id","category","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
+		builder.and();
 		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
 		builder.orderBy("publishTime", false);
 	    String sql = builder.build();
@@ -326,12 +327,13 @@ public class DiagnosticPlanDao {
 	/**
 	 * findAllDiagnosticPlans
 	**/
-	public List<DiagnosticPlan> findAllDiagnosticPlans(Integer workstationId, Integer publishStatus, DalHints hints) throws SQLException {
+	public List<DiagnosticPlan> findAllDiagnosticPlans(Integer workstationId, Integer status, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("diagnostic_plan", dbCategory, false);
 		builder.select("brief","publishTime","resourceId","title","visitCnt","createTime","workstationId","lastUpdateUser","createUser","id","category","publishStatus","lastUpdateTime");
-		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
-		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, true);
+		builder.and();
+		builder.equal("publishStatus", status, Types.INTEGER, false);
 		builder.orderBy("publishTime", false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();
