@@ -5,11 +5,11 @@
 <%@page import="org.apache.commons.lang.time.DateFormatUtils"%>
 <%@page import="com.medicalmaster.common.helper.PageHelper"%>
 <%@page import="com.medicalmaster.dal.TrainMeeting"%>
+<%@page import="com.medicalmaster.dal.Notice"%>
+<%@page import="com.medicalmaster.web.view.HomeView"%>
 <%@page import="java.util.List"%>
 <%@page pageEncoding="UTF-8"%>
 
-<%@page import="com.medicalmaster.dal.Notice"%>
-<%@page import="com.medicalmaster.web.view.HomeView"%>
 
 <%HomeView view = new HomeView(request, response); %>
 

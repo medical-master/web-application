@@ -278,7 +278,7 @@ body {
 	width: 100%;
 }
 
-/*浼氳閫氱煡*/
+/*会议通知*/
 .notice{
 	/*height: 440px;*/
 	position: relative;
@@ -320,7 +320,7 @@ body {
 .notice .list-unstyled a:hover .infoList{text-decoration: none; position: relative; left: 1px; top: 1px;}
 .notice .list-unstyled a .date{ position:absolute; left:0; top: 0; width: 140px; display: inline-block; }
 .notice .list-unstyled a .infoList{
-	font-family: "榛戜綋";
+	font-family: "黑体";
 	padding-left: 20px;
 	background: url(../images/arrow-right.png) no-repeat left center;
 	background-size: auto 15px;
@@ -343,7 +343,7 @@ body {
 	margin: 0 auto;
 	height: 200px;
 }
-.more-education銆�div.col-md-3{
+.more-education　div.col-md-3{
 	padding: 30px;
 }
 .more-education .card{

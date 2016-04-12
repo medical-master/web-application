@@ -9,10 +9,11 @@
     <link rel="icon" href="resources/images/icon.png">
 
     <title>医大师</title>
-
+    
+    <link rel="stylesheet" href="resources/css/swiper.min.css" />
+    <link rel="stylesheet" href="resources/css/index.css" />
     <!-- Bootstrap core CSS -->
-    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="resources/css/static/sticky-footer-navbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
 	
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="resources/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -23,7 +24,5 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-    <link rel="stylesheet" type="text/css" href="resources/css/swiper.min.css" />
-    <link rel="stylesheet" type="text/css" href="resources/css/index.css" />
+
   </head>  

@@ -26,14 +26,14 @@ public class ShowWorkstation extends WorkstationCoverter
 			Integer recordCnt = manager.countWorkstation(request);
 			Integer pageCnt = PageHelper.calcPageCnt(recordCnt, request.getPageSize());
 
-			List<WorkstationViewPojoPojo> workstationViewPojo = manager.getAllWorkstation(request);
+//			List<WorkstationViewPojoPojo> workstationViewPojo = manager.getAllWorkstation(request);
 
 			response.setSuccess(true);
 			response.setRecordCnt(recordCnt);
 			response.setPageCnt(pageCnt);
 			response.setPageNo(request.getPageNo());
 			response.setPageSize(request.getPageSize());
-			response.setWorkstationView(workstationViewPojo);
+//			response.setWorkstationView(workstationViewPojo);
 		} 
 		catch (SQLException e) 
 		{
