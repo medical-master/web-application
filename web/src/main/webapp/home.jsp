@@ -1,3 +1,5 @@
+<%@page import="com.medicalmaster.common.helper.SysPropertyHelper"%>
+<%@page import="com.medicalmaster.dal.Workstation"%>
 <%@page import="com.medicalmaster.dal.DiagnosticPlan"%>
 <%@page import="com.medicalmaster.dal.ClinicalResearch"%>
 <%@page import="org.apache.commons.lang.time.DateFormatUtils"%>
@@ -49,28 +51,18 @@
 				<div class="decsc">
 					介绍：专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是
 				</div>
+				<%List<Workstation> workstations = view.getWorkstations(); %>
+				<%if(workstations != null && workstations.size() > 0)  {%>
 				<ul class="list-unstyled">
-					<li>
-						<h3>工作站名称</h3>
-						<p class="area">疾病领域</p>
-						<p class="keywords">关键词语、关键词语、关键词语、关键词语、关键词语关键词语关键词语</p>
-					</li>
-					<li>
-						<h3>工作站名称</h3>
-						<p>疾病领域</p>
-						<p>关键词语</p>
-					</li>
-					<li>
-						<h3>工作站名称</h3>
-						<p class="area">疾病领域</p>
-						<p class="keywords">关键词语、关键词语、关键词语、关键词语、关键词语关键词语关键词语</p>
-					</li>
-					<li>
-						<h3>工作站名称</h3>
-						<p class="area">疾病领域</p>
-						<p class="keywords">关键词语、关键词语、关键词语、关键词语、关键词语关键词语关键词语</p>
-					</li>
+					<%for(Workstation workstation : workstations) {%>
+						<li>
+							<h3><%=workstation.getName() %></h3>
+							<p class="area"><%=SysPropertyHelper.getDesc(27, workstation.getIllCode()) %></p>
+							<p class="keywords"><%=workstation.getKeywords() %></p>
+						</li>
+					<%} %>					
 				</ul>
+				<%} %>
 				<div class="more pull-right">更多</div>
 			</div>
 		</div>
