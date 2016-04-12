@@ -10,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 
 import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfoResponse;
+import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosRequest;
+import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosResponse;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansRequest;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansResponse;
 import com.medicalmaster.common.request.get.IdRequest;
@@ -37,12 +39,19 @@ public class DiagnosticPlanResource extends Resources {
 			e.printStackTrace();
 		}
 	}
-	
 
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	public QueryDiagPlansResponse queryDiagPlans(@BeanParam QueryDiagPlansRequest request) {
 		request.setAction("queryList");
+
+		return handle(request, request.getAction());
+	}
+
+	@GET
+	@Path("/infos")
+	public QueryDiagPlanInfosResponse queryDiagPlanInfos(@BeanParam QueryDiagPlanInfosRequest request) {
+		request.setAction("queryInfos");
 
 		return handle(request, request.getAction());
 	}
