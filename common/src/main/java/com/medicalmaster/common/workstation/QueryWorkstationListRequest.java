@@ -30,5 +30,4 @@ public class QueryWorkstationListRequest extends PageRequest {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
 }
