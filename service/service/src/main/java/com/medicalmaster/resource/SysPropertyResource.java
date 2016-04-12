@@ -19,7 +19,10 @@ import com.xross.tools.xunit.XunitFactory;
 @Resource
 @Path(ResourceConstants.PATH_SYS_PROPERTY)
 public class SysPropertyResource extends Resources {
-	static {
+	/**
+	 * 
+	 */
+	public SysPropertyResource() {
 		try {
 			factory = XunitFactory.load("sys_property.xunit");
 			converterId = "sys property branch";

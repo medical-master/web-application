@@ -87,6 +87,13 @@ public class PageResponse extends Response {
 	 */
 	public void covert(PageRequest request) {
 		this.pageSize = request.getPageSize();
-		this.pageNo = request.getPageNo();
+		
+		if (pageCnt < request.getPageNo()) {
+			this.pageNo = 1;
+			request.setPageNo(1);
+		} else {
+			this.pageNo = request.getPageNo();
+		}
+
 	}
 }

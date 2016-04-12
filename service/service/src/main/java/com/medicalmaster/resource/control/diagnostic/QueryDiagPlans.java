@@ -1,4 +1,4 @@
-package com.medicalmaster.resource.control.diagnosticplan;
+package com.medicalmaster.resource.control.diagnostic;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -38,13 +38,12 @@ public class QueryDiagPlans extends DiagPlanConverter {
 			Integer pageCnt = PageHelper.calcPageCnt(recordCnt, request.getPageSize());
 			response.setRecordCnt(recordCnt);
 			response.setPageCnt(pageCnt);
-
+			response.covert(request);
+			
 			List<DiagnosticPlan> plans = manager.findDiagnosticPlans(request);
 			response.setPlans(plans);
-			response.covert(request);
 
 			response.setSuccess(true);
-
 		} catch (SQLException exception) {
 			log.error("查询失败", exception);
 			response.setSuccess(false);

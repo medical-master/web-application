@@ -38,15 +38,15 @@ public class QueryNotices extends NoticeCoverter {
 		try {
 			Integer recordCnt = manager.countNotices(request);
 			Integer pageCnt = PageHelper.calcPageCnt(recordCnt, request.getPageSize());
-
-			List<Notice> notices = manager.queryNotices(request);
-
-			response.setSuccess(true);
 			response.setRecordCnt(recordCnt);
 			response.setPageCnt(pageCnt);
-			response.setPageNo(request.getPageNo());
-			response.setPageSize(request.getPageSize());
+			response.covert(request);
+			
+			List<Notice> notices = manager.queryNotices(request);
+			
 			response.setNotices(notices);
+			
+			response.setSuccess(true);
 		} catch (SQLException e) {
 			logger.error("QueryNotices failed! ", e);
 			response.setSuccess(false);

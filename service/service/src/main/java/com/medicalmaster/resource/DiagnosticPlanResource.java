@@ -26,7 +26,10 @@ import com.xross.tools.xunit.XunitFactory;
 @Resource
 @Path(ResourceConstants.PATH_DIAGNOSTIC_PLAN)
 public class DiagnosticPlanResource extends Resources {
-	static {
+	/**
+	 * 
+	 */
+	public DiagnosticPlanResource() {
 		try {
 			factory = XunitFactory.load("diagnosticPlan.xunit");
 			converterId = "diagnosticPlan branch";
@@ -34,6 +37,7 @@ public class DiagnosticPlanResource extends Resources {
 			e.printStackTrace();
 		}
 	}
+	
 
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)

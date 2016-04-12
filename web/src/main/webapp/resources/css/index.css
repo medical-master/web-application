@@ -278,7 +278,7 @@ body {
 	width: 100%;
 }
 
-/*会议通知*/
+/*浼氳閫氱煡*/
 .notice{
 	/*height: 440px;*/
 	position: relative;
@@ -320,7 +320,7 @@ body {
 .notice .list-unstyled a:hover .infoList{text-decoration: none; position: relative; left: 1px; top: 1px;}
 .notice .list-unstyled a .date{ position:absolute; left:0; top: 0; width: 140px; display: inline-block; }
 .notice .list-unstyled a .infoList{
-	font-family: "黑体";
+	font-family: "榛戜綋";
 	padding-left: 20px;
 	background: url(../images/arrow-right.png) no-repeat left center;
 	background-size: auto 15px;
@@ -343,7 +343,7 @@ body {
 	margin: 0 auto;
 	height: 200px;
 }
-.more-education　div.col-md-3{
+.more-education銆�div.col-md-3{
 	padding: 30px;
 }
 .more-education .card{
@@ -419,4 +419,51 @@ body {
 .notice .swiper-pagination-bullet-active{
 	color: #fff;
 	background: #F79920;
+}
+
+.important {
+	height: auto;
+	background-image: url(../images/important-bg.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100% 100%;
+}
+.important .im-content {
+	width: 1000px;
+	margin: 0px auto;
+	height: 298px;
+}
+.important .im-content .im-left {
+	width: 240px;
+	float: left;
+	padding-top: 50px;
+	height: 298px;
+}
+.important .im-content .im-left h1 {
+	font-size: 40px;
+	color: #2386fb;
+	font-weight: bold;
+}
+.important .im-content .im-left h3 {
+	font-size: 20px;
+	color: #2386fb;
+}
+.important .im-content .im-left p {
+	font-size: 15px;
+	color: #2386fb;
+}
+.important .im-content .im-right {
+	margin-top: 70px;
+	width: 640px;
+	float: right;
+	height: 180px;
+	border: 3px dashed #2386fb;
+	border-radius: 20px;
+	padding-top: 30px;
+	text-align: center;
+}
+.important .im-content .im-right p {
+	font-size: 25px;
+	line-height: 40px;
+	color: #000;
 }

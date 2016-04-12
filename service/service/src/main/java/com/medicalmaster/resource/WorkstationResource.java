@@ -14,29 +14,27 @@ import com.xross.tools.xunit.XunitFactory;
 
 @Resource
 @Path(ResourceConstants.PATH_WORKSTATION)
-public class WorkstationResource extends Resources
-{
-	static 
-	{
-		try
-		{
+public class WorkstationResource extends Resources {
+	/**
+	 * 
+	 */
+	public WorkstationResource() {
+		try {
 			factory = XunitFactory.load("workstation.xunit");
 			converterId = "workstation management";
-		}
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 查询工作站信息
+	 * 
 	 * @return
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public QueryWorkstationResponse showInfo(@BeanParam QueryWorkstationRequest request) 
-	{
+	public QueryWorkstationResponse showInfo(@BeanParam QueryWorkstationRequest request) {
 		request.setAction("showInfo");
 		return handle(request, request.getAction());
 	}

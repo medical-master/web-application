@@ -1,4 +1,4 @@
-package com.medicalmaster.resource.control.diagnosticplan;
+package com.medicalmaster.resource.control.diagnostic;
 
 import java.sql.SQLException;
 
