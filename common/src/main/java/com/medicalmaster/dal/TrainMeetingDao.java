@@ -314,6 +314,7 @@ public class TrainMeetingDao {
 		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, false);
 		builder.select("id");
 		builder.equal("workstationId", workstationId, Types.INTEGER, false);
+		builder.and();
 		builder.equal("publishStatus", publishStatus, Types.INTEGER, false);
         String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();
@@ -327,6 +328,7 @@ public class TrainMeetingDao {
 		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, true);
 		builder.select("meetingTime","meetingAddr","createTime","workstationId","lastUpdateUser","createUser","id","title","content","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, true);
+		builder.and();
 		builder.equalNullable("publishStatus", publishStatu, Types.INTEGER, true);
 		builder.orderBy("createTime", false);
 	    String sql = builder.build();

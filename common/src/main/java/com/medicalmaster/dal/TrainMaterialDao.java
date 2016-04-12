@@ -307,20 +307,18 @@ public class TrainMaterialDao {
 		return client.batchUpdate(hints, daoPojos);
 	}
 	/**
-	 * a
+	 * findByWorkstationIdStatus
 	**/
-	public List<TrainMaterial> findByWorkstationIdStatus(Integer workstationId, Integer status, int pageNo, int pageSize, DalHints hints) throws SQLException {
+	public List<TrainMaterial> findByWorkstationIdStatus(Integer workstationId, Integer status, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
-		SelectSqlBuilder builder = new SelectSqlBuilder("train_material", dbCategory, true);
-		builder.select("id","createTime","createUser","title","visitCnt","publishTime","lastUpdateTime","description","materialFile","lastUpdateUser","publishStatus","workstationId");
+		SelectSqlBuilder builder = new SelectSqlBuilder("train_material", dbCategory, false);
+		builder.select("publishTime","createTime","workstationId","description","lastUpdateUser","createUser","id","title","materialFile","visitCnt","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
+		builder.and();
 		builder.equal("publishStatus", status, Types.INTEGER, false);
 		builder.orderBy("publishTime", false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();
-		int index =  builder.getStatementParameterIndex();
-		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
-		parameters.set(index++, Types.INTEGER, pageSize);
 		return queryDao.query(sql, parameters, hints, parser);
 	}
 

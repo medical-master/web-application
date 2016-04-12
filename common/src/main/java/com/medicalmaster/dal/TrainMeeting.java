@@ -21,6 +21,7 @@ public class TrainMeeting implements DalPojo {
 	
 	@Id
 	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(value=Types.INTEGER)
 	private Integer id;
 	
