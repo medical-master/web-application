@@ -18,10 +18,13 @@ import com.medicalmaster.common.notice.QueryNoticesRequest;
 import com.medicalmaster.common.notice.QueryNoticesResponse;
 import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsRequest;
 import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsResponse;
+import com.medicalmaster.common.workstation.QueryWorkstationListRequest;
+import com.medicalmaster.common.workstation.QueryWorkstationListResponse;
 import com.medicalmaster.dal.ClinicalResearch;
 import com.medicalmaster.dal.DiagnosticPlan;
 import com.medicalmaster.dal.Notice;
 import com.medicalmaster.dal.TrainMeeting;
+import com.medicalmaster.dal.Workstation;
 import com.medicalmaster.web.helper.ResourceProxy;
 
 /**
@@ -115,5 +118,20 @@ public class HomeView extends BaseView {
 		}
 
 		return null;
+	}
+
+	public List<Workstation> getWorkstations() throws IllegalArgumentException, IllegalAccessException {
+		QueryWorkstationListRequest request = new QueryWorkstationListRequest();
+		request.setStatus(1);
+		request.setPageSize(7);
+		QueryWorkstationListResponse response = ResourceProxy.get(
+				webContext.getBaseServiceUrl() + ResourceConstants.PATH_WORKSTATION + "/list", request,
+				QueryWorkstationListResponse.class);
+
+		if (response.isSuccess()) {
+			return response.getWorkstations();
+		} else {
+			return null;
+		}
 	}
 }
