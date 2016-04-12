@@ -10,13 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.medicalmaster.common.bean.ResourceConstants;
-import com.medicalmaster.common.notice.QueryNoticesRequest;
-import com.medicalmaster.common.notice.QueryNoticesResponse;
+import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
 import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationResponse;
-import com.medicalmaster.dal.Notice;
-import com.medicalmaster.dal.Workstation;
+import com.medicalmaster.dal.WorkstationViewPojoPojo;
 import com.medicalmaster.web.helper.ResourceProxy;
 import com.medicalmaster.web.view.BaseView;
 
@@ -29,7 +27,7 @@ public class WorkstationView extends BaseView
 		super(request, response);
 	}
 	
-	public List<Workstation> displayWorkstations() throws SQLException, IllegalArgumentException, IllegalAccessException 
+	public List<WorkstationViewPojoPojo> displayWorkstations() throws SQLException, IllegalArgumentException, IllegalAccessException 
 	{
 		QueryWorkstationRequest req = new QueryWorkstationRequest();
 		QueryWorkstationResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
@@ -37,10 +35,9 @@ public class WorkstationView extends BaseView
 		
 		if (response.isSuccess()) 
 		{
-			List<Workstation> workstationList = response.getWorkstation();
+			List<WorkstationViewPojoPojo> workstationList = response.getWorkstationView();
 			if (workstationList.size() > 0)
 			{
-				log.info("title{}", workstationList.get(0).getActivateTime());
 				return workstationList;
 			}
 			else 
@@ -54,29 +51,23 @@ public class WorkstationView extends BaseView
 		}
 	}
 	
-	public Workstation getWorkstation() throws IllegalArgumentException, IllegalAccessException 
+	public WorkstationViewPojoPojo getWorkstationInfo(String id) throws IllegalArgumentException, IllegalAccessException 
 	{
-//		QueryWorkstationRequest req = new QueryWorkstationRequest();
-//		QueryWorkstationResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
-//				+ ResourceConstants.PATH_WORKSTATION,req,QueryWorkstationResponse.class);
-//		
-//		if (response.isSuccess()) 
-//		{
-//			List<Workstation> workstationList = response.getWorkstation();
-//			if (workstationList.size() > 0)
-//			{
-//				log.info("title{}", workstationList.get(0).getActivateTime());
-//				return workstationList.get(0);
-//			}
-//			else 
-//			{
-//				return null;
-//			}
-//		}
-//		else 
-//		{
+		QueryWorkstationInfoRequeset req = new QueryWorkstationInfoRequeset();
+		req.setAction("showDtlInfo");
+		req.setWorkstationId(Integer.parseInt(id.toString()));
+		QueryWorkstationInfoResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
+				+ ResourceConstants.PATH_WORKSTATION,req,QueryWorkstationInfoResponse.class);
+		
+		if (response.isSuccess()) 
+		{
+			WorkstationViewPojoPojo workstationViewPojoPojo = response.getWorkstationInfo();
+			return workstationViewPojoPojo;
+		}
+		else 
+		{
 			return null;
-//		}
+		}
 	}
 }
 

@@ -308,20 +308,5 @@ public class SysPropertyDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
-	/**
-	 * findSysProperties
-	**/
-	public List<SysProperty> findSysProperties(Integer categoryId, Integer parentId, DalHints hints) throws SQLException {
-		hints = DalHints.createIfAbsent(hints);
-		SelectSqlBuilder builder = new SelectSqlBuilder("sys_property", dbCategory, false);
-		builder.select("extend","sortNo","createTime","name","description","alias","propertyId","categoryId","parentId","lastUpdateTime");
-		builder.equalNullable("categoryId", categoryId, Types.INTEGER, false);
-		builder.and();
-		builder.equalNullable("parentId", parentId, Types.INTEGER, false);
-		builder.orderBy("sortNo", true);
-	    String sql = builder.build();
-		StatementParameters parameters = builder.buildParameters();
-		return queryDao.query(sql, parameters, hints, parser);
-	}
 
 }
