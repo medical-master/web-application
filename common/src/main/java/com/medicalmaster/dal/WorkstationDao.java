@@ -312,7 +312,7 @@ public class WorkstationDao {
 	public List<Workstation> findWorkstations(Integer status, int pageNo, int pageSize, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("workstation", dbCategory, true);
-		builder.select("publishTime","expertId","keywords","subLink","description","domains","activateTime","createTime","workstationId","members","name","attends","rank","lastUpdateUser","createUser","illCode","status","lastUpdateTime");
+		builder.select("publishTime","expertId","keywords","subLink","description","domains","activateTime","summery","createTime","workstationId","members","name","attends","rank","lastUpdateUser","createUser","illCode","status","lastUpdateTime");
 		builder.equalNullable("status", status, Types.INTEGER, false);
 		builder.orderBy("attends", false);
 	    String sql = builder.build();
