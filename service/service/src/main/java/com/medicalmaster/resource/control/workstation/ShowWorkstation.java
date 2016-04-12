@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.medicalmaster.common.helper.PageHelper;
 import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationResponse;
-import com.medicalmaster.dal.Workstation;
+import com.medicalmaster.dal.WorkstationViewPojoPojo;
 import com.xross.tools.xunit.Context;
 
 public class ShowWorkstation extends WorkstationCoverter
@@ -23,17 +23,17 @@ public class ShowWorkstation extends WorkstationCoverter
 		
 		try 
 		{
-			Integer recordCnt = manager.countWorkstation();
+			Integer recordCnt = manager.countWorkstation(request);
 			Integer pageCnt = PageHelper.calcPageCnt(recordCnt, request.getPageSize());
 
-			List<Workstation> workstation = manager.getAllWorkstation();
+			List<WorkstationViewPojoPojo> workstationViewPojo = manager.getAllWorkstation(request);
 
 			response.setSuccess(true);
 			response.setRecordCnt(recordCnt);
 			response.setPageCnt(pageCnt);
 			response.setPageNo(request.getPageNo());
 			response.setPageSize(request.getPageSize());
-			response.setWorkstation(workstation);
+			response.setWorkstationView(workstationViewPojo);
 		} 
 		catch (SQLException e) 
 		{
