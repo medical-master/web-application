@@ -4,7 +4,6 @@ import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.medicalmaster.common.user.UserStatus;
 import com.medicalmaster.common.user.UserType;
 import com.medicalmaster.dal.User;
 import com.medicalmaster.dal.UserDao;
@@ -55,7 +54,7 @@ public class UserManager {
 		User User = new User();
 		User.setAuthentication(password);
 		User.setName(UserName);
-		List<User> Users = dao.findUser(UserName, password, null);
+		List<User> Users = null	;
 		if(Users.size() != 1)
 			return null;
 		

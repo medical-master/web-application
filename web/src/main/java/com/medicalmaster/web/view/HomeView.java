@@ -12,7 +12,9 @@ import org.slf4j.LoggerFactory;
 import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.notice.QueryNoticesRequest;
 import com.medicalmaster.common.notice.QueryNoticesResponse;
+import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsRequest;
 import com.medicalmaster.dal.Notice;
+import com.medicalmaster.dal.TrainMeeting;
 import com.medicalmaster.web.helper.ResourceProxy;
 
 /**
@@ -59,6 +61,14 @@ public class HomeView extends BaseView {
 		} else {
 			return null;
 		}
+	}
+	
+	public List<TrainMeeting> getTrainMeetings(){
+		QueryTrainMeetingsRequest request = new QueryTrainMeetingsRequest();
+		request.setPublishStatu(40);
+		request.setPageNo(1);
+		request.setPageSize();
+		
 	}
 
 }

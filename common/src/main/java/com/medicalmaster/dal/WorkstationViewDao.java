@@ -23,11 +23,21 @@ public class WorkstationViewDao {
 	private DalRowMapper<WorkstationViewPojoPojo> workstationViewPojoPojoRowMapper = null;
 
 
+
 	public WorkstationViewDao() throws SQLException {
 		this.trainMaterialRecorderPojoRowMapper = new DalDefaultJpaMapper(TrainMaterialRecorderPojo.class);
 		this.researchStageRecordPojoRowMapper = new DalDefaultJpaMapper(ResearchStageRecordPojo.class);
 		this.workstationViewPojoPojoRowMapper = new DalDefaultJpaMapper(WorkstationViewPojoPojo.class);
 		this.queryDao = new DalQueryDao(DATA_BASE);
+	}
+	/**
+	 * Ëé∑ÂèñÊÄªÈ°µÊï∞
+	**/
+	public Long count(DalHints hints) throws SQLException {
+		String sql = "SELECT count(*) as count FROM workstation wks, expert ex, USER us, sys_hospital ho, sys_resource re where wks.expertId=ex.id and ex.userId=us.userId and us.hosptialId=ho.hospitalId and us.iconResourceId=re.id and wks.status=1";
+		StatementParameters parameters = new StatementParameters();
+		hints = DalHints.createIfAbsent(hints);
+		return queryDao.queryForObjectNullable(sql, parameters, hints, Long.class);
 	}
 	/**
 	 * findTrainMaterial
@@ -54,10 +64,10 @@ public class WorkstationViewDao {
 		return (List<ResearchStageRecordPojo>)queryDao.query(sql, parameters, hints, researchStageRecordPojoRowMapper);
 	}
 	/**
-	 * π§◊˜’æ–≈œ¢≤È—Ø
+	 * Â∑•‰ΩúÁ´ôËØ¶ÁªÜ‰ø°ÊÅØÊü•ËØ¢
 	**/
-	public List<WorkstationViewPojoPojo> showWorkstation(Integer workstationId, DalHints hints) throws SQLException {
-		String sql = "SELECT wks.`name` as wksName, wks.description, wks.domains, wks.illCode, wks.members, wks.attends, wks.status as wksStatus, ex.expertArea, ex.honorHtml, ex.academicHtml, us.name as usName, us.nickName, us.sex, us.email, concat(us.professionalRank,"£¨",us.title,"£¨",us.educationLevel) as pte, us.status usStatus, us.doctorNumber, us.department, ho.name as hospitalName, ho.level, ho.proviceId, ho.cityId, ho.districtId, ho.address, re.fileUrl FROM workstation wks, expert ex, USER us, sys_hospital ho, sys_resource re where wks.expertId=ex.id and ex.userId=us.userId and us.hosptialId=ho.hospitalId and us.iconResourceId=re.id and wks.status=1 and wks.workstationId=?";
+	public List<WorkstationViewPojoPojo> showWorkstationInfo(Integer workstationId, DalHints hints) throws SQLException {
+		String sql = "SELECT wks.`name` as wksName, wks.description, wks.domains, wks.illCode, wks.members, wks.attends, wks.status as wksStatus, ex.expertArea, ex.honorHtml, ex.academicHtml, us.name as usName, us.nickName, us.sex, us.email, concat(us.professionalRank,'Ôºå',us.title,'Ôºå',us.educationLevel) as pte, us.status usStatus, us.doctorNumber, us.department, ho.name as hospitalName, ho.level, ho.proviceId, ho.cityId, ho.districtId, ho.address, re.fileUrl FROM workstation wks, expert ex, USER us, sys_hospital ho, sys_resource re where wks.expertId=ex.id and ex.userId=us.userId and us.hosptialId=ho.hospitalId and us.iconResourceId=re.id and wks.status=1 and wks.workstationId=?";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
 		int i = 1;
@@ -65,13 +75,16 @@ public class WorkstationViewDao {
 		return (List<WorkstationViewPojoPojo>)queryDao.query(sql, parameters, hints, workstationViewPojoPojoRowMapper);
 	}
 	/**
-	 * ªÒ»°◊‹“≥ ˝
+	 * Â∑•‰ΩúÁ´ô‰ø°ÊÅØÊü•ËØ¢
 	**/
-	public WorkstationViewPojoPojo count(DalHints hints) throws SQLException {
-		String sql = "SELECT wks.`name` as wksName, wks.description, wks.domains, wks.illCode, wks.members, wks.attends, wks.status as wksStatus, ex.expertArea, ex.honorHtml, ex.academicHtml, us.name as usName, us.nickName, us.sex, us.email, concat(us.professionalRank,"£¨",us.title,"£¨",us.educationLevel) as pte, us.status usStatus, us.doctorNumber, us.department, ho.name as hospitalName, ho.level, ho.proviceId, ho.cityId, ho.districtId, ho.address, re.fileUrl FROM workstation wks, expert ex, USER us, sys_hospital ho, sys_resource re where wks.expertId=ex.id and ex.userId=us.userId and us.hosptialId=ho.hospitalId and us.iconResourceId=re.id and wks.status=1";
+	public List<WorkstationViewPojoPojo> showWorkstation(int pageNo, int pageSize, DalHints hints) throws SQLException {
+		String sql = "SELECT wks.`name` AS wksName, wks.description, wks.domains, wks.illCode, wks.members, wks.attends, wks.status AS wksStatus, ex.expertArea, ex.honorHtml, ex.academicHtml, us.name AS usName, us.nickName, us.sex, us.email, concat(us.professionalRank, 'Ôºå', us.title, 'Ôºå', us.educationLevel) AS pte, us.status usStatus, us.doctorNumber, us.department, ho.name AS hospitalName, ho.level, ho.proviceId, ho.cityId, ho.districtId, ho.address, re.fileUrl FROM workstation wks, expert ex, USER us, sys_hospital ho, sys_resource re WHERE wks.expertId = ex.id AND ex.userId = us.userId AND us.hosptialId = ho.hospitalId AND us.iconResourceId = re.id AND wks.status = 1 limit ?, ?";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
-		return (WorkstationViewPojoPojo)queryDao.queryForObjectNullable(sql, parameters, hints, workstationViewPojoPojoRowMapper);
+		int i = 1;
+		parameters.set(i++, Types.INTEGER, (pageNo - 1) * pageSize);
+		parameters.set(i++, Types.INTEGER, pageSize);
+		return (List<WorkstationViewPojoPojo>)queryDao.query(sql, parameters, hints, workstationViewPojoPojoRowMapper);
 	}
 
 }
