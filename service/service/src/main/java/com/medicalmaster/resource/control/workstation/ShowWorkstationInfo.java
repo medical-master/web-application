@@ -4,8 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.medicalmaster.common.request.get.IdRequest;
+import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
-import com.medicalmaster.dal.Workstation;
+import com.medicalmaster.dal.WorkstationViewPojoPojo;
 import com.xross.tools.xunit.Context;
 
 public class ShowWorkstationInfo extends WorkstationCoverter 
@@ -15,21 +16,22 @@ public class ShowWorkstationInfo extends WorkstationCoverter
 	@Override
 	public Context convert(Context inputCtx)
 	{
-		IdRequest context = (IdRequest) inputCtx;
-		Integer id = context.getId();
-		QueryWorkstationInfoResponse workstationInfoResponse = new QueryWorkstationInfoResponse();
+		QueryWorkstationInfoRequeset request = (QueryWorkstationInfoRequeset) inputCtx;
+		System.out.println(request.getWorkstationId());
+		QueryWorkstationInfoResponse response = new QueryWorkstationInfoResponse();
 		
 		try
 		{
-			Workstation workstation = manager.queryWorkstationInfo(id);
-			workstationInfoResponse.setSuccess(true);
-			workstationInfoResponse.setWorkstation(workstation);
+			WorkstationViewPojoPojo workstation = manager.queryWorkstationInfo(request);
+			response.setSuccess(true);
+			response.setWorkstationInfo(workstation);
+			return response;
 		}
 		catch(Exception ex)
 		{
 			log.error("ShowInfoWorkstationInfo.convert Error:"+ex.getMessage());
+			return null;
 		}
-		return null;
 	}
 }
 

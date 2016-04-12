@@ -3,21 +3,20 @@ package com.medicalmaster.common.workstation;
 import java.util.List;
 
 import com.medicalmaster.common.PageResponse;
-import com.medicalmaster.dal.Workstation;
+import com.medicalmaster.dal.WorkstationViewPojoPojo;
 
 public class QueryWorkstationResponse extends PageResponse
 {
-	private List<Workstation> workstation;
-	
+	private List<WorkstationViewPojoPojo> workstationView;
 	public QueryWorkstationResponse(){}
-
-	public List<Workstation> getWorkstation() 
+	
+	public List<WorkstationViewPojoPojo> getWorkstationView() 
 	{
-		return workstation;
+		return workstationView;
 	}
 
-	public void setWorkstation(List<Workstation> workstation) 
+	public void setWorkstationView(List<WorkstationViewPojoPojo> workstationView) 
 	{
-		this.workstation = workstation;
+		this.workstationView = workstationView;
 	}
 }

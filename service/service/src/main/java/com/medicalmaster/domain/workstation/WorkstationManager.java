@@ -3,12 +3,17 @@ package com.medicalmaster.domain.workstation;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.medicalmaster.dal.Notice;
+import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsRequest;
+import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
+import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.dal.Workstation;
 import com.medicalmaster.dal.WorkstationDao;
+import com.medicalmaster.dal.WorkstationViewDao;
+import com.medicalmaster.dal.WorkstationViewPojoPojo;
 
 public class WorkstationManager 
 {
+	private WorkstationViewDao viewDao;
 	private WorkstationDao dao;
 	
 	/**
@@ -17,6 +22,7 @@ public class WorkstationManager
 	 */
 	public WorkstationManager() throws SQLException 
 	{
+		viewDao = new WorkstationViewDao();
 		dao = new WorkstationDao();
 	}
 	
@@ -25,9 +31,9 @@ public class WorkstationManager
 	 * @throws SQLException 
 	 * @return List<EdsWorkstation>
 	 */
-	public List<Workstation> getAllWorkstation() throws SQLException 
+	public List<WorkstationViewPojoPojo> getAllWorkstation(QueryWorkstationRequest request) throws SQLException 
 	{
-		return dao.getAll(null);
+		return viewDao.showWorkstation(request.getPageNo(), request.getPageSize(),null);
 	}
 	
 	/**
@@ -66,14 +72,18 @@ public class WorkstationManager
 	 * @return
 	 * @throws SQLException
 	 */
-	public Workstation queryWorkstationInfo(Integer id) throws SQLException 
+	public WorkstationViewPojoPojo queryWorkstationInfo(QueryWorkstationInfoRequeset requeset) throws SQLException 
 	{
-		return dao.queryByPk(id, null);
+		return viewDao.showWorkstationInfo(requeset.getWorkstationId(), null);
 	}
 	
-	public Integer countWorkstation() throws SQLException 
+	/**
+	 * 获取总条数
+	 */
+	public Integer countWorkstation(QueryWorkstationRequest request) throws SQLException 
 	{
-		return dao.count(null);
+		Long count = viewDao.count(null);
+		return Integer.parseInt(count.toString());
 	}
 }
 
