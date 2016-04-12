@@ -4,13 +4,10 @@ import javax.annotation.Resource;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.medicalmaster.common.bean.ResourceConstants;
-import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsRequest;
-import com.medicalmaster.common.request.get.IdRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
 import com.medicalmaster.common.workstation.QueryWorkstationRequest;
@@ -44,7 +41,7 @@ public class WorkstationResource extends Resources {
 		request.setAction("showInfo");
 		return handle(request, request.getAction());
 	}
-	
+		
 	/**
 	 * 查询工作站详细信息
 	 * @return
