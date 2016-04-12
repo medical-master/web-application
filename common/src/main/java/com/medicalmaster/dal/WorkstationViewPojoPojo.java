@@ -1,14 +1,17 @@
 package com.medicalmaster.dal;
 
-import java.sql.Types;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import com.ctrip.platform.dal.dao.annotation.Database;
+import com.ctrip.platform.dal.dao.annotation.Sensitive;
+import com.ctrip.platform.dal.dao.annotation.Type;
+import java.sql.Types;
 
 import com.ctrip.platform.dal.dao.DalPojo;
-import com.ctrip.platform.dal.dao.annotation.Database;
-import com.ctrip.platform.dal.dao.annotation.Type;
 
 @Entity
 @Database(name="")
@@ -19,13 +22,29 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer workstationId;
 	
+	@Column(name="expertId")
+	@Type(value=Types.INTEGER)
+	private Integer expertId;
+	
+	@Column(name="subLink")
+	@Type(value=Types.VARCHAR)
+	private String subLink;
+	
 	@Column(name="wksName")
 	@Type(value=Types.VARCHAR)
 	private String wksName;
 	
+	@Column(name="summery")
+	@Type(value=Types.VARCHAR)
+	private String summery;
+	
 	@Column(name="description")
 	@Type(value=Types.VARCHAR)
 	private String description;
+	
+	@Column(name="keywords")
+	@Type(value=Types.VARCHAR)
+	private String keywords;
 	
 	@Column(name="domains")
 	@Type(value=Types.VARCHAR)
@@ -46,18 +65,6 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Column(name="wksStatus")
 	@Type(value=Types.INTEGER)
 	private Integer wksStatus;
-	
-	@Column(name="expertArea")
-	@Type(value=Types.VARCHAR)
-	private String expertArea;
-	
-	@Column(name="honorHtml")
-	@Type(value=Types.INTEGER)
-	private Integer honorHtml;
-	
-	@Column(name="academicHtml")
-	@Type(value=Types.INTEGER)
-	private Integer academicHtml;
 	
 	@Column(name="usName")
 	@Type(value=Types.VARCHAR)
@@ -118,6 +125,18 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Column(name="fileUrl")
 	@Type(value=Types.VARCHAR)
 	private String fileUrl;
+	
+	@Column(name="userId")
+	@Type(value=Types.INTEGER)
+	private Integer userId;
+	
+	@Column(name="expertArea")
+	@Type(value=Types.VARCHAR)
+	private String expertArea;
+	
+	@Column(name="expertType")
+	@Type(value=Types.INTEGER)
+	private Integer expertType;
 
 	public Integer getWorkstationId() {
 		return workstationId;
@@ -125,6 +144,22 @@ public class WorkstationViewPojoPojo implements DalPojo {
 
 	public void setWorkstationId(Integer workstationId) {
 		this.workstationId = workstationId;
+	}
+
+	public Integer getExpertId() {
+		return expertId;
+	}
+
+	public void setExpertId(Integer expertId) {
+		this.expertId = expertId;
+	}
+
+	public String getSubLink() {
+		return subLink;
+	}
+
+	public void setSubLink(String subLink) {
+		this.subLink = subLink;
 	}
 
 	public String getWksName() {
@@ -135,12 +170,28 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.wksName = wksName;
 	}
 
+	public String getSummery() {
+		return summery;
+	}
+
+	public void setSummery(String summery) {
+		this.summery = summery;
+	}
+
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
 
 	public String getDomains() {
@@ -181,30 +232,6 @@ public class WorkstationViewPojoPojo implements DalPojo {
 
 	public void setWksStatus(Integer wksStatus) {
 		this.wksStatus = wksStatus;
-	}
-
-	public String getExpertArea() {
-		return expertArea;
-	}
-
-	public void setExpertArea(String expertArea) {
-		this.expertArea = expertArea;
-	}
-
-	public Integer getHonorHtml() {
-		return honorHtml;
-	}
-
-	public void setHonorHtml(Integer honorHtml) {
-		this.honorHtml = honorHtml;
-	}
-
-	public Integer getAcademicHtml() {
-		return academicHtml;
-	}
-
-	public void setAcademicHtml(Integer academicHtml) {
-		this.academicHtml = academicHtml;
 	}
 
 	public String getUsName() {
@@ -325,6 +352,30 @@ public class WorkstationViewPojoPojo implements DalPojo {
 
 	public void setFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getExpertArea() {
+		return expertArea;
+	}
+
+	public void setExpertArea(String expertArea) {
+		this.expertArea = expertArea;
+	}
+
+	public Integer getExpertType() {
+		return expertType;
+	}
+
+	public void setExpertType(Integer expertType) {
+		this.expertType = expertType;
 	}
 
 }
