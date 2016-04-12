@@ -33,12 +33,14 @@ public class QueryClinicalResearchs extends ClinicalResearchCoverter {
 			QueryClinicalResearchsRequest request = (QueryClinicalResearchsRequest) inputCtx;
 			Integer recordCnt = manager.queryClinicalResearchsCnt(request);
 			Integer pageCnt = PageHelper.calcPageCnt(recordCnt, request.getPageSize());
+			
 			response.setRecordCnt(recordCnt);
 			response.setPageCnt(pageCnt);
 			response.covert(request);
 
 			List<ClinicalResearch> researchs = manager.queryClinicalResearchs(request);
 			response.setResearchs(researchs);
+			response.setSuccess(true);
 		} catch (SQLException exception) {
 			response.setSuccess(false);
 			response.setMessage("数据库查询失败");

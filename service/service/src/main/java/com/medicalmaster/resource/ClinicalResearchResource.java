@@ -27,7 +27,10 @@ import com.xross.tools.xunit.XunitFactory;
 @Resource
 @Path(ResourceConstants.PATH_CLINICAL_RESEARCH)
 public class ClinicalResearchResource extends Resources {
-	static {
+	/**
+	 * 
+	 */
+	public ClinicalResearchResource() {
 		try {
 			factory = XunitFactory.load("clinicalResearch.xunit");
 			converterId = "clinicalResearch branch";

@@ -36,7 +36,7 @@ public class NoticeManager {
 	}
 
 	public List<Notice> queryNotices(QueryNoticesRequest request) throws SQLException {
-		return dao.findNotice(request.getStatus(), request.getPageSize(), request.getPageNo(), null);
+		return dao.findNotice(request.getStatus(), request.getPageNo(), request.getPageSize(), null);
 	}
 
 	public Notice queryNoticeInfo(Integer id) throws SQLException {

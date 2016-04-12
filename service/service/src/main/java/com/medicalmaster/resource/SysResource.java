@@ -32,7 +32,10 @@ import com.xross.tools.xunit.XunitFactory;
 @Resource
 @Path(ResourceConstants.PATH_SYS_RESOURCE)
 public class SysResource extends Resources {
-	static {
+	/**
+	 * 
+	 */
+	public SysResource() {
 		try {
 			factory = XunitFactory.load("sysResource.xunit");
 			converterId = "sysResource branch";

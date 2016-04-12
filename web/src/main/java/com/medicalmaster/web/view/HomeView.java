@@ -10,9 +10,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.medicalmaster.common.bean.ResourceConstants;
+import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsRequest;
+import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsResponse;
+import com.medicalmaster.common.diagnosticplan.QueryDiagPlansRequest;
+import com.medicalmaster.common.diagnosticplan.QueryDiagPlansResponse;
 import com.medicalmaster.common.notice.QueryNoticesRequest;
 import com.medicalmaster.common.notice.QueryNoticesResponse;
 import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsRequest;
+import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsResponse;
+import com.medicalmaster.dal.ClinicalResearch;
+import com.medicalmaster.dal.DiagnosticPlan;
 import com.medicalmaster.dal.Notice;
 import com.medicalmaster.dal.TrainMeeting;
 import com.medicalmaster.web.helper.ResourceProxy;
@@ -43,17 +50,19 @@ public class HomeView extends BaseView {
 	 * @return
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
-	 * @throws UnsupportedEncodingException 
+	 * @throws UnsupportedEncodingException
 	 */
-	public Notice getLastedNotice() throws IllegalArgumentException, IllegalAccessException, UnsupportedEncodingException {
+	public Notice getLastedNotice()
+			throws IllegalArgumentException, IllegalAccessException, UnsupportedEncodingException {
 		QueryNoticesRequest req = new QueryNoticesRequest();
+		req.setStatus(40);
+
 		QueryNoticesResponse response = ResourceProxy
 				.get(webContext.getBaseServiceUrl() + ResourceConstants.PATH_NOTICE, req, QueryNoticesResponse.class);
-		
+
 		if (response.isSuccess()) {
 			List<Notice> notices = response.getNotices();
 			if (notices.size() > 0) {
-				logger.info("title{}", notices.get(0).getTitle());
 				return notices.get(0);
 			} else {
 				return null;
@@ -62,13 +71,49 @@ public class HomeView extends BaseView {
 			return null;
 		}
 	}
-	
-	public List<TrainMeeting> getTrainMeetings(){
+
+	public List<TrainMeeting> getTrainMeetings() throws IllegalArgumentException, IllegalAccessException {
 		QueryTrainMeetingsRequest request = new QueryTrainMeetingsRequest();
 		request.setPublishStatu(40);
 		request.setPageNo(1);
-		request.setPageSize();
-		
+		request.setPageSize(35);
+		QueryTrainMeetingsResponse response = ResourceProxy.get(
+				webContext.getBaseServiceUrl() + ResourceConstants.PATH_TRAIN_MEETING, request,
+				QueryTrainMeetingsResponse.class);
+
+		if (response.isSuccess()) {
+			return response.getTrainMeetings();
+		} else {
+			return null;
+		}
 	}
 
+	public List<ClinicalResearch> getClinicalResearchs() throws IllegalArgumentException, IllegalAccessException {
+		QueryClinicalResearchsRequest request = new QueryClinicalResearchsRequest();
+		request.setPageSize(7);
+		QueryClinicalResearchsResponse response = ResourceProxy.get(
+				webContext.getBaseServiceUrl() + ResourceConstants.PATH_CLINICAL_RESEARCH, request,
+				QueryClinicalResearchsResponse.class);
+
+		if (response.isSuccess()) {
+			return response.getResearchs();
+		}
+
+		return null;
+	}
+
+	public List<DiagnosticPlan> getDiagnosticPlans() throws IllegalArgumentException, IllegalAccessException {
+		QueryDiagPlansRequest request = new QueryDiagPlansRequest();
+		request.setPublishStatus(40);
+		request.setPageSize(12);
+		QueryDiagPlansResponse response = ResourceProxy.get(
+				webContext.getBaseServiceUrl() + ResourceConstants.PATH_DIAGNOSTIC_PLAN, request,
+				QueryDiagPlansResponse.class);
+
+		if (response.isSuccess()) {
+			return response.getPlans();
+		}
+
+		return null;
+	}
 }

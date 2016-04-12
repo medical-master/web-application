@@ -27,7 +27,10 @@ import com.xross.tools.xunit.XunitFactory;
 @Resource
 @Path(ResourceConstants.PATH_NOTICE)
 public class NoticeResource extends Resources {
-	static {
+	/**
+	 * 
+	 */
+	public NoticeResource() {
 		try {
 			factory = XunitFactory.load("notice.xunit");
 			converterId = "notice branch";

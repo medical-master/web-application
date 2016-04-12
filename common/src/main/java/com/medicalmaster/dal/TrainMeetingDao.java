@@ -313,9 +313,9 @@ public class TrainMeetingDao {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, false);
 		builder.select("id");
-		builder.equal("workstationId", workstationId, Types.INTEGER, false);
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
 		builder.and();
-		builder.equal("publishStatus", publishStatus, Types.INTEGER, false);
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
         String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();
 		return queryDao.query(sql, parameters, hints, Integer.class);

@@ -24,7 +24,11 @@ import com.xross.tools.xunit.XunitFactory;
 @Resource
 @Path(ResourceConstants.PATH_TRAIN_MEETING)
 public class TrainMeetingResource extends Resources {
-	static {
+
+	/**
+	 * 
+	 */
+	public TrainMeetingResource() {
 		try {
 			factory = XunitFactory.load("trainMeeting.xunit");
 			converterId = "trainMeeting branch";
