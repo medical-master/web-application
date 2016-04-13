@@ -32,12 +32,7 @@ public class DiagnosticPlanResource extends Resources {
 	 * 
 	 */
 	public DiagnosticPlanResource() {
-		try {
-			factory = XunitFactory.load("diagnosticPlan.xunit");
-			converterId = "diagnosticPlan branch";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		super("diagnosticPlan.xunit", "diagnosticPlan branch");
 	}
 
 	@GET

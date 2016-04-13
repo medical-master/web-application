@@ -17,5 +17,7 @@ import com.medicalmaster.common.bean.ResourceConstants;
 @Resource
 @Path(ResourceConstants.PATH_HOSPITAL)
 public class HospitalResource extends Resources {
-	
+	public HospitalResource() {
+		super(null, null);
+	}
 }

@@ -14,7 +14,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.medicalmaster.common.ExceptionWraper;
 import com.medicalmaster.common.RequestByIdContext;
 import com.medicalmaster.common.Status;
 import com.medicalmaster.common.bean.ResourceConstants;
@@ -23,20 +22,13 @@ import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.common.user.LoginRequest;
 import com.medicalmaster.common.user.UpdateUserRequest;
-import com.xross.tools.xunit.Context;
-import com.xross.tools.xunit.XunitFactory;
 
 @Resource
 @Path(ResourceConstants.PATH_USER)
-public class UserResource {
-	private static XunitFactory factory;
-
-	static {
-		try {
-			factory = XunitFactory.load("user.xunit");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+public class UserResource extends Resources {
+	
+	public UserResource() {
+		super("user.xunit", "user management");
 	}
 
 	@GET
@@ -83,14 +75,5 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public GetUserInfoResponse updateInfomation(@BeanParam UpdateUserRequest updateUserRequest) {
 		return handle(updateUserRequest, updateUserRequest.getAction());
-	}
-
-	private <T> T handle(Context ctx, String message) {
-		try {
-			return (T) factory.getConverter("user management").convert(ctx);
-		} catch (Throwable e) {
-			ExceptionWraper.wrap(message, e);
-			return null;
-		}
 	}
 }

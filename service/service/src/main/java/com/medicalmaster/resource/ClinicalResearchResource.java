@@ -31,12 +31,7 @@ public class ClinicalResearchResource extends Resources {
 	 * 
 	 */
 	public ClinicalResearchResource() {
-		try {
-			factory = XunitFactory.load("clinicalResearch.xunit");
-			converterId = "clinicalResearch branch";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		super("clinicalResearch.xunit", "clinicalResearch branch");
 	}
 
 	@GET
