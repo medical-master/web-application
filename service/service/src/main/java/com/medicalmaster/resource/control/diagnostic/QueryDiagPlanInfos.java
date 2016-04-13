@@ -6,10 +6,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosRequest;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosResponse;
 import com.medicalmaster.common.helper.PageHelper;
-import com.medicalmaster.dal.DiagnosticPlanListPojo;
+import com.medicalmaster.common.request.get.PageRequest;
+import com.medicalmaster.dal.DiagPlanViewPojo;
 import com.xross.tools.xunit.Context;
 
 /**
@@ -32,23 +32,22 @@ public class QueryDiagPlanInfos extends DiagPlanConverter {
 	 */
 	@Override
 	public Context convert(Context inputCtx) {
-		QueryDiagPlanInfosRequest request = (QueryDiagPlanInfosRequest) inputCtx;
+		PageRequest request = (PageRequest) inputCtx;
 		QueryDiagPlanInfosResponse response = new QueryDiagPlanInfosResponse();
 
 		try {
-			Integer recordCnt = manager.findDiagPlanInfosCnt(request);
+			Integer recordCnt = manager.findDiagPlanInfosCnt();
 			Integer pageCnt = PageHelper.calcPageCnt(recordCnt, request.getPageSize());
 			response.setRecordCnt(recordCnt);
 			response.setPageCnt(pageCnt);
 			response.covert(request);
 
-			List<DiagnosticPlanListPojo> diagnosticPlanListPojos = manager.findDiagPlanInfos(request);
+			List<DiagPlanViewPojo> diagnosticPlanListPojos = manager.findDiagPlanInfos(request);
 			response.setPojos(diagnosticPlanListPojos);
 			response.setSuccess(true);
 
 		} catch (SQLException exception) {
-			log.error("数据库查询失败 planStatus {}, workstationStatus {}", request.getPlanStatus(),
-					request.getWorkstatStatus(), exception);
+			log.error("数据库查询失败 ", exception);
 			response.setSuccess(false);
 			response.setMessage("数据库查询失败");
 		}

@@ -19,6 +19,8 @@ public class PageResponse extends Response {
 	private Integer recordCnt;
 	/** 页码总数 */
 	private Integer pageCnt;
+	/** 记录总数缓存时间 */
+	private Long cacheTime;
 
 	/**
 	 * @return the pageSize
@@ -81,19 +83,33 @@ public class PageResponse extends Response {
 	}
 
 	/**
+	 * @return the cacheTime
+	 */
+	public Long getCacheTime() {
+		return cacheTime;
+	}
+
+	/**
+	 * @param cacheTime
+	 *            the cacheTime to set
+	 */
+	public void setCacheTime(Long cacheTime) {
+		this.cacheTime = cacheTime;
+	}
+
+	/**
 	 * 从PageRequest中获取分页信息
 	 * 
 	 * @param request
 	 */
 	public void covert(PageRequest request) {
 		this.pageSize = request.getPageSize();
-		
+
 		if (pageCnt < request.getPageNo()) {
 			this.pageNo = 1;
 			request.setPageNo(1);
 		} else {
 			this.pageNo = request.getPageNo();
 		}
-
 	}
 }
