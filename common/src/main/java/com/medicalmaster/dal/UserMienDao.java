@@ -14,38 +14,38 @@ import java.util.Map;
 
 import com.ctrip.platform.dal.dao.helper.DalDefaultJpaParser;
 
-public class NoticeDao {
+public class UserMienDao {
     private static final String DATA_BASE = "medical-master";
 	private static DatabaseCategory dbCategory = null;
-	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from notice";
-	private static final String ALL_SQL_PATTERN = "SELECT * FROM notice";
-	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM notice LIMIT ?, ?";
-	private DalParser<Notice> parser = null;	
+	private static final String COUNT_SQL_PATTERN = "SELECT count(1) from user_mien";
+	private static final String ALL_SQL_PATTERN = "SELECT * FROM user_mien";
+	private static final String PAGE_MYSQL_PATTERN = "SELECT * FROM user_mien LIMIT ?, ?";
+	private DalParser<UserMien> parser = null;	
 	private DalScalarExtractor extractor = new DalScalarExtractor();
-	private DalTableDao<Notice> client;
+	private DalTableDao<UserMien> client;
 	private DalQueryDao queryDao = null;
 	private DalClient baseClient;
 	
-	public NoticeDao() throws SQLException {
-		parser = new DalDefaultJpaParser<>(Notice.class);
-		this.client = new DalTableDao<Notice>(parser);
+	public UserMienDao() throws SQLException {
+		parser = new DalDefaultJpaParser<>(UserMien.class);
+		this.client = new DalTableDao<UserMien>(parser);
 		dbCategory = this.client.getDatabaseCategory();
 		this.queryDao = new DalQueryDao(DATA_BASE);
 		this.baseClient = DalClientFactory.getClient(DATA_BASE);
 	}
 	/**
-	 * Query Notice by the specified ID
+	 * Query UserMien by the specified ID
 	 * The ID must be a number
 	**/
-	public Notice queryByPk(Number id, DalHints hints)
+	public UserMien queryByPk(Number id, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(id, hints);
 	}
     /**
-	 * Query Notice by Notice instance which the primary key is set
+	 * Query UserMien by UserMien instance which the primary key is set
 	**/
-	public Notice queryByPk(Notice pk, DalHints hints)
+	public UserMien queryByPk(UserMien pk, DalHints hints)
 			throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		return client.queryByPk(pk, hints);
@@ -60,10 +60,10 @@ public class NoticeDao {
 		return result.intValue();
 	}
 	/**
-	 * Query Notice with paging function
+	 * Query UserMien with paging function
 	 * The pageSize and pageNo must be greater than zero.
 	**/
-	public List<Notice> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
+	public List<UserMien> queryByPage(int pageSize, int pageNo, DalHints hints)  throws SQLException {
 		if(pageNo < 1 || pageSize < 1) 
 			throw new SQLException("Illigal pagesize or pageNo, pls check");	
         StatementParameters parameters = new StatementParameters();
@@ -76,10 +76,10 @@ public class NoticeDao {
 	/**
 	 * Get all records in the whole table
 	**/
-	public List<Notice> getAll(DalHints hints) throws SQLException {
+	public List<UserMien> getAll(DalHints hints) throws SQLException {
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
-		List<Notice> result = null;
+		List<UserMien> result = null;
 		result = queryDao.query(ALL_SQL_PATTERN, parameters, hints, parser);
 		return result;
 	}
@@ -95,7 +95,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, Notice daoPojo) throws SQLException {
+	public int insert(DalHints hints, UserMien daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -114,7 +114,7 @@ public class NoticeDao {
 	 *            list of pojos to be inserted
 	 * @return how many rows been affected
 	 */
-	public int[] insert(DalHints hints, List<Notice> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -134,7 +134,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int insert(DalHints hints, KeyHolder keyHolder, Notice daoPojo) throws SQLException {
+	public int insert(DalHints hints, KeyHolder keyHolder, UserMien daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -157,7 +157,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] insert(DalHints hints, KeyHolder keyHolder, List<Notice> daoPojos) throws SQLException {
+	public int[] insert(DalHints hints, KeyHolder keyHolder, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -172,7 +172,7 @@ public class NoticeDao {
 	 * @return how many rows been affected for inserting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchInsert(DalHints hints, List<Notice> daoPojos) throws SQLException {
+	public int[] batchInsert(DalHints hints, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -189,7 +189,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, List<Notice> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -207,7 +207,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<Notice> daoPojos) throws SQLException {
+	public int combinedInsert(DalHints hints, KeyHolder keyHolder, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -221,7 +221,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int delete(DalHints hints, Notice daoPojo) throws SQLException {
+	public int delete(DalHints hints, UserMien daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -235,7 +235,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] delete(DalHints hints, List<Notice> daoPojos) throws SQLException {
+	public int[] delete(DalHints hints, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -250,7 +250,7 @@ public class NoticeDao {
 	 * @return how many rows been affected for deleting each of the pojo
 	 * @throws SQLException
 	 */
-	public int[] batchDelete(DalHints hints, List<Notice> daoPojos) throws SQLException {
+	public int[] batchDelete(DalHints hints, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -269,7 +269,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int update(DalHints hints, Notice daoPojo) throws SQLException {
+	public int update(DalHints hints, UserMien daoPojo) throws SQLException {
 		if(null == daoPojo)
 			return 0;
 		hints = DalHints.createIfAbsent(hints);
@@ -288,7 +288,7 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] update(DalHints hints, List<Notice> daoPojos) throws SQLException {
+	public int[] update(DalHints hints, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
@@ -300,27 +300,11 @@ public class NoticeDao {
 	 * @return how many rows been affected
 	 * @throws SQLException
 	 */
-	public int[] batchUpdate(DalHints hints, List<Notice> daoPojos) throws SQLException {
+	public int[] batchUpdate(DalHints hints, List<UserMien> daoPojos) throws SQLException {
 		if(null == daoPojos || daoPojos.size() <= 0)
 			return new int[0];
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
-	}
-	/**
-	 * findNotice
-	**/
-	public List<Notice> findNotice(Integer publishStatus, int pageNo, int pageSize, DalHints hints) throws SQLException {
-		hints = DalHints.createIfAbsent(hints);
-		SelectSqlBuilder builder = new SelectSqlBuilder("notice", dbCategory, true);
-		builder.select("createTime","lastUpdateUser","createUser","id","title","content","publishStatus","lastUpdateTime");
-		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, true);
-		builder.orderBy("createTime", false);
-	    String sql = builder.build();
-		StatementParameters parameters = builder.buildParameters();
-		int index =  builder.getStatementParameterIndex();
-		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
-		parameters.set(index++, Types.INTEGER, pageSize);
-		return queryDao.query(sql, parameters, hints, parser);
 	}
 
 }

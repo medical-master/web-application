@@ -10,12 +10,11 @@ import javax.ws.rs.core.MediaType;
 
 import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfoResponse;
-import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosRequest;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosResponse;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansRequest;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansResponse;
 import com.medicalmaster.common.request.get.IdRequest;
-import com.xross.tools.xunit.XunitFactory;
+import com.medicalmaster.common.request.get.PageRequest;
 
 /**
  * 诊疗方案
@@ -45,7 +44,7 @@ public class DiagnosticPlanResource extends Resources {
 
 	@GET
 	@Path("/infos")
-	public QueryDiagPlanInfosResponse queryDiagPlanInfos(@BeanParam QueryDiagPlanInfosRequest request) {
+	public QueryDiagPlanInfosResponse queryDiagPlanInfos(@BeanParam PageRequest request) {
 		request.setAction("queryInfos");
 
 		return handle(request, request.getAction());

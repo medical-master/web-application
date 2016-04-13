@@ -3,8 +3,7 @@ package com.medicalmaster.common.diagnosticplan;
 import java.util.List;
 
 import com.medicalmaster.common.PageResponse;
-import com.medicalmaster.dal.DiagnosticPlanExtDao;
-import com.medicalmaster.dal.DiagnosticPlanListPojo;
+import com.medicalmaster.dal.DiagPlanViewPojo;
 
 /**
  * 诊疗方案详情列表
@@ -16,12 +15,12 @@ import com.medicalmaster.dal.DiagnosticPlanListPojo;
  * </P>
  */
 public class QueryDiagPlanInfosResponse extends PageResponse {
-	private List<DiagnosticPlanListPojo> pojos;
+	private List<DiagPlanViewPojo> pojos;
 
 	/**
 	 * @return the pojos
 	 */
-	public List<DiagnosticPlanListPojo> getPojos() {
+	public List<DiagPlanViewPojo> getPojos() {
 		return pojos;
 	}
 
@@ -29,7 +28,7 @@ public class QueryDiagPlanInfosResponse extends PageResponse {
 	 * @param pojos
 	 *            the pojos to set
 	 */
-	public void setPojos(List<DiagnosticPlanListPojo> pojos) {
+	public void setPojos(List<DiagPlanViewPojo> pojos) {
 		this.pojos = pojos;
 	}
 

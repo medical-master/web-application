@@ -1,7 +1,7 @@
+<%@page import="com.medicalmaster.dal.DiagPlanViewPojo"%>
 <%@page import="com.medicalmaster.common.helper.ParseHelper"%>
 <%@page import="org.apache.commons.lang.time.DateFormatUtils"%>
 <%@page import="org.apache.commons.lang.time.DateUtils"%>
-<%@page import="com.medicalmaster.dal.DiagnosticPlanListPojo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.medicalmaster.web.view.diagnostic.DiagHomeView"%>
 <%@page pageEncoding="UTF-8"%>
@@ -28,13 +28,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%List<DiagnosticPlanListPojo> pojos = view.getDiagPlanInfos(); %>
+					<%List<DiagPlanViewPojo> pojos = view.getDiagPlanInfos(); %>
 					<%if(pojos != null && pojos.size() > 0) {%>
-						<%for(DiagnosticPlanListPojo pojo : pojos){ %>
+						<%for(DiagPlanViewPojo pojo : pojos){ %>
 						<tr>
 							<td><%=pojo.getTitle() %></td>
 							<td><%=pojo.getName() %></td>
-							<td><%=pojo.getHospitalName() %></td>
+							<td><%=pojo.getHosptialId() %></td>
 							<td><%=ParseHelper.formateTimestamp(pojo.getPublishTime(), "yyyy-MM-dd")%></td>
 							<td><%=ParseHelper.formateNumber(pojo.getVisitCnt()) %>次</td>
 						</tr>

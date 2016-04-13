@@ -309,13 +309,13 @@ public class DiagnosticPlanDao {
 	/**
 	 * findDiagnosticPlans
 	**/
-	public List<DiagnosticPlan> findDiagnosticPlans(Integer workstationId, Integer param2, int pageNo, int pageSize, DalHints hints) throws SQLException {
+	public List<DiagnosticPlan> findDiagnosticPlans(Integer workstationId, Integer publishStatus, int pageNo, int pageSize, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("diagnostic_plan", dbCategory, true);
 		builder.select("brief","publishTime","resourceId","title","visitCnt","createTime","workstationId","lastUpdateUser","createUser","id","category","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
 		builder.and();
-		builder.equal("publishStatus", param2, Types.INTEGER, false);
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
 		builder.orderBy("publishTime", false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();
@@ -327,13 +327,13 @@ public class DiagnosticPlanDao {
 	/**
 	 * findAllDiagnosticPlans
 	**/
-	public List<DiagnosticPlan> findAllDiagnosticPlans(Integer workstationId, Integer param2, DalHints hints) throws SQLException {
+	public List<DiagnosticPlan> findAllDiagnosticPlans(Integer workstationId, Integer publishStatus, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("diagnostic_plan", dbCategory, false);
 		builder.select("brief","publishTime","resourceId","title","visitCnt","createTime","workstationId","lastUpdateUser","createUser","id","category","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, true);
 		builder.and();
-		builder.equal("publishStatus", param2, Types.INTEGER, false);
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
 		builder.orderBy("publishTime", false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();

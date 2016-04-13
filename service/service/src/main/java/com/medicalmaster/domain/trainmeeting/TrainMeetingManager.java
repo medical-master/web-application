@@ -6,6 +6,7 @@ import java.util.List;
 import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsRequest;
 import com.medicalmaster.dal.TrainMeeting;
 import com.medicalmaster.dal.TrainMeetingDao;
+import com.medicalmaster.dal.TrainMeetingExtDao;
 
 /**
  * 培训会议
@@ -18,25 +19,36 @@ import com.medicalmaster.dal.TrainMeetingDao;
  */
 public class TrainMeetingManager {
 	TrainMeetingDao dao;
+	TrainMeetingExtDao extDao;
 
 	/**
 	 * 
 	 */
 	public TrainMeetingManager() throws SQLException {
 		dao = new TrainMeetingDao();
+		extDao = new TrainMeetingExtDao();
 	}
 
 	public List<TrainMeeting> queryTrainMeetins(QueryTrainMeetingsRequest request) throws SQLException {
-		return dao.findTrainMeeting(request.getWorkstationId(), request.getPublishStatu(), request.getPageNo(),
+		return dao.findTrainMeetings(request.getWorkstationId(), request.getPublishStatu(), request.getPageNo(),
 				request.getPageSize(), null);
 	}
 
 	public Integer countTrainMeetings(QueryTrainMeetingsRequest request) throws SQLException {
-		List<Integer> list = dao.findTrainMeetingCnt(request.getWorkstationId(), request.getPublishStatu(), null);
-		if (list != null) {
-			return list.size();
+
+		if (request.getWorkstationId() != null && request.getPublishStatu() == null) {
+			return extDao.findByWorkstationCnt(request.getWorkstationId(), null).intValue();
 		}
 
-		return 0;
+		if (request.getWorkstationId() == null && request.getPublishStatu() != null) {
+			return extDao.findByPublishStatusCnt(request.getPublishStatu(), null).intValue();
+		}
+
+		if (request.getWorkstationId() != null && request.getPublishStatu() != null) {
+			return extDao.findByWorkstationAndStatusCnt(request.getWorkstationId(), request.getPublishStatu(), null)
+					.intValue();
+		}
+
+		return extDao.findAllCnt(null).intValue();
 	}
 }

@@ -307,35 +307,36 @@ public class TrainMeetingDao {
 		return client.batchUpdate(hints, daoPojos);
 	}
 	/**
-	 * findTrainMeeting Count
+	 * findTrainMeeting
 	**/
-	public List<Integer> findTrainMeetingCnt(Integer workstationId, Integer publishStatus, DalHints hints) throws SQLException {
-		hints = DalHints.createIfAbsent(hints);
-		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, false);
-		builder.select("id");
-		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
-		builder.and();
-		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
-        String sql = builder.build();
-		StatementParameters parameters = builder.buildParameters();
-		return queryDao.query(sql, parameters, hints, Integer.class);
-	}
-	/**
-	 * findTrainMeeting Count
-	**/
-	public List<TrainMeeting> findTrainMeeting(Integer workstationId, Integer param2, int pageNo, int pageSize, DalHints hints) throws SQLException {
+	public List<TrainMeeting> findTrainMeetings(Integer workstationId, Integer publishStatus, int pageNo, int pageSize, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, true);
 		builder.select("meetingTime","meetingAddr","createTime","workstationId","lastUpdateUser","createUser","id","title","visitCnt","content","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, true);
 		builder.and();
-		builder.equal("publishStatus", param2, Types.INTEGER, false);
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
 		builder.orderBy("createTime", false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();
 		int index =  builder.getStatementParameterIndex();
 		parameters.set(index++, Types.INTEGER, (pageNo - 1) * pageSize);
 		parameters.set(index++, Types.INTEGER, pageSize);
+		return queryDao.query(sql, parameters, hints, parser);
+	}
+	/**
+	 * findAllTrainMeeting
+	**/
+	public List<TrainMeeting> findAllTrainMeeting(Integer workstationId, Integer publishStatus, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, false);
+		builder.select("meetingTime","meetingAddr","createTime","workstationId","lastUpdateUser","createUser","id","title","visitCnt","content","publishStatus","lastUpdateTime");
+		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
+		builder.and();
+		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, false);
+		builder.orderBy("createTime", false);
+	    String sql = builder.build();
+		StatementParameters parameters = builder.buildParameters();
 		return queryDao.query(sql, parameters, hints, parser);
 	}
 
