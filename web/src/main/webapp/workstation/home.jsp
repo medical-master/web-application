@@ -23,7 +23,7 @@
 					<p />
 					<p>访问量：</p>
 					成员总数：${workstation.members}
-					<p>${workstation.description}</p>
+					<p>${workstation.summery}</p>
 					<p>
 						<a href="#" class="btn btn-primary" role="button">申请加入</a>
 						&nbsp;&nbsp;&nbsp; <a href="action?view=workstation/workstationInfo&id=${workstation.workstationId}"

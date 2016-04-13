@@ -1,3 +1,5 @@
+<%@page import="com.medicalmaster.dal.ClinicalResearch"%>
+<%@page import="com.medicalmaster.dal.DiagnosticPlan"%>
 <%@page import="com.medicalmaster.dal.Workstation"%>
 <%@page pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
@@ -22,19 +24,23 @@
 	String id = request.getParameter("id");
 	WorkstationView workstationView = new WorkstationView(request,response);
 	WorkstationViewPojoPojo workstationViewPojo = workstationView.getWorkstationInfo(id);
+	List<DiagnosticPlan> diagnosticPlanList = workstationView.findWorkStationDiagnosticPlans(id);
+	List<ClinicalResearch> clinicalResearchList = workstationView.getClinicalResearchs(id);
 	request.setAttribute("workstationViewPojo",workstationViewPojo);
+	request.setAttribute("diagnosticPlanList",diagnosticPlanList);
+	request.setAttribute("clinicalResearchList",clinicalResearchList);
 %>
 <c:if test="${workstationViewPojo!= null}">
 <div class="row">
 	<div class="col-md-3" align="left">
 		<div class="span12">
-			<img src="resources/images/yushengyuan.png" alt="${workstationViewPojo.wksName}">
+			<img src="resources/images/yushengyuan.png" alt="${workstationViewPojo.wksName}" class="img-circle">
 			<br/>
 			<br/>
 		</div>
 		<div class="span12">
 			<a href="#" class="btn btn-primary" role="button">申请加入</a><br/>
-			申请加入大师团队，您将获得大师的宝贵学习资料、诊疗标准方案，并有机会一同参与科研课题论证。
+			<font color="red">申请加入大师团队，您将获得大师的宝贵学习资料、诊疗标准方案，并有机会一同参与科研课题论证。</font>
 			<br/>
 			<br/>
 		</div>
@@ -57,12 +63,12 @@
 		</div>
 	</div>
 	<div class="col-md-9">
-		<h3 align="center">于生元工作站 </h3>
-		成员数：&nbsp;&nbsp;&nbsp;&nbsp;访问量：
+		<h3 align="center">${workstationViewPojo.wksName}</h3>
+		成员数：${workstationViewPojo.members}&nbsp;&nbsp;&nbsp;&nbsp;访问量：
 		<hr>
-		关键字：
-		<p>工作站简介:</p>
-		<p>工作站详情：啥地方绝对是来访接待室路附近的说了句 我似懂非懂是欧文生栋覆屋万佛法师打发掉算了</p>
+		关键字：${workstationViewPojo.keywords}
+		<p>工作站简介：${workstationViewPojo.summery}</p>
+		<p>工作站详情：${workstationViewPojo.description}</p>
 		<div class="span12">
 		    <ul class="nav-tabs nav" id="tabs1">
 		        <li class="active"><a href="#tabs-1">简介</a></li>
@@ -93,38 +99,36 @@
 		    <ul class="nav-tabs nav" id="tabs2">
 		        <li class="active"><a href="#tabs2-1">诊疗方案</a></li>
 		    </ul>
-		    <div class="tab-content">
-		    	<div class="tab-pane fade in active" id="tabs2-1" >
-		    		
-		            <ul>
-		                <li><a href="#">从WordPress看开源平台的发展</a></li>
-		            </ul>
-		            <ul>
-						<li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-		            </ul>
-		        </div>
-		    </div>
+		    
+		    <c:if test="${diagnosticPlanList !=null && diagnosticPlanList.size() !=0 }">
+			    <div class="tab-content">
+			    	<div class="tab-pane fade in active" id="tabs2-1" >
+			            <ul>
+			            	<c:forEach items="${diagnosticPlanList}" var="diagnosticPlanList">
+								<li><a href="#">${diagnosticPlanList.title}</a></li>
+				            </c:forEach>
+			            </ul>
+			        </div>
+			    </div>
+		    </c:if>
 		</div>
 	
 		<br/>
 		<div class="span12">
 		    <ul class="nav-tabs nav" id="tabs3">
-		        <li class="active"><a href="#tabs3-1">灵床研究</a></li>
+		        <li class="active"><a href="#tabs3-1">临床研究</a></li>
 		    </ul>
-		    <div class="tab-content">
-		    	<div class="tab-pane fade in active" id="tabs3-1" >
-					<ul>
-						<li><a href="#">脑卒中早期规范化治疗的多中心临床研究及疾病管理云平台建设</a></li>
-						<li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-						<li><a href="#">体外血脂分离技术治疗急性缺血性卒中的治疗方案优化及机制研究</a></li>
-						<li><a href="#">脑卒中早期规范化治疗的多中心临床研究及疾病管理云平台建设</a></li>
-						<li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-					</ul>
-				</div>
-		    </div>
+			<c:if test="${clinicalResearchList !=null && clinicalResearchList.size() !=0 }">
+			    <div class="tab-content">
+			    	<div class="tab-pane fade in active" id="tabs3-1" >
+			            <ul>
+			            	<c:forEach items="${clinicalResearchList}" var="clinicalResearchList">
+								<li><a href="#">${clinicalResearchList.title}</a></li>
+				            </c:forEach>
+			            </ul>
+			        </div>
+			    </div>
+		    </c:if>
 		</div>
 		
 		<br/>
