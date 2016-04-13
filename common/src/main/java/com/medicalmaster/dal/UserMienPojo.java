@@ -15,18 +15,9 @@ import java.sql.Timestamp;
 import com.ctrip.platform.dal.dao.DalPojo;
 
 @Entity
-@Database(name="medical-master")
-@Table(name="user_mien")
-public class UserMien implements DalPojo {
-	
-	@Id
-	@Column(name="id")
-	@Type(value=Types.INTEGER)
-	private Integer id;
-	
-	@Column(name="userId")
-	@Type(value=Types.INTEGER)
-	private Integer userId;
+@Database(name="")
+@Table(name="")
+public class UserMienPojo implements DalPojo {
 	
 	@Column(name="mienType")
 	@Type(value=Types.INTEGER)
@@ -40,13 +31,9 @@ public class UserMien implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String endYear;
 	
-	@Column(name="desc")
+	@Column(name="userMienDesc")
 	@Type(value=Types.VARCHAR)
-	private String desc;
-	
-	@Column(name="publishStatu")
-	@Type(value=Types.INTEGER)
-	private Integer publishStatu;
+	private String userMienDesc;
 	
 	@Column(name="publishTime")
 	@Type(value=Types.TIMESTAMP)
@@ -55,30 +42,6 @@ public class UserMien implements DalPojo {
 	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp createTime;
-	
-	@Column(name="createUser")
-	@Type(value=Types.INTEGER)
-	private Integer createUser;
-	
-	@Column(name="lastUpdateTime")
-	@Type(value=Types.TIMESTAMP)
-	private Timestamp lastUpdateTime;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
 
 	public Integer getMienType() {
 		return mienType;
@@ -104,20 +67,12 @@ public class UserMien implements DalPojo {
 		this.endYear = endYear;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getUserMienDesc() {
+		return userMienDesc;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-
-	public Integer getPublishStatu() {
-		return publishStatu;
-	}
-
-	public void setPublishStatu(Integer publishStatu) {
-		this.publishStatu = publishStatu;
+	public void setUserMienDesc(String userMienDesc) {
+		this.userMienDesc = userMienDesc;
 	}
 
 	public Timestamp getPublishTime() {
@@ -134,22 +89,6 @@ public class UserMien implements DalPojo {
 
 	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
-	}
-
-	public Integer getCreateUser() {
-		return createUser;
-	}
-
-	public void setCreateUser(Integer createUser) {
-		this.createUser = createUser;
-	}
-
-	public Timestamp getLastUpdateTime() {
-		return lastUpdateTime;
-	}
-
-	public void setLastUpdateTime(Timestamp lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }
