@@ -64,6 +64,10 @@ public class Comment implements DalPojo {
 	@Column(name="status")
 	@Type(value=Types.INTEGER)
 	private Integer status;
+	
+	@Column(name="lastUpdateTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp lastUpdateTime;
 
 	public Integer getId() {
 		return id;
@@ -151,6 +155,14 @@ public class Comment implements DalPojo {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

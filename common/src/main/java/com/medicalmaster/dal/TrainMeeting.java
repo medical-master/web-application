@@ -45,6 +45,10 @@ public class TrainMeeting implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String meetingAddr;
 	
+	@Column(name="visitCnt")
+	@Type(value=Types.INTEGER)
+	private Integer visitCnt;
+	
 	@Column(name="publishStatus")
 	@Type(value=Types.INTEGER)
 	private Integer publishStatus;
@@ -111,6 +115,14 @@ public class TrainMeeting implements DalPojo {
 
 	public void setMeetingAddr(String meetingAddr) {
 		this.meetingAddr = meetingAddr;
+	}
+
+	public Integer getVisitCnt() {
+		return visitCnt;
+	}
+
+	public void setVisitCnt(Integer visitCnt) {
+		this.visitCnt = visitCnt;
 	}
 
 	public Integer getPublishStatus() {

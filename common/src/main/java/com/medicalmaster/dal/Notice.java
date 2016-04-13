@@ -44,6 +44,14 @@ public class Notice implements DalPojo {
 	@Column(name="createUser")
 	@Type(value=Types.INTEGER)
 	private Integer createUser;
+	
+	@Column(name="lastUpdateTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp lastUpdateTime;
+	
+	@Column(name="lastUpdateUser")
+	@Type(value=Types.INTEGER)
+	private Integer lastUpdateUser;
 
 	public Integer getId() {
 		return id;
@@ -91,6 +99,22 @@ public class Notice implements DalPojo {
 
 	public void setCreateUser(Integer createUser) {
 		this.createUser = createUser;
+	}
+
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
+	}
+
+	public Integer getLastUpdateUser() {
+		return lastUpdateUser;
+	}
+
+	public void setLastUpdateUser(Integer lastUpdateUser) {
+		this.lastUpdateUser = lastUpdateUser;
 	}
 
 }

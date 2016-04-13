@@ -44,6 +44,10 @@ public class WorkstationFollower implements DalPojo {
 	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp createTime;
+	
+	@Column(name="lastUpdateTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp lastUpdateTime;
 
 	public Integer getId() {
 		return id;
@@ -91,6 +95,14 @@ public class WorkstationFollower implements DalPojo {
 
 	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
+	}
+
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

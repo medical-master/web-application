@@ -28,7 +28,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%List<DiagnosticPlanListPojo> pojos = view.getDiagPlanInfos(1, 10); %>
+					<%List<DiagnosticPlanListPojo> pojos = view.getDiagPlanInfos(); %>
 					<%if(pojos != null && pojos.size() > 0) {%>
 						<%for(DiagnosticPlanListPojo pojo : pojos){ %>
 						<tr>
@@ -44,7 +44,7 @@
 			</table>
 			<nav align="right">
 				<ul class="pagination">
-					<li><a href="#" aria-label="Previous"> <span
+					<li><a href="#?pageNo=2&pageSize=10" aria-label="Previous"> <span
 							aria-hidden="true">&laquo;</span>
 					</a></li>
 					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>

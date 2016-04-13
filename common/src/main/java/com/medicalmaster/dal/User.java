@@ -89,6 +89,22 @@ public class User implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String doctorNumber;
 	
+	@Column(name="expertType")
+	@Type(value=Types.INTEGER)
+	private Integer expertType;
+	
+	@Column(name="expertArea")
+	@Type(value=Types.VARCHAR)
+	private String expertArea;
+	
+	@Column(name="inviteCode")
+	@Type(value=Types.VARCHAR)
+	private String inviteCode;
+	
+	@Column(name="hiddenName")
+	@Type(value=Types.INTEGER)
+	private Integer hiddenName;
+	
 	@Column(name="createTime")
 	@Type(value=Types.TIMESTAMP)
 	private Timestamp createTime;
@@ -231,6 +247,38 @@ public class User implements DalPojo {
 
 	public void setDoctorNumber(String doctorNumber) {
 		this.doctorNumber = doctorNumber;
+	}
+
+	public Integer getExpertType() {
+		return expertType;
+	}
+
+	public void setExpertType(Integer expertType) {
+		this.expertType = expertType;
+	}
+
+	public String getExpertArea() {
+		return expertArea;
+	}
+
+	public void setExpertArea(String expertArea) {
+		this.expertArea = expertArea;
+	}
+
+	public String getInviteCode() {
+		return inviteCode;
+	}
+
+	public void setInviteCode(String inviteCode) {
+		this.inviteCode = inviteCode;
+	}
+
+	public Integer getHiddenName() {
+		return hiddenName;
+	}
+
+	public void setHiddenName(Integer hiddenName) {
+		this.hiddenName = hiddenName;
 	}
 
 	public Timestamp getCreateTime() {

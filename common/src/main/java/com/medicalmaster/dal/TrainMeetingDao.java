@@ -323,13 +323,13 @@ public class TrainMeetingDao {
 	/**
 	 * findTrainMeeting Count
 	**/
-	public List<TrainMeeting> findTrainMeeting(Integer workstationId, Integer publishStatu, int pageNo, int pageSize, DalHints hints) throws SQLException {
+	public List<TrainMeeting> findTrainMeeting(Integer workstationId, Integer param2, int pageNo, int pageSize, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("train_meeting", dbCategory, true);
-		builder.select("meetingTime","meetingAddr","createTime","workstationId","lastUpdateUser","createUser","id","title","content","publishStatus","lastUpdateTime");
+		builder.select("meetingTime","meetingAddr","createTime","workstationId","lastUpdateUser","createUser","id","title","visitCnt","content","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, true);
 		builder.and();
-		builder.equalNullable("publishStatus", publishStatu, Types.INTEGER, true);
+		builder.equal("publishStatus", param2, Types.INTEGER, false);
 		builder.orderBy("createTime", false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();

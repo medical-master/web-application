@@ -25,9 +25,9 @@ public class Workstation implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer workstationId;
 	
-	@Column(name="expertId")
+	@Column(name="userId")
 	@Type(value=Types.INTEGER)
-	private Integer expertId;
+	private Integer userId;
 	
 	@Column(name="name")
 	@Type(value=Types.VARCHAR)
@@ -105,12 +105,12 @@ public class Workstation implements DalPojo {
 		this.workstationId = workstationId;
 	}
 
-	public Integer getExpertId() {
-		return expertId;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setExpertId(Integer expertId) {
-		this.expertId = expertId;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {

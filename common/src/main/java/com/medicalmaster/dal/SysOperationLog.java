@@ -52,6 +52,10 @@ public class SysOperationLog implements DalPojo {
 	@Column(name="clientIp")
 	@Type(value=Types.VARCHAR)
 	private String clientIp;
+	
+	@Column(name="lastUpdateTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp lastUpdateTime;
 
 	public Integer getId() {
 		return id;
@@ -115,6 +119,14 @@ public class SysOperationLog implements DalPojo {
 
 	public void setClientIp(String clientIp) {
 		this.clientIp = clientIp;
+	}
+
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

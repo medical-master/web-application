@@ -35,11 +35,14 @@ public class DiagHomeView extends BaseView {
 		super(request, response);
 	}
 
-	public List<DiagnosticPlanListPojo> getDiagPlanInfos(Integer pageNo, Integer pageSize)
+	public List<DiagnosticPlanListPojo> getDiagPlanInfos()
 			throws IllegalArgumentException, IllegalAccessException {
 		QueryDiagPlanInfosRequest request = new QueryDiagPlanInfosRequest();
+		
+		
 		request.setPageNo(pageNo);
 		request.setPageSize(pageSize);
+		
 
 		QueryDiagPlanInfosResponse response = ResourceProxy.get(
 				webContext.getBaseServiceUrl() + ResourceConstants.PATH_DIAGNOSTIC_PLAN + "/infos", request,

@@ -309,13 +309,13 @@ public class TrainMaterialDao {
 	/**
 	 * findByWorkstationIdStatus
 	**/
-	public List<TrainMaterial> findByWorkstationIdStatus(Integer workstationId, Integer status, DalHints hints) throws SQLException {
+	public List<TrainMaterial> findByWorkstationIdStatus(Integer workstationId, Integer param2, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("train_material", dbCategory, false);
 		builder.select("publishTime","createTime","workstationId","description","lastUpdateUser","createUser","id","title","materialFile","visitCnt","publishStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
 		builder.and();
-		builder.equal("publishStatus", status, Types.INTEGER, false);
+		builder.equal("publishStatus", param2, Types.INTEGER, false);
 		builder.orderBy("publishTime", false);
 	    String sql = builder.build();
 		StatementParameters parameters = builder.buildParameters();

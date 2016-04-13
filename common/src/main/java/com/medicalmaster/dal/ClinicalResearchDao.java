@@ -312,7 +312,7 @@ public class ClinicalResearchDao {
 	public List<ClinicalResearch> findByWorkstationId(Integer workstationId, int pageNo, int pageSize, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("clinical_research", dbCategory, true);
-		builder.select("id","createTime","createUser","resourceId","title","publishTime","lastUpdateTime","description","viewStatus","lastUpdateUser","currentStatus","workstationId");
+		builder.select("publishTime","resourceId","currentStatus","createTime","workstationId","description","lastUpdateUser","createUser","id","title","viewStatus","lastUpdateTime");
 		builder.equalNullable("workstationId", workstationId, Types.INTEGER, false);
 		builder.orderBy("publishTime", false);
 	    String sql = builder.build();

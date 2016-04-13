@@ -6,6 +6,7 @@ import com.ctrip.platform.dal.dao.helper.*;
 import com.ctrip.platform.dal.dao.sqlbuilder.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.LinkedHashMap;
 import java.util.List;

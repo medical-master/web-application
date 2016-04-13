@@ -10,6 +10,7 @@ import com.ctrip.platform.dal.dao.annotation.Database;
 import com.ctrip.platform.dal.dao.annotation.Sensitive;
 import com.ctrip.platform.dal.dao.annotation.Type;
 import java.sql.Types;
+import java.sql.Timestamp;
 
 import com.ctrip.platform.dal.dao.DalPojo;
 
@@ -47,6 +48,10 @@ public class SysHospital implements DalPojo {
 	@Column(name="address")
 	@Type(value=Types.VARCHAR)
 	private String address;
+	
+	@Column(name="lastUpdateTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp lastUpdateTime;
 
 	public Integer getHospitalId() {
 		return hospitalId;
@@ -102,6 +107,14 @@ public class SysHospital implements DalPojo {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

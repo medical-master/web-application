@@ -10,6 +10,7 @@ import com.ctrip.platform.dal.dao.annotation.Database;
 import com.ctrip.platform.dal.dao.annotation.Sensitive;
 import com.ctrip.platform.dal.dao.annotation.Type;
 import java.sql.Types;
+import java.sql.Timestamp;
 
 import com.ctrip.platform.dal.dao.DalPojo;
 
@@ -31,6 +32,10 @@ public class SearchStatics implements DalPojo {
 	@Column(name="searchCnt")
 	@Type(value=Types.INTEGER)
 	private Integer searchCnt;
+	
+	@Column(name="lastUpdateTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp lastUpdateTime;
 
 	public Integer getId() {
 		return id;
@@ -54,6 +59,14 @@ public class SearchStatics implements DalPojo {
 
 	public void setSearchCnt(Integer searchCnt) {
 		this.searchCnt = searchCnt;
+	}
+
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

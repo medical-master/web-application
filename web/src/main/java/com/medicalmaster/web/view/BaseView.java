@@ -17,8 +17,8 @@ import com.xross.tools.xunit.XunitFactory;
  */
 public class BaseView implements View{
 	protected WebContext webContext;
-	
 	protected static XunitFactory factory;
+	
 	static{
 		try{
 			factory = XunitFactory.load("main.xunit");

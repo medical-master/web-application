@@ -10,6 +10,7 @@ import com.ctrip.platform.dal.dao.annotation.Database;
 import com.ctrip.platform.dal.dao.annotation.Sensitive;
 import com.ctrip.platform.dal.dao.annotation.Type;
 import java.sql.Types;
+import java.sql.Timestamp;
 
 import com.ctrip.platform.dal.dao.DalPojo;
 
@@ -30,6 +31,10 @@ public class SysPropertyCategory implements DalPojo {
 	@Column(name="description")
 	@Type(value=Types.VARCHAR)
 	private String description;
+	
+	@Column(name="lastUpdateTime")
+	@Type(value=Types.TIMESTAMP)
+	private Timestamp lastUpdateTime;
 
 	public Integer getCategoryId() {
 		return categoryId;
@@ -53,6 +58,14 @@ public class SysPropertyCategory implements DalPojo {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Timestamp getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

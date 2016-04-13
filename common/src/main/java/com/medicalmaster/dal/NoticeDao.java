@@ -324,7 +324,7 @@ public class NoticeDao {
 	public List<Notice> findNotice(Integer publishStatus, int pageNo, int pageSize, DalHints hints) throws SQLException {
 		hints = DalHints.createIfAbsent(hints);
 		SelectSqlBuilder builder = new SelectSqlBuilder("notice", dbCategory, true);
-		builder.select("createTime","createUser","id","title","content","publishStatus");
+		builder.select("createTime","lastUpdateUser","createUser","id","title","content","publishStatus","lastUpdateTime");
 		builder.equalNullable("publishStatus", publishStatus, Types.INTEGER, true);
 		builder.orderBy("createTime", false);
 	    String sql = builder.build();
