@@ -60,10 +60,10 @@ public class SysPropertyHelper {
 	public static void load(Integer categoryId) {
 		try {
 			List<SysProperty> properties = dao.findSysProperties(categoryId, null, null);
-			if(properties == null){
+			if (properties == null) {
 				return;
 			}
-			
+
 			for (SysProperty sysProperty : properties) {
 				String key = generateKey(sysProperty);
 				map.put(key, sysProperty);
@@ -107,5 +107,9 @@ public class SysPropertyHelper {
 		} else {
 			return null;
 		}
+	}
+
+	public static void release() {
+		map.clear();		
 	}
 }
