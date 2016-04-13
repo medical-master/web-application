@@ -31,12 +31,7 @@ public class NoticeResource extends Resources {
 	 * 
 	 */
 	public NoticeResource() {
-		try {
-			factory = XunitFactory.load("notice.xunit");
-			converterId = "notice branch";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		super("notice.xunit", "notice branch");
 	}
 
 	/**

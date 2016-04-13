@@ -17,5 +17,7 @@ import com.medicalmaster.common.bean.ResourceConstants;
 @Resource
 @Path(ResourceConstants.PATH_TRAIN_MATERIAL)
 public class TrainMaterialResource extends Resources {
-
+	public TrainMaterialResource() {
+		super(null, null);
+	}
 }

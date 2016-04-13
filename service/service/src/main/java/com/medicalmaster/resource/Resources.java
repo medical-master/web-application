@@ -8,10 +8,19 @@ import com.xross.tools.xunit.XunitFactory;
  * 
  * Created By guanrong.xie Created On 2016年4月6日 CopyRight@IMedMaster
  */
-public class Resources {
+public abstract class Resources {
 	protected String converterId = null;
 	protected XunitFactory factory;
-
+	
+	public Resources(String xunitFileName, String converterId) {
+		try {
+			factory = XunitFactory.load(xunitFileName);
+			this.converterId = converterId;
+		} catch (Throwable e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	protected <T> T handle(Context ctx, String message) {
 		try {
