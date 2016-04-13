@@ -22,9 +22,9 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer workstationId;
 	
-	@Column(name="expertId")
+	@Column(name="userId")
 	@Type(value=Types.INTEGER)
-	private Integer expertId;
+	private Integer userId;
 	
 	@Column(name="subLink")
 	@Type(value=Types.VARCHAR)
@@ -82,9 +82,17 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String email;
 	
-	@Column(name="pte")
+	@Column(name="professionalRank")
+	@Type(value=Types.INTEGER)
+	private Integer professionalRank;
+	
+	@Column(name="title")
 	@Type(value=Types.VARCHAR)
-	private String pte;
+	private String title;
+	
+	@Column(name="educationLevel")
+	@Type(value=Types.INTEGER)
+	private Integer educationLevel;
 	
 	@Column(name="usStatus")
 	@Type(value=Types.INTEGER)
@@ -97,6 +105,14 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Column(name="department")
 	@Type(value=Types.VARCHAR)
 	private String department;
+	
+	@Column(name="expertArea")
+	@Type(value=Types.VARCHAR)
+	private String expertArea;
+	
+	@Column(name="expertType")
+	@Type(value=Types.INTEGER)
+	private Integer expertType;
 	
 	@Column(name="hospitalName")
 	@Type(value=Types.VARCHAR)
@@ -126,17 +142,21 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String fileUrl;
 	
-	@Column(name="userId")
+	@Column(name="mienType")
 	@Type(value=Types.INTEGER)
-	private Integer userId;
+	private Integer mienType;
 	
-	@Column(name="expertArea")
+	@Column(name="begYear")
 	@Type(value=Types.VARCHAR)
-	private String expertArea;
+	private String begYear;
 	
-	@Column(name="expertType")
-	@Type(value=Types.INTEGER)
-	private Integer expertType;
+	@Column(name="endYear")
+	@Type(value=Types.VARCHAR)
+	private String endYear;
+	
+	@Column(name="usMienDesc")
+	@Type(value=Types.VARCHAR)
+	private String usMienDesc;
 
 	public Integer getWorkstationId() {
 		return workstationId;
@@ -146,12 +166,12 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.workstationId = workstationId;
 	}
 
-	public Integer getExpertId() {
-		return expertId;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setExpertId(Integer expertId) {
-		this.expertId = expertId;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getSubLink() {
@@ -266,12 +286,28 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.email = email;
 	}
 
-	public String getPte() {
-		return pte;
+	public Integer getProfessionalRank() {
+		return professionalRank;
 	}
 
-	public void setPte(String pte) {
-		this.pte = pte;
+	public void setProfessionalRank(Integer professionalRank) {
+		this.professionalRank = professionalRank;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Integer getEducationLevel() {
+		return educationLevel;
+	}
+
+	public void setEducationLevel(Integer educationLevel) {
+		this.educationLevel = educationLevel;
 	}
 
 	public Integer getUsStatus() {
@@ -296,6 +332,22 @@ public class WorkstationViewPojoPojo implements DalPojo {
 
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+
+	public String getExpertArea() {
+		return expertArea;
+	}
+
+	public void setExpertArea(String expertArea) {
+		this.expertArea = expertArea;
+	}
+
+	public Integer getExpertType() {
+		return expertType;
+	}
+
+	public void setExpertType(Integer expertType) {
+		this.expertType = expertType;
 	}
 
 	public String getHospitalName() {
@@ -354,28 +406,36 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.fileUrl = fileUrl;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getMienType() {
+		return mienType;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setMienType(Integer mienType) {
+		this.mienType = mienType;
 	}
 
-	public String getExpertArea() {
-		return expertArea;
+	public String getBegYear() {
+		return begYear;
 	}
 
-	public void setExpertArea(String expertArea) {
-		this.expertArea = expertArea;
+	public void setBegYear(String begYear) {
+		this.begYear = begYear;
 	}
 
-	public Integer getExpertType() {
-		return expertType;
+	public String getEndYear() {
+		return endYear;
 	}
 
-	public void setExpertType(Integer expertType) {
-		this.expertType = expertType;
+	public void setEndYear(String endYear) {
+		this.endYear = endYear;
+	}
+
+	public String getUsMienDesc() {
+		return usMienDesc;
+	}
+
+	public void setUsMienDesc(String usMienDesc) {
+		this.usMienDesc = usMienDesc;
 	}
 
 }

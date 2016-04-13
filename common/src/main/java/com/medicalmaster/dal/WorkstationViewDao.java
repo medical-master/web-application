@@ -34,7 +34,7 @@ public class WorkstationViewDao {
 	 * 获取总页数
 	**/
 	public Long count(DalHints hints) throws SQLException {
-		String sql = "SELECT count(*) FROM workstation wks, expert ex, USER us, sys_hospital ho, sys_resource re where wks.expertId = ex.id and us.hosptialId=ho.hospitalId and us.iconResourceId=re.id and wks.status=1";
+		String sql = "SELECT count(*) FROM workstation wks, USER us, sys_hospital ho, sys_resource re where wks.userId = us.userId and us.hosptialId=ho.hospitalId and us.iconResourceId=re.id and wks.status=1";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
 		return queryDao.queryForObjectNullable(sql, parameters, hints, Long.class);
@@ -67,7 +67,7 @@ public class WorkstationViewDao {
 	 * 工作站信息查询
 	**/
 	public List<WorkstationViewPojoPojo> showWorkstation(int pageNo, int pageSize, DalHints hints) throws SQLException {
-		String sql = "SELECT wks.workstationId, wks.expertId, wks.subLink, wks.`name` AS wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.status AS wksStatus, us.name AS usName, us.nickName, us.sex, us.email, concat(us.professionalRank, '，', us.title, '，', us.educationLevel) AS pte, us.status usStatus, us.doctorNumber, us.department, ho.name AS hospitalName, ho.level, ho.proviceId, ho.cityId, ho.districtId, ho.address, re.fileUrl, ex.userId, ex.expertArea, ex.expertType FROM workstation wks, expert ex, USER us, sys_hospital ho, sys_resource re WHERE wks.expertId = ex.id AND us.hosptialId = ho.hospitalId AND us.iconResourceId = re.id AND wks.status = 1 limit ?, ?";
+		String sql = "SELECT wks.workstationId, wks.userId, wks.subLink, wks.`name` AS wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.status AS wksStatus, us.name AS usName, us.nickName, us.professionalRank, us.title, us.educationLevel, us.status usStatus, us.doctorNumber, us.department, us.expertArea, us.expertType, ho.name AS hospitalName, ho.level, ho.proviceId, ho.cityId, ho.districtId, ho.address, re.fileUrl FROM workstation wks, USER us, sys_hospital ho, sys_resource re WHERE wks.userId = us.userId AND us.hosptialId = ho.hospitalId AND us.iconResourceId = re.id AND wks.status = 1 limit ?, ?";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
 		int i = 1;
@@ -79,7 +79,7 @@ public class WorkstationViewDao {
 	 * 工作站详细信息查询
 	**/
 	public WorkstationViewPojoPojo showWorkstationInfo(Integer workstationId, DalHints hints) throws SQLException {
-		String sql = "SELECT wks.workstationId, wks.expertId, wks.subLink, wks.`name` as wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.status as wksStatus, us.name as usName, us.nickName, us.sex, us.email, concat(us.professionalRank,'，',us.title,'，',us.educationLevel) as pte, us.status usStatus, us.doctorNumber, us.department, ho.name as hospitalName, ho.level, ho.proviceId, ho.cityId, ho.districtId, ho.address, re.fileUrl, ex.userId, ex.expertArea, ex.expertType FROM workstation wks, expert ex, USER us, sys_hospital ho, sys_resource re where wks.expertId = ex.id and us.hosptialId=ho.hospitalId and us.iconResourceId=re.id and wks.status=1 and wks.workstationId=? ";
+		String sql = "SELECT wks.workstationId, wks.userId, wks.subLink, wks.`name` as wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.status as wksStatus, us.name as usName, us.nickName, us.sex, us.email, us.professionalRank, us.title, us.educationLevel, us.status usStatus, us.doctorNumber, us.department, us.expertArea, us.expertType, ho.name as hospitalName, ho.level, ho.proviceId, ho.cityId, ho.districtId, ho.address, re.fileUrl, usMien.mienType, usMien.begYear, usMien.endYear, usMien.desc as usMienDesc FROM workstation wks, USER us, USER_MIEN usMien, sys_hospital ho, sys_resource re where wks.userId = us.userId and us.hosptialId=ho.hospitalId and us.iconResourceId=re.id and us.userId = usMien.userId and wks.status=1 and usMien.publishStatu=1 and wks.workstationId=?";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
 		int i = 1;
