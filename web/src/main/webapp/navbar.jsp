@@ -14,11 +14,11 @@
 	</div>
 	<div class="nav">
 		<ul class="list-inline navigation text-center">
-			<li class="active"><a href="action?view=home">主页</a></li>
-			<li><a href="action?view=workstation/home">专家工作站</a></li>
-			<li><a href="action?view=diagnosis/home">诊疗方案</a></li>
-			<li><a href="action?view=research/home">临床研究</a></li>
-			<li><a href="action?view=training/home">教育培训</a></li>
+			<li id="nav_home" class="active"><a href="action?view=home">主页</a></li>
+			<li id="nav_workstation" ><a href="action?view=workstation/home">专家工作站</a></li>
+			<li id="nav_diagnostic" ><a href="action?view=diagnosis/home">诊疗方案</a></li>
+			<li id="nav_clinical" ><a href="action?view=research/home">临床研究</a></li>
+			<li id="nav_train" ><a href="action?view=training/home">教育培训</a></li>
 		</ul>
 		<div class="user-card">
 			<div class="user-image pull-left">

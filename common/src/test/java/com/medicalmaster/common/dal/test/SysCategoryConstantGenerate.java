@@ -39,7 +39,7 @@ public class SysCategoryConstantGenerate {
 		List<SysPropertyCategory> categories = dao.getAll(null);
 		for (SysPropertyCategory sysPropertyCategory : categories) {
 			java.append("/**").append(sysPropertyCategory.getDescription()).append("**/\n");
-			java.append("public Integer ").append(sysPropertyCategory.getName()).append(" = ")
+			java.append("public static final Integer ").append(sysPropertyCategory.getName()).append(" = ")
 					.append(sysPropertyCategory.getCategoryId()).append(";\n\n");
 		}
 		java.append("}\n");

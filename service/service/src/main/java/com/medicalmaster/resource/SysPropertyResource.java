@@ -23,12 +23,7 @@ public class SysPropertyResource extends Resources {
 	 * 
 	 */
 	public SysPropertyResource() {
-		try {
-			factory = XunitFactory.load("sys_property.xunit");
-			converterId = "sys property branch";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		super("sys_property.xunit", "sys property branch");
 	}
 
 	@GET

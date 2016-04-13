@@ -36,12 +36,7 @@ public class SysResource extends Resources {
 	 * 
 	 */
 	public SysResource() {
-		try {
-			factory = XunitFactory.load("sysResource.xunit");
-			converterId = "sysResource branch";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		super("sysResource.xunit", "sysResource branch");
 	}
 
 	@POST

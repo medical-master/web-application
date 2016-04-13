@@ -24,12 +24,7 @@ public class WorkstationResource extends Resources {
 	 * 
 	 */
 	public WorkstationResource() {
-		try {
-			factory = XunitFactory.load("workstation.xunit");
-			converterId = "workstation management";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		super("workstation.xunit", "workstation management");
 	}
 
 	/**

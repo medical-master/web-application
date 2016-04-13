@@ -2,72 +2,72 @@ package com.medicalmaster.common.bean;
 
 public class SysCategoryConstants {
 	/** 性别 **/
-	public Integer sex = 10;
+	public static final Integer sex = 10;
 
 	/** 证件类型 **/
-	public Integer certType = 11;
+	public static final Integer certType = 11;
 
 	/** 国家 **/
-	public Integer country = 12;
+	public static final Integer country = 12;
 
 	/** 学历水平 **/
-	public Integer educationLevel = 13;
+	public static final Integer educationLevel = 13;
 
 	/** 语种 **/
-	public Integer language = 14;
+	public static final Integer language = 14;
 
 	/** 地区 **/
-	public Integer zone = 15;
+	public static final Integer zone = 15;
 
 	/** 省 **/
-	public Integer province = 16;
+	public static final Integer province = 16;
 
 	/** 市 **/
-	public Integer city = 17;
+	public static final Integer city = 17;
 
 	/** 区 **/
-	public Integer district = 18;
+	public static final Integer district = 18;
 
 	/** 用户类型 **/
-	public Integer userType = 19;
+	public static final Integer userType = 19;
 
 	/** 职称 **/
-	public Integer professionalRank = 20;
+	public static final Integer professionalRank = 20;
 
 	/** 是否/有效无效 **/
-	public Integer bool = 21;
+	public static final Integer bool = 21;
 
 	/** 临床研究状态 **/
-	public Integer clinicalResearchStatus = 22;
+	public static final Integer clinicalResearchStatus = 22;
 
 	/** 诊疗方案类型 **/
-	public Integer diagnosticPlanCategory = 23;
+	public static final Integer diagnosticPlanCategory = 23;
 
 	/** 专家资源类型 **/
-	public Integer expertType = 24;
+	public static final Integer expertType = 24;
 
 	/** 医院等级 **/
-	public Integer hospitalLevel = 25;
+	public static final Integer hospitalLevel = 25;
 
 	/** 职务 **/
-	public Integer duties = 26;
+	public static final Integer duties = 26;
 
 	/** 疾病代码 **/
-	public Integer illCode = 27;
+	public static final Integer illCode = 27;
 
 	/** 工作站追随类型 **/
-	public Integer workstationFollowType = 28;
+	public static final Integer workstationFollowType = 28;
 
 	/** 发布状态 **/
-	public Integer publishStatus = 29;
+	public static final Integer publishStatus = 29;
 
 	/** 系统表名称 **/
-	public Integer table = 30;
+	public static final Integer table = 30;
 
 	/** 专家风采类型 **/
-	public Integer mienType = 31;
+	public static final Integer mienType = 31;
 
 	/** 资源类型 **/
-	public Integer resourceType = 32;
+	public static final Integer resourceType = 32;
 
 }

@@ -29,12 +29,7 @@ public class TrainMeetingResource extends Resources {
 	 * 
 	 */
 	public TrainMeetingResource() {
-		try {
-			factory = XunitFactory.load("trainMeeting.xunit");
-			converterId = "trainMeeting branch";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		super("trainMeeting.xunit", "trainMeeting branch");
 	}
 
 	@GET

@@ -3,13 +3,17 @@ package com.medicalmaster.domain.diagnosticplan;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosRequest;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansRequest;
 import com.medicalmaster.dal.DiagnosticPlan;
 import com.medicalmaster.dal.DiagnosticPlanDao;
+import com.medicalmaster.dal.DiagnosticPlanExtDao;
+import com.medicalmaster.dal.DiagnosticPlanListPojo;
 
 public class DiagnosticPlanManager 
 {
 	private DiagnosticPlanDao dao;
+	private DiagnosticPlanExtDao extDao;
 
 	/**
 	 * 创建构造方法
@@ -18,6 +22,7 @@ public class DiagnosticPlanManager
 	public DiagnosticPlanManager() throws SQLException 
 	{
 		dao = new DiagnosticPlanDao();
+		extDao = new DiagnosticPlanExtDao();
 	}
 
 	/**
@@ -91,6 +96,15 @@ public class DiagnosticPlanManager
 	public List<DiagnosticPlan> findDiagnosticPlans(QueryDiagPlansRequest request) throws SQLException 
 	{
 		return dao.findDiagnosticPlans(request.getWorkstationId(), request.getPublishStatus(), request.getPageNo(),
+				request.getPageSize(), null);
+	}
+
+	public Integer findDiagPlanInfosCnt(QueryDiagPlanInfosRequest request) throws SQLException {
+		return extDao.findDiagnosticPlansCnt(request.getPlanStatus(), request.getWorkstatStatus(), null).intValue();
+	}
+
+	public List<DiagnosticPlanListPojo> findDiagPlanInfos(QueryDiagPlanInfosRequest request) throws SQLException {
+		return extDao.findDiagnosticPlans(request.getPlanStatus(), request.getWorkstatStatus(), request.getPageNo(),
 				request.getPageSize(), null);
 	}
 }
