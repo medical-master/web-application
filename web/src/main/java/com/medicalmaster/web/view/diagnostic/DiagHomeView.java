@@ -1,7 +1,5 @@
 package com.medicalmaster.web.view.diagnostic;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,8 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosResponse;
+import com.medicalmaster.common.helper.ParseHelper;
 import com.medicalmaster.common.request.get.PageRequest;
-import com.medicalmaster.dal.DiagPlanViewPojo;
 import com.medicalmaster.web.helper.ResourceProxy;
 import com.medicalmaster.web.view.BaseView;
 
@@ -35,23 +33,22 @@ public class DiagHomeView extends BaseView {
 		super(request, response);
 	}
 
-	public List<DiagPlanViewPojo> getDiagPlanInfos()
-			throws IllegalArgumentException, IllegalAccessException {
+	public QueryDiagPlanInfosResponse getDiagPlanInfos() throws IllegalArgumentException, IllegalAccessException {
 		PageRequest request = new PageRequest();
-		
-		
-		request.setPageNo(1);
-		request.setPageSize(10);
-		
+		Integer pageNo = ParseHelper.parseInt(webContext.getParameter("pageNo"));
+		Integer pageSize = ParseHelper.parseInt(webContext.getParameter("pageSize"));
+		if (pageSize == null) {
+			pageSize = 2;
+		}
+		request.setPageNo(pageNo);
+		request.setPageSize(pageSize);
+
+		logger.info("pageNo {}, pageSize {}", pageNo, pageSize);
 
 		QueryDiagPlanInfosResponse response = ResourceProxy.get(
 				webContext.getBaseServiceUrl() + ResourceConstants.PATH_DIAGNOSTIC_PLAN + "/infos", request,
 				QueryDiagPlanInfosResponse.class);
 
-		if (response.isSuccess()) {
-			return response.getPojos();
-		}
-
-		return null;
+		return response;
 	}
 }

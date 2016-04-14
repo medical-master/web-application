@@ -64,7 +64,7 @@
 					<%} %>					
 				</ul>
 				<%} %>
-				<div class="more pull-right">更多</div>
+				<div class="more pull-right"><a href="action?view=workstation/home">更多</a></div>
 			</div>
 		</div>
 		<div class="col-sm-6">
@@ -80,7 +80,7 @@
 					<%} %>
 				</ul>
 				<%} %>
-				<div class="more pull-right">更多</div>
+				<div class="more pull-right"><a href="action?view=diagnosis/home">更多</a></div>
 			</div>
 		</div>
 	</div>
