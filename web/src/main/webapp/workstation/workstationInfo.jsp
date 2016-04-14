@@ -61,7 +61,7 @@
 				<div class="span12">
 					<c:forEach items="${userMienList}" var="userMien">
 						<c:if test="${userMien.mienType == 20}">
-							${userMien.begYear}年~${userMien.begYear}：${userMien.description}<br/>
+							${userMien.begYear}年~${userMien.begYear}年：${userMien.description}<br/>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -85,7 +85,7 @@
 				<div class="span12">
 					<c:forEach items="${userMienList}" var="userMien">
 						<c:if test="${userMien.mienType == 10}">
-							${userMien.begYear}年~${userMien.begYear}：${userMien.description}<br/>
+							${userMien.begYear}年~${userMien.begYear}年：${userMien.description}<br/>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -124,7 +124,7 @@
 		        	<ul>
 			            <c:forEach items="${userMienList}" var="userMien">
 							<c:if test="${userMien.mienType == 50}">
-								<li>${userMien.begYear}年~${userMien.begYear}：${userMien.description}<br/></li>
+								<li>${userMien.begYear}年~${userMien.begYear}年：${userMien.description}<br/></li>
 							</c:if>
 						</c:forEach>
 					</ul>
