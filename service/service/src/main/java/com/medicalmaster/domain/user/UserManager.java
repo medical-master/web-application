@@ -4,15 +4,21 @@ import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.medicalmaster.common.user.QueryUserMienRequest;
 import com.medicalmaster.common.user.UserType;
 import com.medicalmaster.dal.User;
 import com.medicalmaster.dal.UserDao;
+import com.medicalmaster.dal.UserMienExtDao;
+import com.medicalmaster.dal.UserMienPojo;
+import com.medicalmaster.dal.UserMienViewPojo;
 
 public class UserManager {
 	private UserDao dao;
+	private UserMienExtDao userMienExtDao;
 	
 	public UserManager() throws SQLException {
 		dao = new UserDao();
+		userMienExtDao = new UserMienExtDao();
 	}
 	
 	public String inviteMaster(String name, String email, String mobilePhoneNumber) throws SQLException {
@@ -78,6 +84,11 @@ public class UserManager {
 	
 	private String generateAuthen(String password) {
 		return toMD5(password);
+	}
+	
+	public List<UserMienViewPojo> queryUserMien(QueryUserMienRequest request) throws SQLException
+	{
+		return userMienExtDao.queryUserMien(request.getUserId(),request.getPageNo(), request.getPageSize(),null);
 	}
 	
 	private String toMD5(String inStr) {

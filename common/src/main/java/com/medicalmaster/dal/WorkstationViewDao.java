@@ -16,8 +16,6 @@ public class WorkstationViewDao {
 	
 	private DalQueryDao queryDao = null;
 
-	private DalRowMapper<TrainMaterialRecorderPojo> trainMaterialRecorderPojoRowMapper = null;
-
 	private DalRowMapper<ResearchStageRecordPojo> researchStageRecordPojoRowMapper = null;
 
 	private DalRowMapper<WorkstationViewPojoPojo> workstationViewPojoPojoRowMapper = null;
@@ -25,7 +23,6 @@ public class WorkstationViewDao {
 
 
 	public WorkstationViewDao() throws SQLException {
-		this.trainMaterialRecorderPojoRowMapper = new DalDefaultJpaMapper(TrainMaterialRecorderPojo.class);
 		this.researchStageRecordPojoRowMapper = new DalDefaultJpaMapper(ResearchStageRecordPojo.class);
 		this.workstationViewPojoPojoRowMapper = new DalDefaultJpaMapper(WorkstationViewPojoPojo.class);
 		this.queryDao = new DalQueryDao(DATA_BASE);
@@ -34,21 +31,10 @@ public class WorkstationViewDao {
 	 * 获取总页数
 	**/
 	public Long count(DalHints hints) throws SQLException {
-		String sql = "SELECT count(*) FROM workstation wks, USER us, sys_resource re where wks.userId = us.userId and us.iconResourceId=re.id and wks.status=1 ";
+		String sql = "SELECT count(*) FROM workstation wks, USER us, sys_resource re where wks.userId = us.userId and us.iconResourceId=re.id and wks.status=1";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
 		return queryDao.queryForObjectNullable(sql, parameters, hints, Long.class);
-	}
-	/**
-	 * findTrainMaterial
-	**/
-	public List<TrainMaterialRecorderPojo> findTrainMaterial(Integer materialId, DalHints hints) throws SQLException {
-		String sql = "SELECT a.title, a.description, b.resourceName, b.resourceType, b.fileUrl, b.allowDownload, b.downloadCnt FROM train_material a LEFT JOIN sys_resource b ON a.materialFile = b.id AND a.id = ? WHERE b.`status` = 1";
-		StatementParameters parameters = new StatementParameters();
-		hints = DalHints.createIfAbsent(hints);
-		int i = 1;
-		parameters.setSensitive(i++, "materialId", Types.INTEGER, materialId);
-		return (List<TrainMaterialRecorderPojo>)queryDao.query(sql, parameters, hints, trainMaterialRecorderPojoRowMapper);
 	}
 	/**
 	 * findResearchStage
