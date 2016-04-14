@@ -98,6 +98,10 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer usStatus;
 	
+	@Column(name="hosptialId")
+	@Type(value=Types.INTEGER)
+	private Integer hosptialId;
+	
 	@Column(name="doctorNumber")
 	@Type(value=Types.VARCHAR)
 	private String doctorNumber;
@@ -114,49 +118,9 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer expertType;
 	
-	@Column(name="hospitalName")
-	@Type(value=Types.VARCHAR)
-	private String hospitalName;
-	
-	@Column(name="level")
-	@Type(value=Types.INTEGER)
-	private Integer level;
-	
-	@Column(name="proviceId")
-	@Type(value=Types.INTEGER)
-	private Integer proviceId;
-	
-	@Column(name="cityId")
-	@Type(value=Types.INTEGER)
-	private Integer cityId;
-	
-	@Column(name="districtId")
-	@Type(value=Types.INTEGER)
-	private Integer districtId;
-	
-	@Column(name="address")
-	@Type(value=Types.VARCHAR)
-	private String address;
-	
 	@Column(name="fileUrl")
 	@Type(value=Types.VARCHAR)
 	private String fileUrl;
-	
-	@Column(name="mienType")
-	@Type(value=Types.INTEGER)
-	private Integer mienType;
-	
-	@Column(name="begYear")
-	@Type(value=Types.VARCHAR)
-	private String begYear;
-	
-	@Column(name="endYear")
-	@Type(value=Types.VARCHAR)
-	private String endYear;
-	
-	@Column(name="usMienDesc")
-	@Type(value=Types.VARCHAR)
-	private String usMienDesc;
 
 	public Integer getWorkstationId() {
 		return workstationId;
@@ -318,6 +282,14 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.usStatus = usStatus;
 	}
 
+	public Integer getHosptialId() {
+		return hosptialId;
+	}
+
+	public void setHosptialId(Integer hosptialId) {
+		this.hosptialId = hosptialId;
+	}
+
 	public String getDoctorNumber() {
 		return doctorNumber;
 	}
@@ -350,92 +322,12 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.expertType = expertType;
 	}
 
-	public String getHospitalName() {
-		return hospitalName;
-	}
-
-	public void setHospitalName(String hospitalName) {
-		this.hospitalName = hospitalName;
-	}
-
-	public Integer getLevel() {
-		return level;
-	}
-
-	public void setLevel(Integer level) {
-		this.level = level;
-	}
-
-	public Integer getProviceId() {
-		return proviceId;
-	}
-
-	public void setProviceId(Integer proviceId) {
-		this.proviceId = proviceId;
-	}
-
-	public Integer getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(Integer cityId) {
-		this.cityId = cityId;
-	}
-
-	public Integer getDistrictId() {
-		return districtId;
-	}
-
-	public void setDistrictId(Integer districtId) {
-		this.districtId = districtId;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public String getFileUrl() {
 		return fileUrl;
 	}
 
 	public void setFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
-	}
-
-	public Integer getMienType() {
-		return mienType;
-	}
-
-	public void setMienType(Integer mienType) {
-		this.mienType = mienType;
-	}
-
-	public String getBegYear() {
-		return begYear;
-	}
-
-	public void setBegYear(String begYear) {
-		this.begYear = begYear;
-	}
-
-	public String getEndYear() {
-		return endYear;
-	}
-
-	public void setEndYear(String endYear) {
-		this.endYear = endYear;
-	}
-
-	public String getUsMienDesc() {
-		return usMienDesc;
-	}
-
-	public void setUsMienDesc(String usMienDesc) {
-		this.usMienDesc = usMienDesc;
 	}
 
 }
