@@ -15,7 +15,6 @@ import com.medicalmaster.common.workstation.QueryWorkstationListRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationListResponse;
 import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationResponse;
-import com.xross.tools.xunit.XunitFactory;
 
 @Resource
 @Path(ResourceConstants.PATH_WORKSTATION)

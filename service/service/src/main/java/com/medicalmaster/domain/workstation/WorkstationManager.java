@@ -88,7 +88,7 @@ public class WorkstationManager {
 	 */
 	public Integer countWorkstation(QueryWorkstationRequest request) throws SQLException {
 		Long count = viewDao.count(null);
-		return Integer.parseInt(count.toString());
+		return count.intValue();
 	}
 
 	/**
