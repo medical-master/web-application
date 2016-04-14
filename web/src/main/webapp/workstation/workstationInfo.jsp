@@ -1,3 +1,6 @@
+<%@page import="com.medicalmaster.dal.TrainMaterialViewPojoPojo"%>
+<%@page import="com.medicalmaster.dal.UserMienViewPojo"%>
+<%@page import="com.medicalmaster.web.view.user.UserView"%>
 <%@page import="com.medicalmaster.dal.ClinicalResearch"%>
 <%@page import="com.medicalmaster.dal.DiagnosticPlan"%>
 <%@page import="com.medicalmaster.dal.Workstation"%>
@@ -5,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.medicalmaster.web.view.workstation.WorkstationView"%>
 <%@page import="com.medicalmaster.dal.WorkstationViewPojoPojo"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script>
 	$(function() {
@@ -22,13 +25,19 @@
 </script>
 <%
 	String id = request.getParameter("id");
+	String userId = request.getParameter("uid");
 	WorkstationView workstationView = new WorkstationView(request,response);
 	WorkstationViewPojoPojo workstationViewPojo = workstationView.getWorkstationInfo(id);
 	List<DiagnosticPlan> diagnosticPlanList = workstationView.findWorkStationDiagnosticPlans(id);
 	List<ClinicalResearch> clinicalResearchList = workstationView.getClinicalResearchs(id);
+	UserView userView = new UserView(request,response);
+	List<UserMienViewPojo> userMienList = userView.getUserMienInfo(userId);
+	List<TrainMaterialViewPojoPojo> trainMeetingList = workstationView.getTrainMeetings(id);
 	request.setAttribute("workstationViewPojo",workstationViewPojo);
 	request.setAttribute("diagnosticPlanList",diagnosticPlanList);
 	request.setAttribute("clinicalResearchList",clinicalResearchList);
+	request.setAttribute("userMienList",userMienList);
+	request.setAttribute("trainMeetingList",trainMeetingList);
 %>
 <c:if test="${workstationViewPojo!= null}">
 <div class="row">
@@ -45,21 +54,42 @@
 			<br/>
 		</div>
 		<div class="span12">
-			工作简历：<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			社会职责：<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			教育简介：<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
-			19923-至今：芳芳第三方的时间浪费<br/>
+			<c:if test="${userMienList != null}">
+				<div class="span12">
+					工作简历：<br/>
+				</div>
+				<div class="span12">
+					<c:forEach items="${userMienList}" var="userMien">
+						<c:if test="${userMien.mienType == 20}">
+							${userMien.begYear}年~${userMien.begYear}：${userMien.description}<br/>
+						</c:if>
+					</c:forEach>
+				</div>
+				
+				<div class="span12">
+					<br/>
+					社会职责：<br/>
+				</div>
+				<div class="span12">
+					<c:forEach items="${userMienList}" var="userMien">
+						<c:if test="${userMien.mienType == 60}">
+							${userMien.description}<br/>
+						</c:if>
+					</c:forEach>
+				</div>
+				
+				<div class="span12">
+					<br/>
+					教育简介：<br/>
+				</div>
+				<div class="span12">
+					<c:forEach items="${userMienList}" var="userMien">
+						<c:if test="${userMien.mienType == 10}">
+							${userMien.begYear}年~${userMien.begYear}：${userMien.description}<br/>
+						</c:if>
+					</c:forEach>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<div class="col-md-9">
@@ -78,18 +108,26 @@
 		    <div class="tab-content">
 		    	<div class="tab-pane fade in active" id="tabs-1">
 		            <ul>
-		                <li><a href="#">从事临床工作20余年，擅长神经系统疾病的诊治，尤其是头面痛、眩晕的诊治，以及神经影像学诊断技术。</a></li>
+		                <li>${workstationViewPojo.expertArea}</li>
 		            </ul>
 		        </div>
 		        <div class="tab-pane" id="tabs-2">
 		            <ul>
-		                <li><a href="#">从WordPress看开源平台的发展</a></li>
-		                <li><a href="#">jQuery 2.0 beta发布，不再支持IE6/7/8，jQuery 1.8、1.9与2.0特性概览</a></li>
-		                <li><a href="#">一个简洁时尚的PSD登陆表单素材</a></li>
+						<c:forEach items="${userMienList}" var="userMien">
+							<c:if test="${userMien.mienType == 40}">
+								 <li>${userMien.description}</li>
+							</c:if>
+						</c:forEach>
 		            </ul>
 		        </div>
 		        <div class="tab-pane" id="tabs-3">
-		            <p>今天是联合国妇女权益和国际和平日，又称“三八妇女节”。谷歌公司决定在这个特殊的日子为女性带来不一样的一天。据悉，谷歌公司专门为此举办了为期24小时的直播演讲活动--Voices Global Conference。该大会由全球科技女性（Global Tech Women）主办。</p>
+		        	<ul>
+			            <c:forEach items="${userMienList}" var="userMien">
+							<c:if test="${userMien.mienType == 50}">
+								<li>${userMien.begYear}年~${userMien.begYear}：${userMien.description}<br/></li>
+							</c:if>
+						</c:forEach>
+					</ul>
 		        </div>
 		    </div>
 		</div>
@@ -138,35 +176,13 @@
 		    </ul>
 		    <div class="tab-content">
 		    	<div class="tab-pane fade in active" id="tabs4-1" >
-		    		<br/>
-		           	视频：<br/>
-		           <ul>
-						<li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-		            </ul>
-					PPT：<br/>
-					<ul>
-						<li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-		            </ul>
-		            PDF：<br/>
-					<ul>
-						<li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-		            </ul>
-		            WORD：<br/>
-		            <ul>
-						<li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-			            <li><a href="#">原发性头痛诊疗规范与疾病管理的应用推广研究</a></li>
-		            </ul>
+		    		<c:if test="${trainMeetingList !=null && trainMeetingList.size()!=0}">
+		    			<c:forEach items="${trainMeetingList }" var="trainMeeting">
+							<ul>
+								<li><a href="#">${trainMeeting.title}</a></li>
+					        </ul>
+		    			</c:forEach>
+		    		</c:if>
 		        </div>
 		    </div>
 		</div>
