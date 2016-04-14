@@ -14,12 +14,15 @@ import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsRequest;
 import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsResponse;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansRequest;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansResponse;
+import com.medicalmaster.common.trainmaterial.QueryTrainMaterialResponse;
+import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
 import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationResponse;
 import com.medicalmaster.dal.ClinicalResearch;
 import com.medicalmaster.dal.DiagnosticPlan;
+import com.medicalmaster.dal.TrainMaterialViewPojoPojo;
 import com.medicalmaster.dal.WorkstationViewPojoPojo;
 import com.medicalmaster.web.helper.ResourceProxy;
 import com.medicalmaster.web.view.BaseView;
@@ -124,6 +127,31 @@ public class WorkstationView extends BaseView
 		}
 
 		return null;
+	}
+	
+	/**
+	 * 获取工作站下的指定培训资料
+	 * @param id
+	 * @return
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 */
+	public List<TrainMaterialViewPojoPojo> getTrainMeetings(String id) throws IllegalArgumentException, IllegalAccessException 
+	{
+		QueryTrainMeetingsRequest request = new QueryTrainMeetingsRequest();
+		request.setPublishStatu(40);
+		request.setWorkstationId(Integer.parseInt(id));
+		request.setPageNo(1);
+		request.setPageSize(35);
+		QueryTrainMaterialResponse response = ResourceProxy.get(
+				webContext.getBaseServiceUrl() + ResourceConstants.PATH_TRAIN_MATERIAL+"/showTrainMaterial", request,
+				QueryTrainMaterialResponse.class);
+
+		if (response.isSuccess()) {
+			return response.getTrainMaterial();
+		} else {
+			return null;
+		}
 	}
 }
 
