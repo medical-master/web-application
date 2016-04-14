@@ -1,3 +1,6 @@
+<%@page import="com.medicalmaster.web.helper.PaginationHelper"%>
+<%@page import="com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosResponse"%>
+<%@page import="com.medicalmaster.common.helper.HospitalHelper"%>
 <%@page import="com.medicalmaster.dal.DiagPlanViewPojo"%>
 <%@page import="com.medicalmaster.common.helper.ParseHelper"%>
 <%@page import="org.apache.commons.lang.time.DateFormatUtils"%>
@@ -27,36 +30,25 @@
 						<th>访问次数</th>
 					</tr>
 				</thead>
+				<%QueryDiagPlanInfosResponse infosResponse = view.getDiagPlanInfos(); %>
+				<%if(infosResponse.isSuccess()){ %>
 				<tbody>
-					<%List<DiagPlanViewPojo> pojos = view.getDiagPlanInfos(); %>
+					<%List<DiagPlanViewPojo> pojos = infosResponse.getPojos(); %>
 					<%if(pojos != null && pojos.size() > 0) {%>
 						<%for(DiagPlanViewPojo pojo : pojos){ %>
 						<tr>
 							<td><%=pojo.getTitle() %></td>
 							<td><%=pojo.getName() %></td>
-							<td><%=pojo.getHosptialId() %></td>
+							<td><%=HospitalHelper.getName(pojo.getHosptialId())%></td>
 							<td><%=ParseHelper.formateTimestamp(pojo.getPublishTime(), "yyyy-MM-dd")%></td>
 							<td><%=ParseHelper.formateNumber(pojo.getVisitCnt()) %>次</td>
 						</tr>
 						<%} %>
 					<%} %>
 				</tbody>
+				<%} %>
 			</table>
-			<nav align="right">
-				<ul class="pagination">
-					<li><a href="#?pageNo=2&pageSize=10" aria-label="Previous"> <span
-							aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#" aria-label="Next"> <span
-							aria-hidden="true">&raquo;</span>
-					</a></li>
-				</ul>
-			</nav>
+			<%=PaginationHelper.getPaginationHtml(infosResponse, "action?view=diagnosis/home") %>
 		</div>
 	</div>
 </div>
@@ -65,3 +57,4 @@
 <script>
 	navMenuChange("nav_diagnostic");
 </script>
+<script src="resources/js/pagination.js"></script>

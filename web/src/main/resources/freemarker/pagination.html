@@ -1,0 +1,18 @@
+<#escape x as (x)!>
+<nav align="right">
+<form id="form_pagination" action="${action}" method="POST">
+	<input type="hidden" id="pageNo" name="pageNo" value="${pageNo}">
+	<input type="hidden" id="pageSize" name="pageSize" value="${pageSize}">
+</form>
+<ul class="pagination pagination-lg">
+	<#list pages as page>
+		<#if page==pageNo>	
+			<li class="active"><a href="#">${page}</a></li>
+		<#else>
+			<li><a href="#">${page}</a></li>	
+		</#if>
+	</#list>
+	<li class="disabled"><span aria-hidden="true">${pageCnt}页  ${recordCnt}条</span></li>
+</ul>
+</nav>
+</#escape>
