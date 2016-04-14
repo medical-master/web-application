@@ -9,9 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.medicalmaster.common.bean.ResourceConstants;
-import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosRequest;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosResponse;
-import com.medicalmaster.dal.DiagnosticPlanListPojo;
+import com.medicalmaster.common.request.get.PageRequest;
+import com.medicalmaster.dal.DiagPlanViewPojo;
 import com.medicalmaster.web.helper.ResourceProxy;
 import com.medicalmaster.web.view.BaseView;
 
@@ -35,13 +35,13 @@ public class DiagHomeView extends BaseView {
 		super(request, response);
 	}
 
-	public List<DiagnosticPlanListPojo> getDiagPlanInfos()
+	public List<DiagPlanViewPojo> getDiagPlanInfos()
 			throws IllegalArgumentException, IllegalAccessException {
-		QueryDiagPlanInfosRequest request = new QueryDiagPlanInfosRequest();
+		PageRequest request = new PageRequest();
 		
 		
-		request.setPageNo(pageNo);
-		request.setPageSize(pageSize);
+		request.setPageNo(1);
+		request.setPageSize(10);
 		
 
 		QueryDiagPlanInfosResponse response = ResourceProxy.get(

@@ -6,6 +6,7 @@ import java.util.List;
 import com.medicalmaster.common.notice.QueryNoticesRequest;
 import com.medicalmaster.dal.Notice;
 import com.medicalmaster.dal.NoticeDao;
+import com.medicalmaster.dal.NoticeExtDao;
 
 /**
  * 公告通知
@@ -18,21 +19,22 @@ import com.medicalmaster.dal.NoticeDao;
  */
 public class NoticeManager {
 	NoticeDao dao;
+	NoticeExtDao extDao;
 
 	/**
 	 * 
 	 */
 	public NoticeManager() throws SQLException {
 		dao = new NoticeDao();
+		extDao = new NoticeExtDao();
 	}
 
 	public Integer countNotices(QueryNoticesRequest request) throws SQLException {
-		List<Integer> list = dao.findNoticesCnt(request.getStatus(), null);
-		if (list == null) {
-			return 0;
+		if (request.getStatus() == null) {
+			return extDao.findAllCnt(null).intValue();
+		} else {
+			return extDao.findByPublishstatusCnt(request.getStatus(), null).intValue();
 		}
-
-		return list.size();
 	}
 
 	public List<Notice> queryNotices(QueryNoticesRequest request) throws SQLException {

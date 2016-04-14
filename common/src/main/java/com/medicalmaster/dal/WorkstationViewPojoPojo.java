@@ -22,9 +22,9 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer workstationId;
 	
-	@Column(name="expertId")
+	@Column(name="userId")
 	@Type(value=Types.INTEGER)
-	private Integer expertId;
+	private Integer userId;
 	
 	@Column(name="subLink")
 	@Type(value=Types.VARCHAR)
@@ -82,13 +82,25 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String email;
 	
-	@Column(name="pte")
+	@Column(name="professionalRank")
+	@Type(value=Types.INTEGER)
+	private Integer professionalRank;
+	
+	@Column(name="title")
 	@Type(value=Types.VARCHAR)
-	private String pte;
+	private String title;
+	
+	@Column(name="educationLevel")
+	@Type(value=Types.INTEGER)
+	private Integer educationLevel;
 	
 	@Column(name="usStatus")
 	@Type(value=Types.INTEGER)
 	private Integer usStatus;
+	
+	@Column(name="hosptialId")
+	@Type(value=Types.INTEGER)
+	private Integer hosptialId;
 	
 	@Column(name="doctorNumber")
 	@Type(value=Types.VARCHAR)
@@ -98,38 +110,6 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.VARCHAR)
 	private String department;
 	
-	@Column(name="hospitalName")
-	@Type(value=Types.VARCHAR)
-	private String hospitalName;
-	
-	@Column(name="level")
-	@Type(value=Types.INTEGER)
-	private Integer level;
-	
-	@Column(name="proviceId")
-	@Type(value=Types.INTEGER)
-	private Integer proviceId;
-	
-	@Column(name="cityId")
-	@Type(value=Types.INTEGER)
-	private Integer cityId;
-	
-	@Column(name="districtId")
-	@Type(value=Types.INTEGER)
-	private Integer districtId;
-	
-	@Column(name="address")
-	@Type(value=Types.VARCHAR)
-	private String address;
-	
-	@Column(name="fileUrl")
-	@Type(value=Types.VARCHAR)
-	private String fileUrl;
-	
-	@Column(name="userId")
-	@Type(value=Types.INTEGER)
-	private Integer userId;
-	
 	@Column(name="expertArea")
 	@Type(value=Types.VARCHAR)
 	private String expertArea;
@@ -137,6 +117,10 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Column(name="expertType")
 	@Type(value=Types.INTEGER)
 	private Integer expertType;
+	
+	@Column(name="fileUrl")
+	@Type(value=Types.VARCHAR)
+	private String fileUrl;
 
 	public Integer getWorkstationId() {
 		return workstationId;
@@ -146,12 +130,12 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.workstationId = workstationId;
 	}
 
-	public Integer getExpertId() {
-		return expertId;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setExpertId(Integer expertId) {
-		this.expertId = expertId;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getSubLink() {
@@ -266,12 +250,28 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.email = email;
 	}
 
-	public String getPte() {
-		return pte;
+	public Integer getProfessionalRank() {
+		return professionalRank;
 	}
 
-	public void setPte(String pte) {
-		this.pte = pte;
+	public void setProfessionalRank(Integer professionalRank) {
+		this.professionalRank = professionalRank;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Integer getEducationLevel() {
+		return educationLevel;
+	}
+
+	public void setEducationLevel(Integer educationLevel) {
+		this.educationLevel = educationLevel;
 	}
 
 	public Integer getUsStatus() {
@@ -280,6 +280,14 @@ public class WorkstationViewPojoPojo implements DalPojo {
 
 	public void setUsStatus(Integer usStatus) {
 		this.usStatus = usStatus;
+	}
+
+	public Integer getHosptialId() {
+		return hosptialId;
+	}
+
+	public void setHosptialId(Integer hosptialId) {
+		this.hosptialId = hosptialId;
 	}
 
 	public String getDoctorNumber() {
@@ -298,70 +306,6 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.department = department;
 	}
 
-	public String getHospitalName() {
-		return hospitalName;
-	}
-
-	public void setHospitalName(String hospitalName) {
-		this.hospitalName = hospitalName;
-	}
-
-	public Integer getLevel() {
-		return level;
-	}
-
-	public void setLevel(Integer level) {
-		this.level = level;
-	}
-
-	public Integer getProviceId() {
-		return proviceId;
-	}
-
-	public void setProviceId(Integer proviceId) {
-		this.proviceId = proviceId;
-	}
-
-	public Integer getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(Integer cityId) {
-		this.cityId = cityId;
-	}
-
-	public Integer getDistrictId() {
-		return districtId;
-	}
-
-	public void setDistrictId(Integer districtId) {
-		this.districtId = districtId;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getFileUrl() {
-		return fileUrl;
-	}
-
-	public void setFileUrl(String fileUrl) {
-		this.fileUrl = fileUrl;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
 	public String getExpertArea() {
 		return expertArea;
 	}
@@ -376,6 +320,14 @@ public class WorkstationViewPojoPojo implements DalPojo {
 
 	public void setExpertType(Integer expertType) {
 		this.expertType = expertType;
+	}
+
+	public String getFileUrl() {
+		return fileUrl;
+	}
+
+	public void setFileUrl(String fileUrl) {
+		this.fileUrl = fileUrl;
 	}
 
 }

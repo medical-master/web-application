@@ -20,9 +20,9 @@ public class WorkstationExtDao {
 		this.queryDao = new DalQueryDao(DATA_BASE);
 	}
 	/**
-	 * findWorkstationsCnt
+	 * findByStatusCnt
 	**/
-	public Long findWorkstationsCnt(Integer status, DalHints hints) throws SQLException {
+	public Long findByStatusCnt(Integer status, DalHints hints) throws SQLException {
 		String sql = "select count(*) from workstation a where a.`status` = ?";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
