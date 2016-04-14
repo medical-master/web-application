@@ -19,6 +19,12 @@ public class ParseHelper {
 		return Double.parseDouble(value);
 	}
 
+	public static Long parseLong(String value) {
+		if (value == null || value.trim().length() == 0)
+			return null;
+		return Long.parseLong(value);
+	}
+
 	public static Boolean parseBoolean(String value) {
 		if (value == null || value.trim().length() == 0)
 			return null;

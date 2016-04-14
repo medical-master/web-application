@@ -7,6 +7,10 @@
 <%@page import="org.apache.commons.lang.time.DateUtils"%>
 <%@page import="java.util.List"%>
 <%@page import="com.medicalmaster.web.view.diagnostic.DiagHomeView"%>
+<%@taglib prefix="hst" uri="http://java.sun.com/jsp/eds/hospital" %>
+<%@taglib prefix="spt" uri="http://java.sun.com/jsp/eds/sysproperty" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page pageEncoding="UTF-8"%>
 
 
@@ -31,22 +35,22 @@
 					</tr>
 				</thead>
 				<%QueryDiagPlanInfosResponse infosResponse = view.getDiagPlanInfos(); %>
-				<%if(infosResponse.isSuccess()){ %>
-				<tbody>
-					<%List<DiagPlanViewPojo> pojos = infosResponse.getPojos(); %>
-					<%if(pojos != null && pojos.size() > 0) {%>
-						<%for(DiagPlanViewPojo pojo : pojos){ %>
-						<tr>
-							<td><%=pojo.getTitle() %></td>
-							<td><%=pojo.getName() %></td>
-							<td><%=HospitalHelper.getName(pojo.getHosptialId())%></td>
-							<td><%=ParseHelper.formateTimestamp(pojo.getPublishTime(), "yyyy-MM-dd")%></td>
-							<td><%=ParseHelper.formateNumber(pojo.getVisitCnt()) %>次</td>
-						</tr>
-						<%} %>
-					<%} %>
-				</tbody>
-				<%} %>
+				<%request.setAttribute("infosResponse", infosResponse); %>
+				<c:if test="${infosResponse.isSuccess()}">
+					<tbody>
+						<c:if test="${infosResponse.getPojos() != null && infosResponse.getPojos().size() > 0}">
+							<c:forEach items="${infosResponse.getPojos()}" var="pojo">
+								<tr>
+									<td>${pojo.title}</td>
+									<td>${pojo.name}</td>
+									<td><hst:name id="${pojo.hosptialId}"/></td>
+									<td><fmt:formatDate value="${pojo.publishTime}" type="date"/></td>
+									<td><fmt:formatNumber value="${pojo.visitCnt}"/>次</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</tbody>
+				</c:if>
 			</table>
 			<%=PaginationHelper.getPaginationHtml(infosResponse, "action?view=diagnosis/home") %>
 		</div>

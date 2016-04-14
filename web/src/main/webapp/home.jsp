@@ -9,6 +9,10 @@
 <%@page import="com.medicalmaster.dal.Notice"%>
 <%@page import="com.medicalmaster.web.view.HomeView"%>
 <%@page import="java.util.List"%>
+<%@taglib prefix="hst" uri="http://java.sun.com/jsp/eds/hospital" %>
+<%@taglib prefix="spt" uri="http://java.sun.com/jsp/eds/sysproperty" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page pageEncoding="UTF-8"%>
 
 
@@ -53,17 +57,19 @@
 					介绍：专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是专家工作站是
 				</div>
 				<%List<Workstation> workstations = view.getWorkstations(); %>
-				<%if(workstations != null && workstations.size() > 0){ %>
+				<%request.setAttribute("workstations", workstations); %>
+				<c:if test="${workstations != null && workstations.size() > 0 }">
 				<ul class="list-unstyled">
-					<%for(Workstation workstation : workstations){ %>
+					<c:forEach var="workstation" items="${workstations}">				
 					<li>
-						<h3><%=workstation.getName() %></h3>
-						<p class="area"><%=SysPropertyHelper.getDesc(SysCategoryConstants.illCode, workstation.getIllCode()) %></p>
-						<p class="keywords"><%=workstation.getKeywords() %></p>
+						<h3> ${workstation.name}</h3>
+						<p class="area">
+						<spt:desc categoryId="27" propertyId="${workstation.illCode}"></spt:desc>
+						<p class="keywords">${workstation.keywords}</p>
 					</li>
-					<%} %>					
+					</c:forEach>			
 				</ul>
-				<%} %>
+				</c:if>
 				<div class="more pull-right"><a href="action?view=workstation/home">更多</a></div>
 			</div>
 		</div>
@@ -71,16 +77,17 @@
 			<div class="diagnose">
 				<h3 class="box-title">临床诊疗标准</h3>
 				<%List<DiagnosticPlan> plans = view.getDiagnosticPlans(); %>
-				<%if(plans != null && plans.size() > 0) {%>
-				<ul class="list-unstyled">
-					<%for(DiagnosticPlan plan : plans) {%>
-					<li>
-						<p class="list-text"><a href="##"><%=plan.getTitle() %></a></p>
-					</li>					
-					<%} %>
-				</ul>
-				<%} %>
-				<div class="more pull-right"><a href="action?view=diagnosis/home">更多</a></div>
+				<%request.setAttribute("plans", plans); %>
+				<c:if test="${plans != null && plans.size() > 0}">
+					<ul class="list-unstyled">
+						<c:forEach var="plan" items="${plans}">
+							<li>
+								<p class="list-text"><a href="##">${plan.title}</a></p>
+							</li>					
+						</c:forEach>
+					</ul>
+					<div class="more pull-right"><a href="action?view=diagnosis/home">更多</a></div>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -88,40 +95,44 @@
 
 <!-- 临床研究 -->
 <%List<ClinicalResearch> researchs = view.getClinicalResearchs(); %>
-<%if(researchs != null && researchs.size() > 0) {%>
-<div class="scientific clearfix">
-	<div class="list">
-		<ul class="list-unstyled">
-			<%for(ClinicalResearch research : researchs) {%>
-			<li><a href="##"><%=research.getTitle() %></a></li>
-			<%} %>
-		</ul>
+<%request.setAttribute("researchs", researchs); %>
+<c:if test="${researchs != null && researchs.size() > 0}">
+	<div class="scientific clearfix">
+		<div class="list">
+			<ul class="list-unstyled">
+				<c:forEach var="research" items="${researchs}">
+					<li><a href="##">${research.title}</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="imgFace pull-right">
+			<img src="resources/images/pic-scientific.png">
+		</div>
 	</div>
-	<div class="imgFace pull-right">
-		<img src="resources/images/pic-scientific.png">
-	</div>
-</div>
-<%} %>
+</c:if>
+
 
 <!-- 通知 -->
 <%Notice notice = view.getLastedNotice(); %>
-<%if(notice != null){ %>
-<div class="important">
-  <div class="im-content">
-    <div class="im-left">
-      <h1><%=notice.getTitle() %></h1>
-      <h3>Important to Release</h3>
-      <p>我们秉承整合、开放、专业的宗旨，努 力提供国内最高效的第三方医疗资源技 术服务和大数据服务。</p>
-    </div>
-    <div class="im-right">
-      <p> <%=notice.getContent() %> </p>
-    </div>
-  </div>
-</div>
-<%} %>
+<%request.setAttribute("notice", notice); %>
+<c:if test="${notice != null}">
+	<div class="important">
+	  <div class="im-content">
+	    <div class="im-left">
+	      <h1>${notice.title}</h1>
+	      <h3>Important to Release</h3>
+	      <p>我们秉承整合、开放、专业的宗旨，努 力提供国内最高效的第三方医疗资源技 术服务和大数据服务。</p>
+	    </div>
+	    <div class="im-right">
+	      <p>${notice.content}</p>
+	    </div>
+	  </div>
+	</div>
+</c:if>
 
 <!-- 培训会议 -->
 <%List<TrainMeeting> meetings = view.getTrainMeetings(); %>
+<%request.setAttribute("meetings", meetings); %>
 <%if(meetings != null && meetings.size() > 0){ %>
 <div class="notice">
 	<div class="container">

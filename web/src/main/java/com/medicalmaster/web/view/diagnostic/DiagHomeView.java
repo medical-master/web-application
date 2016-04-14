@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlanInfosResponse;
-import com.medicalmaster.common.helper.ParseHelper;
 import com.medicalmaster.common.request.get.PageRequest;
 import com.medicalmaster.web.helper.ResourceProxy;
 import com.medicalmaster.web.view.BaseView;
@@ -35,20 +34,9 @@ public class DiagHomeView extends BaseView {
 
 	public QueryDiagPlanInfosResponse getDiagPlanInfos() throws IllegalArgumentException, IllegalAccessException {
 		PageRequest request = new PageRequest();
-		Integer pageNo = ParseHelper.parseInt(webContext.getParameter("pageNo"));
-		Integer pageSize = ParseHelper.parseInt(webContext.getParameter("pageSize"));
-		if (pageSize == null) {
-			pageSize = 2;
-		}
-		request.setPageNo(pageNo);
-		request.setPageSize(pageSize);
+		getPageParameters(request);
 
-		logger.info("pageNo {}, pageSize {}", pageNo, pageSize);
-
-		QueryDiagPlanInfosResponse response = ResourceProxy.get(
-				webContext.getBaseServiceUrl() + ResourceConstants.PATH_DIAGNOSTIC_PLAN + "/infos", request,
-				QueryDiagPlanInfosResponse.class);
-
-		return response;
+		return ResourceProxy.get(webContext.getBaseServiceUrl() + ResourceConstants.PATH_DIAGNOSTIC_PLAN + "/infos",
+				request, QueryDiagPlanInfosResponse.class);
 	}
 }

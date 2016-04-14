@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+	version="2.1">
+
+	<description>eds web tag library hospital</description>
+	<display-name>hospital</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>hst</short-name>
+	<uri>http://java.sun.com/jsp/eds/hospital</uri>
+
+	<tag>
+		<description>hospital name tag</description>
+		<name>name</name>
+		<tag-class>com.medicalmaster.web.tag.hospital.NameTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>this id of hospital</description>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

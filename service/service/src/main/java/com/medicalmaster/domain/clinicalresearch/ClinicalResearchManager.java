@@ -6,6 +6,7 @@ import java.util.List;
 import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsRequest;
 import com.medicalmaster.dal.ClinicalResearch;
 import com.medicalmaster.dal.ClinicalResearchDao;
+import com.medicalmaster.dal.ClinicalResearchExtDao;
 
 /**
  * 临床研究
@@ -18,6 +19,7 @@ import com.medicalmaster.dal.ClinicalResearchDao;
  */
 public class ClinicalResearchManager {
 	ClinicalResearchDao dao;
+	ClinicalResearchExtDao extDao;
 
 	/**
 	 * @throws SQLException
@@ -25,6 +27,7 @@ public class ClinicalResearchManager {
 	 */
 	public ClinicalResearchManager() throws SQLException {
 		dao = new ClinicalResearchDao();
+		extDao = new ClinicalResearchExtDao();
 	}
 
 	public ClinicalResearch queryInfo(Integer id) throws SQLException {
@@ -36,11 +39,10 @@ public class ClinicalResearchManager {
 	}
 
 	public Integer queryClinicalResearchsCnt(QueryClinicalResearchsRequest request) throws SQLException {
-		List<ClinicalResearch> clinicalResearchs = dao.findAllByWorkstationId(request.getWorkstationId(), null);
-		if (clinicalResearchs == null) {
-			return 0;
+		if (request.getWorkstationId() == null) {
+			return extDao.findAllCnt(null).intValue();
+		} else {
+			return extDao.findByWorkstationIdCnt(request.getWorkstationId(), null).intValue();
 		}
-
-		return clinicalResearchs.size();
 	}
 }

@@ -13,7 +13,6 @@ import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchInfoRespon
 import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsRequest;
 import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsResponse;
 import com.medicalmaster.common.request.get.IdRequest;
-import com.xross.tools.xunit.XunitFactory;
 
 /**
  * 临床研究
