@@ -21,7 +21,11 @@ import com.medicalmaster.common.user.ActivateMasterRequest;
 import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.common.user.LoginRequest;
+import com.medicalmaster.common.user.QueryUserMienRequest;
+import com.medicalmaster.common.user.QueryUserMienResponse;
 import com.medicalmaster.common.user.UpdateUserRequest;
+import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
+import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
 
 @Resource
 @Path(ResourceConstants.PATH_USER)
@@ -75,5 +79,17 @@ public class UserResource extends Resources {
 	@Produces(MediaType.APPLICATION_JSON)
 	public GetUserInfoResponse updateInfomation(@BeanParam UpdateUserRequest updateUserRequest) {
 		return handle(updateUserRequest, updateUserRequest.getAction());
+	}
+	
+	/**
+	 * 查询个人风采信息
+	 * @return
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/userMienInfo")
+	public QueryUserMienResponse showMienInfo(@BeanParam QueryUserMienRequest request) {
+		request.setAction("showUserMien");
+		return handle(request, request.getAction());
 	}
 }
