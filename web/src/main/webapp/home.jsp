@@ -19,9 +19,6 @@
 	HomeView view = new HomeView(request, response);
 %>
 
-<link rel="stylesheet" href="resources/css/swiper.min.css" />
-<link rel="stylesheet" href="resources/css/index.css" />
-
 <div class="bannerBox clearfix">
 	<div class="swiper-container text-center">
 		<div class="swiper-wrapper">

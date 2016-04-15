@@ -9,9 +9,6 @@
 
 <%TrainHomeView view = new TrainHomeView(request, response); %>
 
-<link rel="stylesheet" href="resources/css/swiper.min.css" />
-<link rel="stylesheet" href="resources/css/index.css" />
-
 <div class="container" >
 	<div class="row clearfix">
 		<img alt="教育培训" width="100%" src="resources/images/train_barne.png" />
