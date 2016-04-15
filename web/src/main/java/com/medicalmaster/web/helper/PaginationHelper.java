@@ -17,8 +17,13 @@ import com.medicalmaster.common.PageResponse;
  * </P>
  */
 public class PaginationHelper {
+	static final String TEMPLATE_PAGINATION = "pagination.html";
 	static final Integer SHOW_PAGE_NUM = 10;
 
+	public static String getPaginationHtml(PageResponse response, String formAction){
+		return getPaginationHtml(response, formAction, TEMPLATE_PAGINATION);
+	}
+	
 	public static String getPaginationHtml(PageResponse response, String formAction,String pagination) {
 		if (response == null) {
 			return "";
