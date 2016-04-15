@@ -17,10 +17,9 @@ import com.medicalmaster.common.PageResponse;
  * </P>
  */
 public class PaginationHelper {
-	static final String TEMPLATE_PAGINATION = "pagination.html";
 	static final Integer SHOW_PAGE_NUM = 10;
 
-	public static String getPaginationHtml(PageResponse response, String formAction) {
+	public static String getPaginationHtml(PageResponse response, String formAction,String pagination) {
 		if (response == null) {
 			return "";
 		}
@@ -35,7 +34,7 @@ public class PaginationHelper {
 
 		map.put("pages", calcPages(response.getPageNo(), response.getPageCnt()));
 
-		return FreeMarkerHelper.process("pagination.html", map);
+		return FreeMarkerHelper.process(pagination, map);
 	}
 
 	static List<Integer> calcPages(Integer pageNo, Integer pageCnt) {
