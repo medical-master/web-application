@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="resources/images/ico.png">
 
     <title>医大师</title>
-    
     <link rel="stylesheet" href="resources/css/swiper.min.css" />
-    <link rel="stylesheet" href="resources/css/index.css" />
+	<link rel="stylesheet" href="resources/css/index.css" />
+
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
 	
