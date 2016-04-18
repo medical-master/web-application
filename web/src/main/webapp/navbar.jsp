@@ -37,7 +37,7 @@
 		<c:if test="${_USER != null }">
 			<div class="user-card">
 				<div class="user-image pull-left">
-					<a href="action?view=user/viewInfo"><img
+					<a href="action?jump=user/myprofile"><img
 						src="resources/images/user-icon-default.png" alt="" /></a>
 				</div>
 				<div class="user-info pull-right">
