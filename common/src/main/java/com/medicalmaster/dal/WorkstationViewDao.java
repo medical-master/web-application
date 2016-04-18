@@ -1,14 +1,14 @@
 package com.medicalmaster.dal;
 
-import com.ctrip.platform.dal.dao.*;
-import com.ctrip.platform.dal.dao.helper.*;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.List;
 
-import com.ctrip.platform.dal.dao.helper.*;
+import com.ctrip.platform.dal.dao.DalHints;
+import com.ctrip.platform.dal.dao.DalQueryDao;
+import com.ctrip.platform.dal.dao.DalRowMapper;
+import com.ctrip.platform.dal.dao.StatementParameters;
+import com.ctrip.platform.dal.dao.helper.DalDefaultJpaMapper;
 
 public class WorkstationViewDao {
 
@@ -19,6 +19,8 @@ public class WorkstationViewDao {
 	private DalRowMapper<ResearchStageRecordPojo> researchStageRecordPojoRowMapper = null;
 
 	private DalRowMapper<WorkstationViewPojoPojo> workstationViewPojoPojoRowMapper = null;
+
+
 
 
 
@@ -62,6 +64,18 @@ public class WorkstationViewDao {
 		return (List<WorkstationViewPojoPojo>)queryDao.query(sql, parameters, hints, workstationViewPojoPojoRowMapper);
 	}
 	/**
+	 * 根据用户ID查询对应的工作站信息
+	**/
+	public List<WorkstationViewPojoPojo> findByUserWorkstation(Integer status, Integer userId, DalHints hints) throws SQLException {
+		String sql = "SELECT wks.workstationId, wks.userId, wks.subLink, wks.`name` as wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.visitCnt, wks.status as wksStatus, us.name as usName, us.nickName, us.sex, us.email, us.professionalRank, us.title, us.educationLevel, us.status usStatus, us.hosptialId, us.doctorNumber, us.department, us.expertArea, us.expertType, re.fileUrl FROM workstation wks, USER us, sys_resource re where wks.userId = us.userId and us.iconResourceId=re.id and wks.status=? and wks.userId=?";
+		StatementParameters parameters = new StatementParameters();
+		hints = DalHints.createIfAbsent(hints);
+		int i = 1;
+		parameters.setSensitive(i++, "status", Types.INTEGER, status);
+		parameters.setSensitive(i++, "userId", Types.INTEGER, userId);
+		return (List<WorkstationViewPojoPojo>)queryDao.query(sql, parameters, hints, workstationViewPojoPojoRowMapper);
+	}
+	/**
 	 * 工作站详细信息查询
 	**/
 	public WorkstationViewPojoPojo showWorkstationInfo(Integer workstationId, DalHints hints) throws SQLException {
@@ -72,5 +86,16 @@ public class WorkstationViewDao {
 		parameters.setSensitive(i++, "workstationId", Types.INTEGER, workstationId);
 		return (WorkstationViewPojoPojo)queryDao.queryForObjectNullable(sql, parameters, hints, workstationViewPojoPojoRowMapper);
 	}
-
+	/**
+	 * 根据用户ID查询对应的工作站信息总数
+	**/
+	public WorkstationViewPojoPojo findByUserWorkstationCnt(Integer status, Integer userId, DalHints hints) throws SQLException {
+		String sql = "SELECT count(*) FROM workstation wks, USER us, sys_resource re where wks.userId = us.userId and us.iconResourceId=re.id and wks.status=? and wks.userId=?";
+		StatementParameters parameters = new StatementParameters();
+		hints = DalHints.createIfAbsent(hints);
+		int i = 1;
+		parameters.setSensitive(i++, "status", Types.INTEGER, status);
+		parameters.setSensitive(i++, "userId", Types.INTEGER, userId);
+		return (WorkstationViewPojoPojo)queryDao.queryForObjectNullable(sql, parameters, hints, workstationViewPojoPojoRowMapper);
+	}
 }
