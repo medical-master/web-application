@@ -66,6 +66,10 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	@Type(value=Types.INTEGER)
 	private Integer wksStatus;
 	
+	@Column(name="visitCnt")
+	@Type(value=Types.INTEGER)
+	private Integer visitCnt;
+	
 	@Column(name="usName")
 	@Type(value=Types.VARCHAR)
 	private String usName;
@@ -75,8 +79,8 @@ public class WorkstationViewPojoPojo implements DalPojo {
 	private String nickName;
 	
 	@Column(name="sex")
-	@Type(value=Types.BIT)
-	private Boolean sex;
+	@Type(value=Types.INTEGER)
+	private Integer sex;
 	
 	@Column(name="email")
 	@Type(value=Types.VARCHAR)
@@ -218,6 +222,14 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.wksStatus = wksStatus;
 	}
 
+	public Integer getVisitCnt() {
+		return visitCnt;
+	}
+
+	public void setVisitCnt(Integer visitCnt) {
+		this.visitCnt = visitCnt;
+	}
+
 	public String getUsName() {
 		return usName;
 	}
@@ -234,11 +246,11 @@ public class WorkstationViewPojoPojo implements DalPojo {
 		this.nickName = nickName;
 	}
 
-	public Boolean getSex() {
+	public Integer getSex() {
 		return sex;
 	}
 
-	public void setSex(Boolean sex) {
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
 
