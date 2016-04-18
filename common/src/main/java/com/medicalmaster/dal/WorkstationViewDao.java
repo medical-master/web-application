@@ -53,7 +53,7 @@ public class WorkstationViewDao {
 	 * 工作站信息查询
 	**/
 	public List<WorkstationViewPojoPojo> showWorkstation(int pageNo, int pageSize, DalHints hints) throws SQLException {
-		String sql = "SELECT wks.workstationId, wks.userId, wks.subLink, wks.`name` AS wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.status AS wksStatus, us.name AS usName, us.nickName, us.sex, us.email, us.professionalRank, us.title, us.educationLevel, us.status usStatus, us.hosptialId, us.doctorNumber, us.department, us.expertArea, us.expertType, re.fileUrl FROM workstation wks, USER us, sys_resource re WHERE wks.userId = us.userId AND us.iconResourceId = re.id AND wks.status = 1 limit ?, ?";
+		String sql = "SELECT wks.workstationId, wks.userId, wks.subLink, wks.`name` AS wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.visitCnt, wks.status AS wksStatus, us.name AS usName, us.nickName, us.sex, us.email, us.professionalRank, us.title, us.educationLevel, us.status usStatus, us.hosptialId, us.doctorNumber, us.department, us.expertArea, us.expertType, re.fileUrl FROM workstation wks, USER us, sys_resource re WHERE wks.userId = us.userId AND us.iconResourceId = re.id AND wks.status = 1 limit ?, ?";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
 		int i = 1;
@@ -65,7 +65,7 @@ public class WorkstationViewDao {
 	 * 工作站详细信息查询
 	**/
 	public WorkstationViewPojoPojo showWorkstationInfo(Integer workstationId, DalHints hints) throws SQLException {
-		String sql = "SELECT wks.workstationId, wks.userId, wks.subLink, wks.`name` as wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.status as wksStatus, us.name as usName, us.nickName, us.sex, us.email, us.professionalRank, us.title, us.educationLevel, us.status usStatus, us.hosptialId, us.doctorNumber, us.department, us.expertArea, us.expertType, re.fileUrl FROM workstation wks, USER us, sys_resource re where wks.userId = us.userId and us.iconResourceId=re.id and wks.status=1 and wks.workstationId=?";
+		String sql = "SELECT wks.workstationId, wks.userId, wks.subLink, wks.`name` as wksName, wks.summery, wks.description, wks.keywords, wks.domains, wks.illCode, wks.members, wks.attends, wks.status as wksStatus, wks.visitCnt, us.name as usName, us.nickName, us.sex, us.email, us.professionalRank, us.title, us.educationLevel, us.status usStatus, us.hosptialId, us.doctorNumber, us.department, us.expertArea, us.expertType, re.fileUrl FROM workstation wks, USER us, sys_resource re where wks.userId = us.userId and us.iconResourceId=re.id and wks.status=1 and wks.workstationId=?";
 		StatementParameters parameters = new StatementParameters();
 		hints = DalHints.createIfAbsent(hints);
 		int i = 1;
