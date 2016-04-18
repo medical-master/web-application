@@ -7,16 +7,16 @@ import com.medicalmaster.dal.WorkstationViewPojoPojo;
 
 public class QueryWorkstationResponse extends PageResponse
 {
-	private List<WorkstationViewPojoPojo> workstationView;
-	public QueryWorkstationResponse(){}
+	private List<WorkstationViewPojoPojo> pojos;
 	
-	public List<WorkstationViewPojoPojo> getWorkstationView() 
+	public QueryWorkstationResponse(){}
+	public List<WorkstationViewPojoPojo> getPojos() 
 	{
-		return workstationView;
+		return pojos;
 	}
-
-	public void setWorkstationView(List<WorkstationViewPojoPojo> workstationView) 
+	
+	public void setPojos(List<WorkstationViewPojoPojo> pojos) 
 	{
-		this.workstationView = workstationView;
+		this.pojos = pojos;
 	}
 }
