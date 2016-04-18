@@ -1,7 +1,8 @@
+<%@page import="com.medicalmaster.web.bean.WebConstants"%>
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.medicalmaster.dal.User"%>
 <%
-	User user = (User)session.getAttribute("user");
+	User user = (User)session.getAttribute(WebConstants.SESSION_USER);
 %>
       <form>
         <div class="form-group">
@@ -59,11 +60,11 @@
         </div>
         <div class="radio">
           <label>
-            <input type="radio" id="optionsRadios0" name="sex" value="true" <%if(user.getSex() == null || user.getSex()){%>checked<% } %>>男性</label>
+            <input type="radio" id="optionsRadios0" name="sex" value="true" <%if(user.getSex() == null || user.getSex() == 1){%>checked<% } %>>男性</label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" id="optionsRadios1" name="sex" value="false" <%if(user.getSex() != null && user.getSex() == false){%>checked<% } %>>女性</label>
+            <input type="radio" id="optionsRadios1" name="sex" value="false" <%if(user.getSex() != null && user.getSex() == 0){%>checked<% } %>>女性</label>
         </div>
         <input type="hidden" name="userid" value="<%=user.getUserId()%>">
         <input type="hidden" name="action" value="update">

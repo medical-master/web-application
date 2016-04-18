@@ -306,5 +306,35 @@ public class UserDao {
 		hints = DalHints.createIfAbsent(hints);
 		return client.batchUpdate(hints, daoPojos);
 	}
+	/**
+	 * loginByEmail
+	**/
+	public User loginByEmail(String email, String password, Integer status, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("user", dbCategory, false);
+		builder.select("mobilePhoneNumber","nickName","professionalRank","expertArea","sex","iconResourceId","type","title","userId","hiddenName","educationLevel","identityNumber","hosptialId","doctorNumber","createTime","inviteCode","name","department","expertType","email","authentication","status","lastUpdateTime");
+		builder.equal("email", email, Types.VARCHAR, false);
+		builder.and();
+		builder.equal("authentication", password, Types.VARCHAR, false);
+		builder.and();
+		builder.equal("status", status, Types.INTEGER, false);
+	    String sql = builder.build();
+		return queryDao.queryForObjectNullable(sql, builder.buildParameters(), hints, parser);
+	}
+	/**
+	 * loginByPhoneNo
+	**/
+	public User loginByPhoneNo(String phoneNo, String password, Integer status, DalHints hints) throws SQLException {
+		hints = DalHints.createIfAbsent(hints);
+		SelectSqlBuilder builder = new SelectSqlBuilder("user", dbCategory, false);
+		builder.select("mobilePhoneNumber","nickName","professionalRank","expertArea","sex","iconResourceId","type","title","userId","hiddenName","educationLevel","identityNumber","hosptialId","doctorNumber","createTime","inviteCode","name","department","expertType","email","authentication","status","lastUpdateTime");
+		builder.equal("mobilePhoneNumber", phoneNo, Types.VARCHAR, false);
+		builder.and();
+		builder.equal("authentication", password, Types.VARCHAR, false);
+		builder.and();
+		builder.equal("status", status, Types.INTEGER, false);
+	    String sql = builder.build();
+		return queryDao.queryForObjectNullable(sql, builder.buildParameters(), hints, parser);
+	}
 
 }

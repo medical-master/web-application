@@ -49,7 +49,7 @@ public class UpdateInfo implements Converter{
 		user.setEmail(req.getEmail());
 		user.setHosptialId(ParseHelper.parseInt(req.getHosptialId()));
 		user.setNickName(req.getNickName());
-		user.setSex(ParseHelper.parseBoolean(req.getSex()));
+		user.setSex(ParseHelper.parseInt(req.getSex()));
 		user.setDepartment(req.getDepartment());
 		user.setEducationLevel(ParseHelper.parseInt(req.getEducationLevel()));
 		user.setProfessionalRank(ParseHelper.parseInt(req.getProfessionalRank()));
