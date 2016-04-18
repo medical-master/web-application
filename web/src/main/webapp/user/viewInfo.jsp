@@ -1,55 +1,65 @@
+<%@taglib prefix="hst" uri="http://java.sun.com/jsp/eds/hospital"%>
+<%@taglib prefix="spt" uri="http://java.sun.com/jsp/eds/sysproperty"%>
+<%@page import="com.medicalmaster.common.bean.ResourceConstants" %>
 <%@page pageEncoding="UTF-8"%>
-<%@page import="com.medicalmaster.dal.User"%>
-<%
-	User user = (User)session.getAttribute("user");
-%>
-      <div class="form-group">
-        <label for="unickNameInput"><%=user.getName()%></label>
-      </div>
-      <div class="form-group">
-        <label for="nickName">昵称</label>
-       	<%if(user.getNickName() == null){%>n/a<% } else { %><%=user.getNickName()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="mobileInput">手机号</label>
-       	<%if(user.getMobilePhoneNumber() == null){%>n/a<% } else { %><%=user.getMobilePhoneNumber()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="emailInput">邮件</label>
-       	<%if(user.getEmail() == null){%>n/a<% } else { %><%=user.getEmail()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="hosptialId">医院</label>
-       	<%if(user.getHosptialId() == null){%>n/a<% } else { %><%=user.getHosptialId()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="department">部门</label>
-       	<%if(user.getDepartment() == null){%>n/a<% } else { %><%=user.getDepartment()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="educationLevel">教育程度</label>
-       	<%if(user.getEducationLevel() == null){%>n/a<% } else { %><%=user.getEducationLevel()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="professionalRank">职称</label>
-       	<%if(user.getProfessionalRank() == null){%>n/a<% } else { %><%=user.getProfessionalRank()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="title">职务</label>
-       	<%if(user.getTitle() == null){%>n/a<% } else { %><%=user.getTitle()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="identityNumber">证件号</label>
-       	<%if(user.getIdentityNumber() == null){%>n/a<% } else { %><%=user.getIdentityNumber()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="doctorNumber">医师编号</label>
-        <%if(user.getDoctorNumber() == null){%>n/a<% } else { %><%=user.getDoctorNumber()%><% } %>
-      </div>
-      <div class="form-group">
-        <label for="doctorNumber">性别</label>
-        <%if(user.getSex() == null || user.getSex()){%>男性<% } else { %>女性<% } %>
-      </div>
 
-      <a href="action?view=user/updateInfo">更新信息</a>
- 
+<%@page import="com.medicalmaster.dal.User"%>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="well well-lg">
+				<div class="form-group">
+					<label>姓名：</label>
+					${_USER.name}
+				</div>
+				<div class="form-group">
+					<label>昵称：</label>
+					${_USER.nickName }
+				</div>
+				<div class="form-group">
+					<label>手机号：</label>
+					${_USER.mobilePhoneNumber}
+				</div>
+				<div class="form-group">
+					<label>邮件：</label>
+					${_USER.email}
+				</div>
+				<div class="form-group">
+					<label>医院：</label>
+					<hst:name id="${_USER.hosptialId}"/>
+				</div>
+				<div class="form-group">
+					<label>部门：</label>
+					${_USER.department }
+				</div>
+				<div class="form-group">
+					<label>教育程度：</label>
+					<spt:desc categoryId="13" propertyId="${_USER.educationLevel }"/>
+				</div>
+				<div class="form-group">
+					<label>职称：</label>
+					<spt:desc categoryId="20" propertyId="${_USER.professionalRank }"/>
+				</div>
+				<div class="form-group">
+					<label>职务：</label>
+					${_USER.title }
+				</div>
+				<div class="form-group">
+					<label>证件号：</label>
+					${_USER.identityNumber }
+				</div>
+				<div class="form-group">
+					<label>医师编号：</label>
+					${_USER.doctorNumber }
+				</div>
+				<div class="form-group">
+					<label>性别：</label>
+					<spt:desc categoryId="10" propertyId="${_USER.sex }"/>
+				</div>
+				
+				<a href="action?view=user/updateInfo">更新信息</a>
+			</div>
+		</div>
+	</div>
+</div>
+

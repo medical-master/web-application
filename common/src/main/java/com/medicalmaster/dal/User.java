@@ -34,8 +34,8 @@ public class User implements DalPojo {
 	private String nickName;
 	
 	@Column(name="sex")
-	@Type(value=Types.BIT)
-	private Boolean sex;
+	@Type(value=Types.INTEGER)
+	private Integer sex;
 	
 	@Column(name="iconResourceId")
 	@Type(value=Types.INTEGER)
@@ -137,11 +137,11 @@ public class User implements DalPojo {
 		this.nickName = nickName;
 	}
 
-	public Boolean getSex() {
+	public Integer getSex() {
 		return sex;
 	}
 
-	public void setSex(Boolean sex) {
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
 

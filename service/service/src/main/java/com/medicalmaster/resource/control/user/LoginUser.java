@@ -1,43 +1,47 @@
 package com.medicalmaster.resource.control.user;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
-import com.medicalmaster.common.user.LoginRequest;
-import com.medicalmaster.common.user.GetUserInfoResponse;
-import com.medicalmaster.dal.User;
-import com.medicalmaster.domain.user.UserManager;
-import com.xross.tools.xunit.Context;
-import com.xross.tools.xunit.Converter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class LoginUser implements Converter{
-	private static UserManager manager; 
-	static {
-		try {
-			manager = new UserManager();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+import com.medicalmaster.common.user.LoginRequest;
+import com.medicalmaster.common.user.LoginResponse;
+import com.medicalmaster.dal.User;
+import com.xross.tools.xunit.Context;
+
+public class LoginUser extends UserConverter {
+	static Logger log = LoggerFactory.getLogger(LoginUser.class);
 
 	@Override
 	public Context convert(Context context) {
-		LoginRequest ctx = (LoginRequest)context;
-		String message = "undefined";
-		GetUserInfoResponse lr = new GetUserInfoResponse();
-		try{
-			message = "Login for user %s is success.";
-			User user = manager.getUser(ctx.getName(), ctx.getPassword());
-			if(user == null) {
+		LoginResponse lr = new LoginResponse();
+		try {
+			LoginRequest ctx = (LoginRequest) context;
+
+			User user = manager.login(ctx.getName(), ctx.getPassword());
+			if (user == null) {
 				lr.setSuccess(false);
-				lr.setMessage("The user name or password is incorrect");
+				lr.setMessage("您输入的手机号/邮箱/密码不正确");
 				return lr;
 			}
-				
+			user.setAuthentication("");
 			lr.setUser(user);
-			lr.setMessage(String.format(message, user.getName()));
+			lr.setSuccess(true);
+			lr.setMessage("登录成功");
 			return lr;
 		} catch (SQLException e) {
+			log.error("登录失败", e);
+
 			lr.setSuccess(false);
+			lr.setMessage("用户信息查询失败");
+			return lr;
+		} catch (NoSuchAlgorithmException e) {
+			log.error("登录失败", e);
+
+			lr.setSuccess(false);
+			lr.setMessage("用户信息查询失败");
 			return lr;
 		}
 	}

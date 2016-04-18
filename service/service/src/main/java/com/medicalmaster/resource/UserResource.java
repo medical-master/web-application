@@ -21,11 +21,10 @@ import com.medicalmaster.common.user.ActivateMasterRequest;
 import com.medicalmaster.common.user.CreateUserRequest;
 import com.medicalmaster.common.user.GetUserInfoResponse;
 import com.medicalmaster.common.user.LoginRequest;
+import com.medicalmaster.common.user.LoginResponse;
 import com.medicalmaster.common.user.QueryUserMienRequest;
 import com.medicalmaster.common.user.QueryUserMienResponse;
 import com.medicalmaster.common.user.UpdateUserRequest;
-import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
-import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
 
 @Resource
 @Path(ResourceConstants.PATH_USER)
@@ -46,8 +45,10 @@ public class UserResource extends Resources {
 	}
 
 	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public GetUserInfoResponse login(@BeanParam LoginRequest loginRequest) {
+	public LoginResponse login(@BeanParam LoginRequest loginRequest) {
+		loginRequest.setAction("login");
 		return handle(loginRequest, loginRequest.getAction());
 	}
 
