@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import com.medicalmaster.common.bean.ResourceConstants;
 import com.medicalmaster.common.sysproperty.QuerySysPropertyResponse;
 import com.medicalmaster.resource.control.sysproperty.QuerySysPropertyRequest;
-import com.xross.tools.xunit.XunitFactory;
 
 /**
  * 

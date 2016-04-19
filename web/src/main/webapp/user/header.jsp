@@ -13,7 +13,7 @@
 <div class="container" style="width:100%">
 	<div class="header clearfix" >
 		<div class="logo pull-left">
-			<a href="##"></a>
+			<a href="<%=path%>/" target="_blank"></a>
 		</div>
 	</div>
 </div>

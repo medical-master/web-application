@@ -10,8 +10,9 @@ import com.medicalmaster.domain.user.UserManager;
 import com.xross.tools.xunit.Context;
 import com.xross.tools.xunit.Converter;
 
-public class UpdateInfo implements Converter{
-	private static UserManager manager; 
+public class UpdateInfo implements Converter {
+	private static UserManager manager;
+
 	static {
 		try {
 			manager = new UserManager();
@@ -22,29 +23,26 @@ public class UpdateInfo implements Converter{
 
 	@Override
 	public Context convert(Context context) {
-		UpdateUserRequest ctx = (UpdateUserRequest)context;
-		String message = "undefined";
+		UpdateUserRequest ctx = (UpdateUserRequest) context;
 		GetUserInfoResponse guir = new GetUserInfoResponse();
 		User user = extract(ctx);
-		try{
-			message = "Update infomation for user %s is success.";
-			
-			manager.updateInfo(user);;
+		try {
+			manager.updateInfo(user);
 			user = manager.getUser(user.getUserId());
 			guir.setUser(user);
-			guir.setMessage(String.format(message, user.getName()));
+			guir.setMessage("用户信息更新成功");
 			guir.setSuccess(true);
 			return guir;
 		} catch (SQLException e) {
 			guir.setSuccess(false);
-			guir.setMessage(String.format("Update infomation for user id %s is success.", user.getUserId()));
+			guir.setMessage("用户信息更新失败");
 			return guir;
 		}
 	}
-	
+
 	private User extract(UpdateUserRequest req) {
 		User user = new User();
-		
+
 		user.setUserId(ParseHelper.parseInt(req.getUserId()));
 		user.setEmail(req.getEmail());
 		user.setHosptialId(ParseHelper.parseInt(req.getHosptialId()));
@@ -57,7 +55,7 @@ public class UpdateInfo implements Converter{
 		user.setIdentityNumber(req.getIdentityNumber());
 		user.setDoctorNumber(req.getDoctorNumber());
 		user.setMobilePhoneNumber(req.getMobilePhoneNumber());
-		
+
 		return user;
 	}
 }
