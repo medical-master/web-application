@@ -14,11 +14,11 @@ import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsRequest;
 import com.medicalmaster.common.clinicalresearch.QueryClinicalResearchsResponse;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansRequest;
 import com.medicalmaster.common.diagnosticplan.QueryDiagPlansResponse;
+import com.medicalmaster.common.request.get.PageRequest;
 import com.medicalmaster.common.trainmaterial.QueryTrainMaterialResponse;
 import com.medicalmaster.common.trainmeeting.QueryTrainMeetingsRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoResponse;
-import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationResponse;
 import com.medicalmaster.dal.ClinicalResearch;
 import com.medicalmaster.dal.DiagnosticPlan;
@@ -36,36 +36,19 @@ public class WorkstationView extends BaseView
 		super(request, response);
 	}
 	
-	public List<WorkstationViewPojoPojo> displayWorkstations() throws SQLException, 
+	public QueryWorkstationResponse displayWorkstations() throws SQLException, 
 		IllegalArgumentException, IllegalAccessException 
 	{
-		QueryWorkstationRequest req = new QueryWorkstationRequest();
-		QueryWorkstationResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
-				+ ResourceConstants.PATH_WORKSTATION,req,QueryWorkstationResponse.class);
-		
-		if (response.isSuccess()) 
-		{
-			List<WorkstationViewPojoPojo> workstationList = response.getWorkstationView();
-			if (workstationList.size() > 0)
-			{
-				return workstationList;
-			}
-			else 
-			{
-				return null;
-			}
-		}
-		else 
-		{
-			return null;
-		}
+		PageRequest request = new PageRequest();
+		getPageParameters(request);
+		return ResourceProxy.get(webContext.getBaseServiceUrl() 
+				+ ResourceConstants.PATH_WORKSTATION,request,QueryWorkstationResponse.class);
 	}
 	
 	public WorkstationViewPojoPojo getWorkstationInfo(String id) throws IllegalArgumentException, 
 		IllegalAccessException 
 	{
 		QueryWorkstationInfoRequeset req = new QueryWorkstationInfoRequeset();
-		req.setAction("showDtlInfo");
 		req.setWorkstationId(Integer.parseInt(id.toString()));
 		QueryWorkstationInfoResponse response = ResourceProxy.get(webContext.getBaseServiceUrl() 
 				+ ResourceConstants.PATH_WORKSTATION+"/dtlInfo",req,QueryWorkstationInfoResponse.class);

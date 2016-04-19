@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.medicalmaster.common.helper.PageHelper;
+import com.medicalmaster.common.request.get.PageRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationResponse;
 import com.medicalmaster.dal.WorkstationViewPojoPojo;
@@ -18,22 +19,22 @@ public class ShowWorkstation extends WorkstationCoverter
 	
 	public Context convert(Context inputCtx) 
 	{
-		QueryWorkstationRequest request = (QueryWorkstationRequest)inputCtx;
+		PageRequest request = (PageRequest) inputCtx;
 		QueryWorkstationResponse response = new QueryWorkstationResponse();
 		
 		try 
 		{
-			Integer recordCnt = manager.countWorkstation(request);
+			Integer recordCnt = manager.countWorkstation();
 			Integer pageCnt = PageHelper.calcPageCnt(recordCnt, request.getPageSize());
-
-			List<WorkstationViewPojoPojo> workstationViewPojo = manager.getAllWorkstation(request);
-
-			response.setSuccess(true);
 			response.setRecordCnt(recordCnt);
 			response.setPageCnt(pageCnt);
-			response.setPageNo(request.getPageNo());
-			response.setPageSize(request.getPageSize());
-			response.setWorkstationView(workstationViewPojo);
+			response.covert(request);
+			
+			List<WorkstationViewPojoPojo> workstationViewPojo = manager.getAllWorkstation(request);
+			response.setPojos(workstationViewPojo);
+			response.setSuccess(true);
+			
+			System.out.println(response.isSuccess());
 		} 
 		catch (SQLException e) 
 		{

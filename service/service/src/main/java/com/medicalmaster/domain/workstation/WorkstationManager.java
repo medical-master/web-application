@@ -3,6 +3,7 @@ package com.medicalmaster.domain.workstation;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.medicalmaster.common.request.get.PageRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationInfoRequeset;
 import com.medicalmaster.common.workstation.QueryWorkstationListRequest;
 import com.medicalmaster.common.workstation.QueryWorkstationRequest;
@@ -34,7 +35,7 @@ public class WorkstationManager {
 	 * @throws SQLException
 	 * @return List<EdsWorkstation>
 	 */
-	public List<WorkstationViewPojoPojo> getAllWorkstation(QueryWorkstationRequest request) throws SQLException {
+	public List<WorkstationViewPojoPojo> getAllWorkstation(PageRequest request) throws SQLException {
 		return viewDao.showWorkstation(request.getPageNo(), request.getPageSize(), null);
 	}
 
@@ -63,8 +64,8 @@ public class WorkstationManager {
 	 * 
 	 * @throws SQLException
 	 */
-	public void insertWorkstation() throws SQLException {
-		Workstation workstation = new Workstation();
+	public void insertWorkstation(Workstation workstation) throws SQLException 
+	{
 		dao.insert(null, workstation);
 	}
 
@@ -86,9 +87,8 @@ public class WorkstationManager {
 	 * @return Integer
 	 * @throws SqlException
 	 */
-	public Integer countWorkstation(QueryWorkstationRequest request) throws SQLException {
-		Long count = viewDao.count(null);
-		return count.intValue();
+	public Integer countWorkstation() throws SQLException {
+		return viewDao.count(null).intValue();
 	}
 
 	/**

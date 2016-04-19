@@ -94,7 +94,7 @@
 	</div>
 	<div class="col-md-9">
 		<h3 align="center">${workstationViewPojo.wksName}</h3>
-		成员数：${workstationViewPojo.members}&nbsp;&nbsp;&nbsp;&nbsp;访问量：
+		成员数：${workstationViewPojo.members}&nbsp;&nbsp;&nbsp;&nbsp;访问量：${workstationViewPojo.visitCnt}
 		<hr>
 		关键字：${workstationViewPojo.keywords}
 		<p>工作站简介：${workstationViewPojo.summery}</p>
