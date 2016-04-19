@@ -42,9 +42,8 @@
 				value="${_USER.email}">
 		</div>
 		<div class="form-group">
-			<label for="hosptialId">医院</label> <input type="text"
-				class="form-control" id=hosptialId name="hosptialId"
-				placeholder="医院" value="${_USER.hosptialId}">
+			<label for="hosptialId">医院</label>
+			 <hst:select selectedId="${_USER.hosptialId}" name="hosptialId" id="hosptialId"></hst:select>
 		</div>
 		<div class="form-group">
 			<label for="department">部门</label> <input type="text"

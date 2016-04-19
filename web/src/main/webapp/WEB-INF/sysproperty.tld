@@ -72,7 +72,7 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>this propertyId of sysproperty</description>
+			<description>this selected id</description>
 			<name>selectedId</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>

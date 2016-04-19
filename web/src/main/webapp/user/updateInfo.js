@@ -12,4 +12,9 @@ $(document).ready(function(){
 		  placeholder: "性别",
 		  allowClear: true
 		});
+	
+	$("#hosptialId").select2({
+		  placeholder: "所属医院",
+		  allowClear: true
+		});
 });

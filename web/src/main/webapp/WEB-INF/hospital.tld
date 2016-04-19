@@ -22,4 +22,29 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	
+	<tag>
+		<description>syshospital select tag</description>
+		<name>select</name>
+		<tag-class>com.medicalmaster.web.tag.hospital.SelectTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>this id of html element</description>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>this name of html element</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>this selected id</description>
+			<name>selectedId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>

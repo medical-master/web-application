@@ -18,6 +18,7 @@ import com.medicalmaster.common.bean.ResourceConstants;
 @Path(ResourceConstants.PATH_HOSPITAL)
 public class HospitalResource extends Resources {
 	public HospitalResource() {
-		super(null, null);
+		super("hospital.xunit", "hospital branch");
 	}
+	
 }
