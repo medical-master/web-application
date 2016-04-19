@@ -73,7 +73,7 @@ public class SysPropertyHelper {
 		}
 	}
 
-	static SysProperty getSysProperty(Integer categoryId, Integer propertyId) {
+	public static SysProperty getSysProperty(Integer categoryId, Integer propertyId) {
 		String key = generateKey(categoryId, propertyId);
 		if (!map.containsKey(key)) {
 			load(categoryId, propertyId);

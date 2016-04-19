@@ -6,7 +6,6 @@ import java.util.List;
 import com.medicalmaster.dal.SysProperty;
 import com.medicalmaster.dal.SysPropertyDao;
 
-
 /**
  * 系统代码管理 Created By guanrong.xie Created On 2016年4月6日 CopyRight@IMedMaster
  */
@@ -28,8 +27,7 @@ public class SysPropertyManager {
 	 * @throws SQLException
 	 */
 	public List<SysProperty> getSysProperties(Integer categoryId) throws SQLException {
-		// TODO
-		return null;
+		return dao.findSysProperties(categoryId, null, null);
 	}
 
 	/**
@@ -41,7 +39,6 @@ public class SysPropertyManager {
 	 * @throws SQLException
 	 */
 	public List<SysProperty> getSysProperties(Integer categoryId, Integer parentId) throws SQLException {
-		// TOTO
-		return null;
+		return dao.findSysProperties(categoryId, parentId, null);
 	}
 }

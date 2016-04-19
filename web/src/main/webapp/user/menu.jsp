@@ -13,7 +13,7 @@
 	  <li role="presentation"><a href="#"  target="content">临床研究</a></li>
 	  <li role="presentation"><a href="#"  target="content">会议培训</a></li>
 	  <li role="presentation"><a href="#"  target="content">工作站成员</a></li>
-	  <li role="presentation" class="active"><a href="user/updateInfo.jsp" target="content">个人资料</a></li>
+	  <li role="presentation" class="active"><a href="updateInfo.jsp" target="content">个人资料</a></li>
 	  <li role="presentation"><a href="#"  target="content">修改密码</a></li>
 	</ul>
 </div>

@@ -1,0 +1,11 @@
+<#escape x as (x)!>
+<select id="${elementId}" name="${elementName}" style="width:300px;">
+	<#list items as item>
+	 <#if item.key == selectKey>
+	 	<option value="${item.key}" selected="selected">${item.value}</option>
+	 <#else>
+	 	<option value="${item.key}">${item.value}</option>
+	 </#if>
+	</#list>
+</select>
+</#escape>
